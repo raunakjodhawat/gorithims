@@ -1,3 +1,6 @@
+# Purpose
+This repo aims to provide all the functionality related to algorhitms in go. Sorting is the first step in the process of making something vast. Currently, WIP. Contributors are most welcome.
+
 # Installation
 ```
 go get -d github.com/raunakjodhawat/gorithims
