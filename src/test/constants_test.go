@@ -21,7 +21,7 @@ func TestAllComplexitySize(t *testing.T){
 	GetAllComplexityFalse := Utility.GetAllComplexity(false)
 	GetAllComplexityNil := Utility.GetAllComplexity()
 
-	if len(GetAllComplexityTrue) != 4 ||  len(GetAllComplexityFalse) != 2 || len(GetAllComplexityNil) != 2 {
+	if len(GetAllComplexityTrue) != 2 ||  len(GetAllComplexityFalse) != 2 || len(GetAllComplexityNil) != 2 {
 		t.Errorf("There should two set of time complexity and space complexity tasks")
 	}
 
