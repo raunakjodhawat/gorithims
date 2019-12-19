@@ -5,11 +5,6 @@ This repo aims to provide all the functionality related to algorhitms in go. Sor
 ```
 go get -d github.com/raunakjodhawat/gorithims
 ```
-
-# Usages
-```
-import "gorithims"
-```
    
 # Sorting implementation
 Implements following sorting functions
@@ -51,20 +46,17 @@ Implements following sorting functions
     import "github.com/raunakjodhawat/gorithims/src/Utility"
     Utility.GetCredits(toPrint ...bool)
     
-    /*  Returns and print a 2d string array of list of References
+    /*  
+        Returns and print a 2d string array of list of References
         used in creation of this project
 
         toPrint is a boolean value, that is optional
         if true is provided, it will print to console
         if nothing (or false) is provided, it won't print
         regardless it sends the actual raw data in multi-dimensional string array
+    
     */
   ```
-
-## Note
-1. reuse, concurency, faster
-2. Support primitive data type
-3. Support struct with key
 
 ## External Dependency
 1. fmt
