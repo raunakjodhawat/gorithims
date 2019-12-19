@@ -26,3 +26,6 @@ jobs:
 
     - name: Build
       run: go build -v .
+    
+    - name: execute test
+      run: go test ./src/test/*
