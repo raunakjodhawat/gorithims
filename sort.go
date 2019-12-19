@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	complexity "github.com/gorithims/static"
 	"time"
+
+	complexity "github.com/raunakjodhawat/gorithims/static"
 )
 
 func main() {
@@ -34,7 +35,7 @@ func getExecutionTime(start time.Time, name string) {
 }
 
 func print(input [][][]string) {
-	for i:=0; i<len(input[0]); i++ {
+	for i := 0; i < len(input[0]); i++ {
 		fmt.Println(input[i])
 	}
 }
