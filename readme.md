@@ -5,7 +5,7 @@ go get -d github.com/raunakjodhawat/gorithims
 
 # Usages
 ```
-    import "gorithims"
+import "gorithims"
 ```
    
 # Sorting implementation
@@ -43,7 +43,11 @@ Implements following sorting functions
 - GetAllComplexityByKey()
 - GetAllFunc()
 #### Other functions
-- GetCredits()
+1. GetCredits()
+ ```
+    import "github.com/raunakjodhawat/gorithims/src/Utility"
+    Utility.GetCredits()
+  ```
 
 ## Note
 1. reuse, concurency, faster

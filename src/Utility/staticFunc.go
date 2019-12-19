@@ -1,4 +1,4 @@
-package complexity
+package Utility
 
 // credits: https://www.bigocheatsheet.com/
 var timeComplexity = [][]string{

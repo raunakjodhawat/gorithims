@@ -1,27 +1,13 @@
-package main
+package Utility
 
 import (
 	"fmt"
 	"time"
-
-	complexity "github.com/raunakjodhawat/gorithims/static"
 )
-
-func main() {
-	a := "getAllComplexity"
-	switch a {
-	case "getAllComplexity":
-		defer getExecutionTime(time.Now(), a)
-		print(complexity.GetAllComplexity())
-		break
-	default:
-		fmt.Println("hi")
-		break
-	}
-}
 
 // External Utility functions
 func GetCredits() [][]string {
+	defer getExecutionTime(time.Now(), "GetCredits")
 	executionTime := []string{"execution Time", "https://blog.stathat.com/2012/10/10/time_any_function_in_go.html"}
 	complexity := []string{"complexity", "https://www.bigocheatsheet.com/"}
 	return [][]string{executionTime, complexity}
@@ -34,7 +20,7 @@ func getExecutionTime(start time.Time, name string) {
 	fmt.Printf("%s took %s\n", name, elapsed)
 }
 
-func print(input [][][]string) {
+func print(input ...string) {
 	for i := 0; i < len(input[0]); i++ {
 		fmt.Println(input[i])
 	}
