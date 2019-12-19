@@ -1,5 +1,10 @@
 package Utility
 
+import (
+	"fmt"
+	"time"
+)
+
 // credits: https://www.bigocheatsheet.com/
 var timeComplexity = [][]string{
 	{"Sorting Algorithim", "Best", "Average", "Worst"},
@@ -28,15 +33,32 @@ var spaceComplexity = [][]string{
 	{"k is the maximum keylength"},
 }
 
-func GetAllComplexity() [][][]string {
-	return [][][]string{timeComplexity, spaceComplexity}
+func GetAllComplexity(toPrint ...bool) [][][]string {
+	defer GetExecutionTime(time.Now(), "GetAllComplexity")
+	allComplexity := [][][]string{timeComplexity, spaceComplexity}
+	if ShouldPrint(toPrint) {
+		fmt.Print("\nHere's a list of all complexities, covered in this repo (credits: https://www.bigocheatsheet.com/)")
+		Print(timeComplexity, "Time Complexity List")
+		Print(spaceComplexity, "Space Complexity List")
+	}
+	return allComplexity
 }
 
-func GetAllTimeComplexity() [][]string {
+func GetAllTimeComplexity(toPrint ...bool) [][]string {
+	defer GetExecutionTime(time.Now(), "GetAllTimeComplexity")
+	if ShouldPrint(toPrint) {
+		fmt.Print("\nHere's a list of all Time complexities, covered in this repo (credits: https://www.bigocheatsheet.com/)")
+		Print(timeComplexity, "Time Complexity List")
+	}
 	return timeComplexity
 }
 
-func GetAllSpaceComplexity() [][]string {
+func GetAllSpaceComplexity(toPrint ...bool) [][]string {
+	defer GetExecutionTime(time.Now(), "GetAllSpaceComplexity")
+	if ShouldPrint(toPrint) {
+		fmt.Print("\nHere's a list of all Space complexities, covered in this repo (credits: https://www.bigocheatsheet.com/)")
+		Print(spaceComplexity, "Time Complexity List")
+	}
 	return spaceComplexity
 }
 

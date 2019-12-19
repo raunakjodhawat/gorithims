@@ -14,12 +14,10 @@ func GetCredits(toPrint ...bool) [][]string{
 	executionTime := []string{"execution Time", "https://blog.stathat.com/2012/10/10/time_any_function_in_go.html"}
 	complexity := []string{"complexity", "https://www.bigocheatsheet.com/"}
 	credits := [][]string{executionTime, complexity}
-	if toPrint != nil {
-		if toPrint[0] == true {
-			fmt.Print("\nHere's a list of all credits, that I have used for this repository:")
-			for i := 0; i < len(credits); i++ {
-				fmt.Printf("\n%v\t%v", credits[i][0], credits[i][1])
-			}
+	if ShouldPrint(toPrint) {
+		fmt.Print("\nHere's a list of all credits, that I have used for this repository:")
+		for i := 0; i < len(credits); i++ {
+			fmt.Printf("\n%v\t%v", credits[i][0], credits[i][1])
 		}
 	}
 	return credits
