@@ -48,14 +48,14 @@ Implements following sorting functions
     import "github.com/raunakjodhawat/gorithims/src/Utility"
     Utility.GetCredits(toPrint ...bool)
     
-    // returns and print a 2d string array of list of References
-    // used in creation of this project
+    /*  Returns and print a 2d string array of list of References
+        used in creation of this project
 
-    // toPrint is a boolean value, that is optional
-    // if true is provided, it will print to console
-    // if nothing (or false) is provided, it won't print
-    // regardless it sends the actual raw data in multi-dimensional string array
-
+        toPrint is a boolean value, that is optional
+        if true is provided, it will print to console
+        if nothing (or false) is provided, it won't print
+        regardless it sends the actual raw data in multi-dimensional string array
+    */
   ```
 
 ## Note
