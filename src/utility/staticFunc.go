@@ -36,7 +36,7 @@ var spaceComplexity = [][]string{
 func GetAllComplexity(toPrint ...bool) [][][]string {
 	defer GetExecutionTime(time.Now(), "GetAllComplexity")
 	allComplexity := [][][]string{timeComplexity, spaceComplexity}
-	if ShouldPrint(toPrint) {
+	if EvaluateOptionalBoolFlag(toPrint) {
 		fmt.Print("\nHere's a list of all complexities, covered in this repo (credits: https://www.bigocheatsheet.com/)")
 		Print(timeComplexity, "Time Complexity List")
 		Print(spaceComplexity, "Space Complexity List")
@@ -46,7 +46,7 @@ func GetAllComplexity(toPrint ...bool) [][][]string {
 
 func GetAllTimeComplexity(toPrint ...bool) [][]string {
 	defer GetExecutionTime(time.Now(), "GetAllTimeComplexity")
-	if ShouldPrint(toPrint) {
+	if EvaluateOptionalBoolFlag(toPrint) {
 		fmt.Print("\nHere's a list of all Time complexities, covered in this repo (credits: https://www.bigocheatsheet.com/)")
 		Print(timeComplexity, "Time Complexity List")
 	}
@@ -55,7 +55,7 @@ func GetAllTimeComplexity(toPrint ...bool) [][]string {
 
 func GetAllSpaceComplexity(toPrint ...bool) [][]string {
 	defer GetExecutionTime(time.Now(), "GetAllSpaceComplexity")
-	if ShouldPrint(toPrint) {
+	if EvaluateOptionalBoolFlag(toPrint) {
 		fmt.Print("\nHere's a list of all Space complexities, covered in this repo (credits: https://www.bigocheatsheet.com/)")
 		Print(spaceComplexity, "Time Complexity List")
 	}

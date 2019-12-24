@@ -14,7 +14,7 @@ func GetExecutionTime(start time.Time, name string) {
 	fmt.Printf("\n%s took %s\n\n", name, elapsed)
 }
 
-func ShouldPrint(toPrint ...[]bool) bool {
+func EvaluateOptionalBoolFlag(toPrint ...[]bool) bool {
 	if toPrint[0] == nil {
 		return false
 	} else {

@@ -8,8 +8,22 @@ go get -d github.com/raunakjodhawat/gorithims
 ```
    
 # Sorting implementation
+```
+Note: Currently only supports []int type.
+Supports the optional functional parameter, reverse
+See the definition below in section Optional Parameters to understand more
+```
 Implements following sorting functions
 1. Insertion Sort => insertion()
+```
+    import "github.com/raunakjodhawat/gorithims/src/sort"
+    sort.InsertionSort(input []int, reverse ...bool)
+    
+    /*  
+        Returns and print a sorted int array using insertion sort
+    */
+```
+
 2. Selection Sort => selection()
 3. Merge Sort => merge()
 4. Heap Sort => heap()
@@ -21,6 +35,7 @@ Implements following sorting functions
 # Functions
 ## Sorting Functions
 - Insertion()
+- BinaryInsertionSort()
 - Selection()
 - Merge()
 - Heap()
@@ -37,6 +52,13 @@ Implements following sorting functions
         if true is provided, it will print to console
         if nothing (or false) is provided, it won't print
         regardless it sends the actual raw data in multi-dimensional string array
+
+    reverse:
+    for functions with input parameter as (reverse ...bool)
+    reverse is a boolean value, that is optional
+        if true is provided, it will sort in descending order
+        if nothing (or false) is provided, it will sort in ascending order
+        regardless it sends the actual sorted data
 ```
 ## Complexity functions
 1. GetAllComplexity()
@@ -92,3 +114,5 @@ Implements following sorting functions
 1. fmt
 2. time
 3. go/types
+4. reflect
+5. testing
