@@ -1,5 +1,11 @@
 package sort
 
+import (
+	"fmt"
+	"go/types"
+)
+
 func InsertionSort(){
-	//WIP
+	a := []types.Object{}
+	fmt.Print(a)
 }

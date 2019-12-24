@@ -41,7 +41,7 @@ Implements following sorting functions
 ## Complexity functions
 1. GetAllComplexity()
 ```
-    import "github.com/raunakjodhawat/gorithims/src/Utility"
+    import "github.com/raunakjodhawat/gorithims/src/utility"
     Utility.GetAllComplexity(toPrint ...bool)
     
     /*  
@@ -52,7 +52,7 @@ Implements following sorting functions
 ```
 2. GetAllTimeComplexity()
 ```
-    import "github.com/raunakjodhawat/gorithims/src/Utility"
+    import "github.com/raunakjodhawat/gorithims/src/utility"
     Utility.GetAllTimeComplexity(toPrint ...bool)
     
     /*  
@@ -63,7 +63,7 @@ Implements following sorting functions
 ```
 3. GetAllSpaceComplexity()
 ```
-    import "github.com/raunakjodhawat/gorithims/src/Utility"
+    import "github.com/raunakjodhawat/gorithims/src/utility"
     Utility.GetAllTimeComplexity(toPrint ...bool)
     
     /*  
@@ -79,7 +79,7 @@ Implements following sorting functions
 #### Other functions
 1. GetCredits()
 ```
-    import "github.com/raunakjodhawat/gorithims/src/Utility"
+    import "github.com/raunakjodhawat/gorithims/src/utility"
     Utility.GetCredits(toPrint ...bool)
     
     /*  
@@ -91,3 +91,4 @@ Implements following sorting functions
 ## External Dependency
 1. fmt
 2. time
+3. go/types

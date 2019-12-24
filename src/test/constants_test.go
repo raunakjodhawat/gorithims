@@ -1,15 +1,15 @@
-package Utility
+package test
 
 import (
-	"github.com/raunakjodhawat/gorithims/src/Utility"
+	"github.com/raunakjodhawat/gorithims/src/utility"
 	"testing"
 )
 
 func TestToPrintFlag(t *testing.T) {
 
-	allCreditsTrue := Utility.GetCredits(true)
-	allCreditsFalse := Utility.GetCredits(false)
-	allCreditsNil := Utility.GetCredits()
+	allCreditsTrue := utility.GetCredits(true)
+	allCreditsFalse := utility.GetCredits(false)
+	allCreditsNil := utility.GetCredits()
 	if len(allCreditsTrue) < 2 || len(allCreditsFalse) < 2 || len(allCreditsNil) < 2{
 		t.Errorf("There should atlest be two credits")
 	}
@@ -17,9 +17,9 @@ func TestToPrintFlag(t *testing.T) {
 }
 
 func TestAllComplexitySize(t *testing.T){
-	GetAllComplexityTrue := Utility.GetAllComplexity(true)
-	GetAllComplexityFalse := Utility.GetAllComplexity(false)
-	GetAllComplexityNil := Utility.GetAllComplexity()
+	GetAllComplexityTrue := utility.GetAllComplexity(true)
+	GetAllComplexityFalse := utility.GetAllComplexity(false)
+	GetAllComplexityNil := utility.GetAllComplexity()
 
 	if len(GetAllComplexityTrue) != 2 ||  len(GetAllComplexityFalse) != 2 || len(GetAllComplexityNil) != 2 {
 		t.Errorf("There should two set of time complexity and space complexity tasks")
