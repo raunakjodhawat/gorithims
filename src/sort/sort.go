@@ -13,17 +13,32 @@ func InsertionSort(input []int, reverse ...bool) []int{
 	for i:=0; i<len(input); i++ {
 		for j:= i+1; j<len(input); j++{
 			if input[i] > input[j]{
-				temp := input[i]
-				input[i] = input[j]
-				input[j] = temp
-				continue
+				input = Swap(input, i, j)
 			}
 		}
 	}
-	if utility.EvaluateOptionalBoolFlag(reverse) {
-		for i, j := 0, len(input) - 1; i < j; i, j = i+1, j-1 {
-			input[i], input[j] = input[j], input[i]
+	return Reverse(input, reverse...)
+}
+
+func BubbleSort(input []int, reverse ...bool) []int{
+	defer utility.GetExecutionTime(time.Now(), "BubbleSort")
+	return Reverse(RecursiveBubbleSort(input, reverse...), reverse...)
+}
+
+func RecursiveBubbleSort(input []int, reverse ...bool) []int {
+	if len(input) <= 1 {
+		return input
+	}
+	swapCount := 0
+	for i :=0; i<len(input); i++ {
+		if i+1 < len(input) && input[i] > input[i+1]{
+			input = Swap(input, i, i+1)
+			swapCount++
 		}
 	}
-	return input
+	if swapCount == 0 {
+		return input
+	} else {
+		return RecursiveBubbleSort(input, reverse...)
+	}
 }

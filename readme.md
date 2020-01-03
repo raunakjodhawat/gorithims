@@ -14,7 +14,7 @@ Supports the optional functional parameter, reverse
 See the definition below in section Optional Parameters to understand more
 ```
 Implements following sorting functions
-1. Insertion Sort => insertion()
+1. Insertion Sort
 ```
     import "github.com/raunakjodhawat/gorithims/src/sort"
     sort.InsertionSort(input []int, reverse ...bool)
@@ -24,23 +24,32 @@ Implements following sorting functions
     */
 ```
 
-2. Selection Sort => selection()
-3. Merge Sort => merge()
-4. Heap Sort => heap()
-5. Quick Sort => quick()
-6. Bubble Sort => bubble()
+2. Bubble Sort  
+Bubble Sort is internally implemented in recursive
+```
+    import "github.com/raunakjodhawat/gorithims/src/sort"
+    sort.BubbleSort(input []int, reverse ...bool)
+    
+    /*  
+        Returns and print a sorted int array using insertion sort
+    */
+```
+3. Selection Sort => selection()
+4. Merge Sort => merge()
+5. Heap Sort => heap()
+6. Quick Sort => quick()
 7. Bucket Sort => bucket()
 8. Radix Sort => radix()
 
 # Functions
 ## Sorting Functions
 - Insertion()
+- Bubble()
 - BinaryInsertionSort()
 - Selection()
 - Merge()
 - Heap()
 - Quick()
-- Bubble()
 - Bucket()
 - Radix()
 
