@@ -26,9 +26,9 @@ func EvaluateOptionalBoolFlag(toPrint ...[]bool) bool {
 }
 
 func Print(input [][]string, heading string) {
-	fmt.Printf("\n%v\n",heading)
-	for i:=0; i< len(input); i++ {
-		for j:=0; j< len(input[i]); j++ {
+	fmt.Printf("\n%v\n", heading)
+	for i := 0; i < len(input); i++ {
+		for j := 0; j < len(input[i]); j++ {
 			fmt.Printf("%v\t\t", input[i][j])
 		}
 		fmt.Println()
