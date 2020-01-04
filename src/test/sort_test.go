@@ -14,7 +14,7 @@ func TestInsertionSort(t *testing.T) {
 		[]int{2, 7, 7, 1, 5, 3},
 		[]int{99, 100, 12},
 		[]int{2, 7, 7, 1, 5, 3},
-		[]int{25, 17, 31, 13, 2},
+		[]int{25, 17, 31, 13, 2, 6},
 	}
 	expectedResults := [][]int{
 		[]int{2, 13, 17, 25, 31},
@@ -23,7 +23,7 @@ func TestInsertionSort(t *testing.T) {
 		[]int{1, 2, 3, 5, 7, 7},
 		[]int{1, 2, 3, 5, 7},
 		[]int{7, 7, 5, 3, 2, 1},
-		[]int{31, 25, 17, 13, 2},
+		[]int{31, 25, 17, 13, 6, 2},
 	}
 	reverseProperties := []bool{
 		false,
