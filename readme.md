@@ -31,10 +31,18 @@ Bubble Sort is internally implemented in recursive
     sort.BubbleSort(input []int, reverse ...bool)
     
     /*  
-        Returns and print a sorted int array using insertion sort
+        Returns and print a sorted int array using Bubble sort
     */
 ```
 3. Selection Sort => selection()
+```
+    import "github.com/raunakjodhawat/gorithims/src/sort"
+    sort.SelectionSort(input []int, reverse ...bool)
+    
+    /*  
+        Returns and print a sorted int array using Selection sort
+    */
+```
 4. Merge Sort => merge()
 5. Heap Sort => heap()
 6. Quick Sort => quick()
@@ -122,6 +130,5 @@ Bubble Sort is internally implemented in recursive
 ## External Dependency
 1. fmt
 2. time
-3. go/types
-4. reflect
-5. testing
+3. reflect
+4. testing
