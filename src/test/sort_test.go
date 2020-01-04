@@ -7,85 +7,57 @@ import (
 )
 
 func TestInsertionSort(t *testing.T) {
-	input := []int{25, 17, 31, 13, 2}
-	actualInsetionSortResult := sort.InsertionSort(input)
-	actualBubbleSortResult := sort.BubbleSort(input)
-	expectedResult := []int{2, 13, 17, 25, 31}
-
-	// Positive cases
-	if !reflect.DeepEqual(actualInsetionSortResult, expectedResult) {
-		t.Errorf("Insertion Sort failed for input, %v", input)
+	inputs := [][]int{
+		[]int{25, 17, 31, 13, 2},
+		[]int{2},
+		[]int{},
+		[]int{2, 7, 7, 1, 5, 3},
+		[]int{99, 100, 12},
+		[]int{2, 7, 7, 1, 5, 3},
+		[]int{25, 17, 31, 13, 2},
 	}
-	if !reflect.DeepEqual(actualBubbleSortResult, expectedResult) {
-		t.Errorf("Bubble Sort failed for input, %v", input)
+	expectedResults := [][]int{
+		[]int{2, 13, 17, 25, 31},
+		[]int{2},
+		[]int{},
+		[]int{1, 2, 3, 5, 7, 7},
+		[]int{1, 2, 3, 5, 7},
+		[]int{7, 7, 5, 3, 2, 1},
+		[]int{31, 25, 17, 13, 2},
 	}
-
-	input = []int{2}
-	actualInsetionSortResult = sort.InsertionSort(input)
-	actualBubbleSortResult = sort.BubbleSort(input)
-	expectedResult = []int{2}
-	if !reflect.DeepEqual(actualInsetionSortResult, expectedResult) {
-		t.Errorf("Insertion Sort failed for input, %v", input)
-	}
-	if !reflect.DeepEqual(actualBubbleSortResult, expectedResult) {
-		t.Errorf("Bubble Sort failed for input, %v", input)
-	}
-
-	input = []int{}
-	actualInsetionSortResult = sort.InsertionSort(input)
-	actualBubbleSortResult = sort.BubbleSort(input)
-	expectedResult = []int{}
-	if !reflect.DeepEqual(actualInsetionSortResult, expectedResult) {
-		t.Errorf("Insertion Sort failed for input, %v", input)
-	}
-	if !reflect.DeepEqual(actualBubbleSortResult, expectedResult) {
-		t.Errorf("Bubble Sort failed for input, %v", input)
+	reverseProperties := []bool{
+		false,
+		false,
+		false,
+		false,
+		false,
+		true,
+		true,
 	}
 
-	input = []int{2, 7, 7, 1, 5, 3}
-	actualInsetionSortResult = sort.InsertionSort(input)
-	actualBubbleSortResult = sort.BubbleSort(input)
-	expectedResult = []int{1, 2, 3, 5, 7, 7}
-	if !reflect.DeepEqual(actualInsetionSortResult, expectedResult) {
-		t.Errorf("Insertion Sort failed for input, %v", input)
-	}
-	if !reflect.DeepEqual(actualBubbleSortResult, expectedResult) {
-		t.Errorf("Bubble Sort failed for input, %v", input)
-	}
-
-	input = []int{99, 100, 12}
-	actualInsetionSortResult = sort.InsertionSort(input)
-	actualBubbleSortResult = sort.BubbleSort(input)
-	expectedResult = []int{1, 2, 3, 5, 7}
-	if reflect.DeepEqual(actualInsetionSortResult, expectedResult) {
-		t.Errorf("Insertion Sort failed for input, %v", input)
-	}
-	if reflect.DeepEqual(actualBubbleSortResult, expectedResult) {
-		t.Errorf("Bubble Sort failed for input, %v", input)
+	positiveNegativeTestCases := []bool{
+		false,
+		false,
+		false,
+		false,
+		true,
+		false,
+		false,
 	}
 
-	// Reverse Sort
-	input = []int{2, 7, 7, 1, 5, 3}
-	actualInsetionSortResult = sort.InsertionSort(input, true)
-	actualBubbleSortResult = sort.BubbleSort(input, true)
-	expectedResult = []int{7, 7, 5, 3, 2, 1}
-	if !reflect.DeepEqual(actualInsetionSortResult, expectedResult) {
-		t.Errorf("Insertion Sort failed for input, %v", input)
-	}
-	if !reflect.DeepEqual(actualBubbleSortResult, expectedResult) {
-		t.Errorf("Bubble Sort failed for input, %v", input)
+	functionsToTest := []interface{}{
+		sort.InsertionSort,
+		sort.BubbleSort,
+		sort.SelectionSort,
 	}
 
-	input = []int{25, 17, 31, 13, 2}
-	actualInsetionSortResult = sort.InsertionSort(input, true)
-	actualBubbleSortResult = sort.BubbleSort(input, true)
-	expectedResult = []int{31, 25, 17, 13, 2}
-
-	// Positive cases
-	if !reflect.DeepEqual(actualInsetionSortResult, expectedResult) {
-		t.Errorf("Insertion Sort failed for input, %v", input)
-	}
-	if !reflect.DeepEqual(actualBubbleSortResult, expectedResult) {
-		t.Errorf("Bubble Sort failed for input, %v", input)
+	for i := 0; i < len(inputs); i++ {
+		for _, f := range functionsToTest {
+			actualSortedResult := f.(func([]int, ...bool) []int)(inputs[i], reverseProperties[i])
+			expectedResult := expectedResults[i]
+			if !reflect.DeepEqual(actualSortedResult, expectedResult) && !positiveNegativeTestCases[i] {
+				t.Errorf("%T Sort failed for input, %v", f, inputs[i])
+			}
+		}
 	}
 }
