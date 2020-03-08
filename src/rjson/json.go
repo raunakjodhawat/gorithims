@@ -2,10 +2,11 @@ package rjson
 
 import "fmt"
 
-func IsJSON(p struct{} ) bool{
+func IsJSON(p struct{}) bool {
 	fmt.Println(p)
 	return true
 }
+
 // eval()
 // getKeys()
 // jsonObjectToArray()
@@ -13,4 +14,3 @@ func IsJSON(p struct{} ) bool{
 // isJSON()
 // parse
 // stringify
-
