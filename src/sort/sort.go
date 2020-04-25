@@ -5,8 +5,10 @@ import (
 	"time"
 )
 
+// This is for insertion sort
 func InsertionSort(input []int, reverse ...bool) []int {
 	defer utility.GetExecutionTime(time.Now(), "InsertionSort")
+	// return if length is 0
 	if len(input) <= 1 {
 		return input
 	}
@@ -20,6 +22,9 @@ func InsertionSort(input []int, reverse ...bool) []int {
 	return Reverse(input, reverse...)
 }
 
+func Small() {
+
+}
 func BubbleSort(input []int, reverse ...bool) []int {
 	defer utility.GetExecutionTime(time.Now(), "BubbleSort")
 	return Reverse(RecursiveBubbleSort(input, reverse...), reverse...)
