@@ -29,7 +29,7 @@ func (l *ListNode) Last() (interface{}, error) {
 	return -1, errors.New("tail is not yet initialized")
 }
 
-func (l *ListNode) Push(val int) {
+func (l *ListNode) Push(val interface{}) {
 	n := &node{Val: val}
 	if l.Head == nil {
 		l.Head = n
@@ -48,7 +48,7 @@ func (l *ListNode) Length() int {
 }
 
 func (l *ListNode) GetFirstMatchIndex(val interface{}) int {
-	return l.iterateList(false, val)
+	return l.iterateList(false, val) + 1
 }
 
 func (l *ListNode) isEmpty() bool {
@@ -63,7 +63,7 @@ func (l *ListNode) RemoveFirst() (*ListNode, error) {
 }
 
 func (l *ListNode) iterateList(shouldPrint bool, searchKey interface{}) int {
-	len := 1
+	len := 0
 	curr := l.Head
 	for curr != nil {
 		if shouldPrint {
