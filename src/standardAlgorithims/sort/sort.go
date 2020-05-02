@@ -1,7 +1,7 @@
-package sort
+package rsort
 
 import (
-	"github.com/raunakjodhawat/gorithims/src/utility"
+	"github.com/raunakjodhawat/gorithims/src/standardAlgorithims/utility"
 	"time"
 )
 
@@ -15,37 +15,33 @@ func InsertionSort(input []int, reverse ...bool) []int {
 	for i := 0; i < len(input); i++ {
 		for j := i + 1; j < len(input); j++ {
 			if input[i] > input[j] {
-				input = Swap(input, i, j)
+				input = utility.Swap(input, i, j)
 			}
 		}
 	}
-	return Reverse(input, reverse...)
+	return utility.Reverse(input, reverse...)
 }
 
-func Small() {
-
-}
 func BubbleSort(input []int, reverse ...bool) []int {
 	defer utility.GetExecutionTime(time.Now(), "BubbleSort")
-	return Reverse(RecursiveBubbleSort(input, reverse...), reverse...)
+	return utility.Reverse(recursiveBubbleSort(input, reverse...), reverse...)
 }
 
-func RecursiveBubbleSort(input []int, reverse ...bool) []int {
+func recursiveBubbleSort(input []int, reverse ...bool) []int {
 	if len(input) <= 1 {
 		return input
 	}
 	swapCount := 0
 	for i := 0; i < len(input); i++ {
 		if i+1 < len(input) && input[i] > input[i+1] {
-			input = Swap(input, i, i+1)
+			input = utility.Swap(input, i, i+1)
 			swapCount++
 		}
 	}
 	if swapCount == 0 {
 		return input
-	} else {
-		return RecursiveBubbleSort(input, reverse...)
 	}
+	return recursiveBubbleSort(input, reverse...)
 }
 
 func SelectionSort(input []int, reverse ...bool) []int {
@@ -54,8 +50,8 @@ func SelectionSort(input []int, reverse ...bool) []int {
 		return input
 	}
 
-	inputCopy := make([]int, len(input), len(input))
-	minElement := input[0] // assume, min element at index 0
+	inputCopy := make([]int, len(input))
+	var minElement int
 	currentPointer := 0    // starting point for inner loop
 	changeIndex := 0       // swapping index
 
@@ -73,5 +69,5 @@ func SelectionSort(input []int, reverse ...bool) []int {
 	}
 	// copy last element
 	inputCopy[len(inputCopy)-1] = input[len(inputCopy)-1]
-	return Reverse(inputCopy, reverse...)
+	return utility.Reverse(inputCopy, reverse...)
 }

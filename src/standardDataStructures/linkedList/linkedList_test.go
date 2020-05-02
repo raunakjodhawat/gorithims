@@ -1,6 +1,8 @@
-package algos
+package linkedlist
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestListNode_First(t *testing.T) {
 	list := ListNode{}
@@ -14,7 +16,7 @@ func TestListNode_First(t *testing.T) {
 
 func TestListNode_Last(t *testing.T) {
 	list := ListNode{}
-	for i:=0; i<20; i++ {
+	for i := 0; i < 20; i++ {
 		list.Push(i)
 	}
 	lastElementToPush := "raunak jodhawat"
@@ -27,7 +29,7 @@ func TestListNode_Last(t *testing.T) {
 
 func TestListNode_Length(t *testing.T) {
 	list := ListNode{}
-	for i:=0; i<20; i++ {
+	for i := 0; i < 20; i++ {
 		list.Push(i)
 	}
 	listLen := list.Length()
@@ -38,10 +40,10 @@ func TestListNode_Length(t *testing.T) {
 
 func TestListNode_GetFirstMatchIndex(t *testing.T) {
 	list := ListNode{}
-	for i:=0; i<20; i++ {
+	for i := 0; i < 20; i++ {
 		list.Push(i)
 	}
-	for i:=0; i<20; i++ {
+	for i := 0; i < 20; i++ {
 		firstMatchIndex := list.GetFirstMatchIndex(i)
 		if firstMatchIndex != i {
 			t.Errorf("expected %v got %v", i, firstMatchIndex)
@@ -51,11 +53,11 @@ func TestListNode_GetFirstMatchIndex(t *testing.T) {
 
 func TestListNode_RemoveFirst(t *testing.T) {
 	list := ListNode{}
-	for i:=0; i<5; i++ {
+	for i := 0; i < 5; i++ {
 		list.Push(i)
 	}
-	initialActualResult, err := list.First()
-	list.RemoveFirst()
+	initialActualResult, _ := list.First()
+	_, _ = list.RemoveFirst()
 	actualResult, err := list.First()
 	if initialActualResult != 0 && actualResult != 1 && err == nil {
 		t.Errorf("Expected first value to be deleted, got first value as %v", actualResult)
