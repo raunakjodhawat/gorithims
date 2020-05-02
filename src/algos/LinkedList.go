@@ -35,7 +35,7 @@ func (l *ListNode) Push(val interface{}) {
 	if l.Head == nil {
 		l.Head = n
 	} else {
-		l.Tail.Prev = l.Tail
+		n.Prev = l.Tail
 		l.Tail.Next = n
 	}
 	l.Tail = n
@@ -77,7 +77,11 @@ func (l *ListNode) iterateList(shouldPrint bool, searchKey interface{}, shouldDe
 	curr := l.Head
 	for curr != nil {
 		if shouldPrint {
-			fmt.Println((*curr).Val)
+			fmt.Print((*curr).Val)
+			if shouldDebug {
+				fmt.Printf("\t Prev: %p \t current: %p \t Next: %p", curr.Prev, curr , curr.Next)
+			}
+			fmt.Println()
 		}
 		if searchKey != nil && searchKey == curr.Val {
 			return len - 1
