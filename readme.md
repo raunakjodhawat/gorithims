@@ -6,7 +6,7 @@ Currently, this is a WIP. Contributors are most welcome.
 
 # Installation
 ```
-go get -d github.com/raunakjodhawat/gorithims
+go get -d github.com/raunakjodhawat/gorithims/src
 ```
 
 ## Contents
