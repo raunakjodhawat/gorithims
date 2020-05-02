@@ -11,7 +11,7 @@ import (
 // Credits: https://blog.stathat.com/2012/10/10/time_any_function_in_go.html
 func GetExecutionTime(start time.Time, name string) {
 	elapsed := time.Since(start)
-	fmt.Printf("\n%s took %s\n\n", name, elapsed)
+	fmt.Printf("%s took %s\n", name, elapsed)
 }
 
 func EvaluateOptionalBoolFlag(toPrint ...[]bool) bool {
