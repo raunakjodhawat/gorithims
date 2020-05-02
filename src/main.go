@@ -12,6 +12,7 @@ func main() {
 	l.Push(41)
 	l.Push(51)
 	l.Push(61)
-	l.PrintListNode()
+	l.DebugPrintList()
+	l.PrintReverseList()
 
 }
