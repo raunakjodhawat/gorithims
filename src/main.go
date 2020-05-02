@@ -89,7 +89,7 @@ func dataStructureExecution() {
 		list.PrintReverseList() // Prints list in reverse
 		list.DebugPrintList() // Prints pointer address to next and previous nodes
 
-		list.RemoveFirst() // removes first node
+		_, _ = list.RemoveFirst() // removes first node
 		fmt.Println(list.Length() ) // Prints length of the list
 
 		fmt.Println(list.GetFirstMatchIndex(3)) // returns the index of a key in the list

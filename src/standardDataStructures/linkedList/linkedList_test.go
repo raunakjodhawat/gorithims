@@ -56,8 +56,8 @@ func TestListNode_RemoveFirst(t *testing.T) {
 	for i := 0; i < 5; i++ {
 		list.Push(i)
 	}
-	initialActualResult, err := list.First()
-	list.RemoveFirst()
+	initialActualResult, _ := list.First()
+	_, _ = list.RemoveFirst()
 	actualResult, err := list.First()
 	if initialActualResult != 0 && actualResult != 1 && err == nil {
 		t.Errorf("Expected first value to be deleted, got first value as %v", actualResult)

@@ -18,7 +18,7 @@ func EvaluateOptionalBoolFlag(toPrint ...[]bool) bool {
 	if toPrint[0] == nil {
 		return false
 	}
-	if toPrint[0][0] == false {
+	if !toPrint[0][0] {
 		return false
 	}
 	return true

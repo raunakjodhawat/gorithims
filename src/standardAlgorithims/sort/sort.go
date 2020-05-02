@@ -50,8 +50,8 @@ func SelectionSort(input []int, reverse ...bool) []int {
 		return input
 	}
 
-	inputCopy := make([]int, len(input), len(input))
-	minElement := input[0] // assume, min element at index 0
+	inputCopy := make([]int, len(input))
+	var minElement int
 	currentPointer := 0    // starting point for inner loop
 	changeIndex := 0       // swapping index
 

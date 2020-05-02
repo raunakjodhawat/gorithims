@@ -45,10 +45,8 @@ func MultiSorted(unsortedSlice interface{}, inputSortKeys []string, ascendingSor
 	wg.Add(1)
 	// Launch a Go routine, for parallel execution
 	go copyKeys(&wg, inputSortKeys)
-	// Stores the unsorted slice
-	var ms multiSortSlice
-	// Copy the input to the multiSortSlice T
-	ms = copyUnsortedSliceToMultiSorted(unsortedSlice)
+	// Stores the unsorted slice & Copy the input to the multiSortSlice T
+	ms := copyUnsortedSliceToMultiSorted(unsortedSlice)
 	// By default sort by the order in which Keys is received.
 	// Then By the order (if present) in ascendingSortOrder, else (Ascending order as default ordering)
 	wg.Wait()
@@ -83,9 +81,7 @@ var sortKeys []string
 func copyKeys(wg *sync.WaitGroup, inputSortKeys []string) {
 	defer wg.Done()
 	// Copy SortKeys to global object
-	for _, key := range inputSortKeys {
-		sortKeys = append(sortKeys, key)
-	}
+	sortKeys = append(sortKeys, inputSortKeys...)
 }
 
 // copyUnsortedSliceToMultiSorted, converts T.interface{} -> T.multiSortSlice (T.[]multiSortInterface)
