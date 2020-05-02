@@ -1,7 +1,7 @@
 package sort
 
 import (
-	"github.com/raunakjodhawat/gorithims/src/utility"
+	"github.com/raunakjodhawat/gorithims/src/algorithims/utility"
 	"time"
 )
 
@@ -15,11 +15,11 @@ func InsertionSort(input []int, reverse ...bool) []int {
 	for i := 0; i < len(input); i++ {
 		for j := i + 1; j < len(input); j++ {
 			if input[i] > input[j] {
-				input = Swap(input, i, j)
+				input = utility.Swap(input, i, j)
 			}
 		}
 	}
-	return Reverse(input, reverse...)
+	return utility.Reverse(input, reverse...)
 }
 
 func Small() {
@@ -27,7 +27,7 @@ func Small() {
 }
 func BubbleSort(input []int, reverse ...bool) []int {
 	defer utility.GetExecutionTime(time.Now(), "BubbleSort")
-	return Reverse(RecursiveBubbleSort(input, reverse...), reverse...)
+	return utility.Reverse(RecursiveBubbleSort(input, reverse...), reverse...)
 }
 
 func RecursiveBubbleSort(input []int, reverse ...bool) []int {
@@ -37,7 +37,7 @@ func RecursiveBubbleSort(input []int, reverse ...bool) []int {
 	swapCount := 0
 	for i := 0; i < len(input); i++ {
 		if i+1 < len(input) && input[i] > input[i+1] {
-			input = Swap(input, i, i+1)
+			input = utility.Swap(input, i, i+1)
 			swapCount++
 		}
 	}
@@ -73,5 +73,5 @@ func SelectionSort(input []int, reverse ...bool) []int {
 	}
 	// copy last element
 	inputCopy[len(inputCopy)-1] = input[len(inputCopy)-1]
-	return Reverse(inputCopy, reverse...)
+	return utility.Reverse(inputCopy, reverse...)
 }

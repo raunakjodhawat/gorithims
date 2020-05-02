@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	l := algos.ListNode{}
+	l := data_structures.ListNode{}
 	l.Push(2)
 	l.Push(31)
 	l.Push(21)

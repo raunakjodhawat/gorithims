@@ -1,7 +1,7 @@
-package test
+package standardAlgorithims
 
 import (
-	"github.com/raunakjodhawat/gorithims/src/utility"
+	"github.com/raunakjodhawat/gorithims/src/algorithims/utility"
 	"testing"
 )
 

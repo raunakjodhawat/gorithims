@@ -1,7 +1,6 @@
-package test
+package sort
 
 import (
-	"github.com/raunakjodhawat/gorithims/src/sort"
 	"reflect"
 	"testing"
 )
@@ -46,9 +45,9 @@ func TestInsertionSort(t *testing.T) {
 	}
 
 	functionsToTest := []interface{}{
-		sort.InsertionSort,
-		sort.BubbleSort,
-		sort.SelectionSort,
+		algirthims.InsertionSort,
+		algirthims.BubbleSort,
+		algirthims.SelectionSort,
 	}
 
 	for i := 0; i < len(inputs); i++ {

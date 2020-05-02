@@ -25,4 +25,4 @@ jobs:
         fi
     
     - name: execute test
-      run: go test ./src/test/*
+      run: go test ./src/*

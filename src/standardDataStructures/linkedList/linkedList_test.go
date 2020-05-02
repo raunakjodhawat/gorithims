@@ -1,6 +1,8 @@
-package algos
+package linkedList
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestListNode_First(t *testing.T) {
 	list := ListNode{}

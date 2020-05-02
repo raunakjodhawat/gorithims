@@ -1,4 +1,5 @@
-package algos
+
+package linkedList
 
 import (
 	"errors"
