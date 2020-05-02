@@ -40,9 +40,8 @@ func recursiveBubbleSort(input []int, reverse ...bool) []int {
 	}
 	if swapCount == 0 {
 		return input
-	} else {
-		return recursiveBubbleSort(input, reverse...)
 	}
+	return recursiveBubbleSort(input, reverse...)
 }
 
 func SelectionSort(input []int, reverse ...bool) []int {

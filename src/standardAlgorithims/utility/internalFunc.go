@@ -17,12 +17,11 @@ func GetExecutionTime(start time.Time, name string) {
 func EvaluateOptionalBoolFlag(toPrint ...[]bool) bool {
 	if toPrint[0] == nil {
 		return false
-	} else {
-		if toPrint[0][0] == false {
-			return false
-		}
-		return true
 	}
+	if toPrint[0][0] == false {
+		return false
+	}
+	return true
 }
 
 func Print(input [][]string, heading string) {

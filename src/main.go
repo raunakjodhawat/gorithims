@@ -4,21 +4,23 @@ import (
 	"fmt"
 	"github.com/raunakjodhawat/gorithims/src/customAlgorithims/multisorted"
 	rsort "github.com/raunakjodhawat/gorithims/src/standardAlgorithims/sort"
+	linkedlist "github.com/raunakjodhawat/gorithims/src/standardDataStructures/linkedList"
 )
 
-func main(){
+func main() {
 	fmt.Println("Starting Custom Algorithm usage")
 	multiSortExecution()
 	fmt.Println("Standard Algorithm usage")
 	algorithmExecution()
+	fmt.Println("Standard Data structures usage")
+	dataStructureExecution()
 }
 
-
-func multiSortExecution(){
+func multiSortExecution() {
 	fmt.Printf("Multisort, Exports two functions \t MultiSorted() and \tHelp()\n")
 	type Person struct {
 		Name string
-		Age int
+		Age  int
 	}
 	p1 := Person{
 		Name: "Joe",
@@ -53,14 +55,43 @@ func multiSortExecution(){
 }
 
 func algorithmExecution() {
-	func (){
+	func() {
 		// Sort Algorithm execution examples
 		fmt.Println("Warn: rsort only support int slices")
 		unsortedSlice := []int{25, 17, 31, 13, 2}
 		sortedSlice := rsort.InsertionSort(unsortedSlice, true) // Can use Bubble as well as Selection sort instead
-		fmt.Println("Sorted in Descending order",sortedSlice)
+		fmt.Println("Sorted in Descending order", sortedSlice)
 
 		sortedSlice = rsort.InsertionSort(unsortedSlice) // for ascending pass in false flag or dont pass the second argument
-		fmt.Println("Sorted in Ascending order",sortedSlice)
+		fmt.Println("Sorted in Ascending order", sortedSlice)
+	}()
+}
+
+func dataStructureExecution() {
+	func (){
+		fmt.Println("Linked List execution")
+		fmt.Println("Any type can be used to create linked list")
+		list := linkedlist.ListNode{} // creates a instance of linked list node
+		for i := 0; i <5; i++ {
+			list.Push(i) // Adds elements to the list
+		}
+		lastElement, err := list.Last()
+		if err != nil {
+			fmt.Println(lastElement)
+		}
+
+		firstElement, err := list.First()
+		if err != nil {
+			fmt.Println(firstElement)
+		}
+
+		list.PrintListNode() // Prints all elements in the node
+		list.PrintReverseList() // Prints list in reverse
+		list.DebugPrintList() // Prints pointer address to next and previous nodes
+
+		list.RemoveFirst() // removes first node
+		fmt.Println(list.Length() ) // Prints length of the list
+
+		fmt.Println(list.GetFirstMatchIndex(3)) // returns the index of a key in the list
 	}()
 }

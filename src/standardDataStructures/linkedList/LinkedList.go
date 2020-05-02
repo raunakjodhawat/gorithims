@@ -1,4 +1,4 @@
-package linkedList
+package linkedlist
 
 import (
 	"errors"
@@ -87,7 +87,7 @@ func (l *ListNode) iterateList(shouldPrint bool, searchKey interface{}, shouldDe
 			return len - 1
 		}
 		curr = curr.Next
-		len += 1
+		len++
 	}
 	return len
 }
