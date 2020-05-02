@@ -1,7 +1,7 @@
 package sort
 
 import (
-	"github.com/raunakjodhawat/gorithims/src/algorithims/utility"
+	"github.com/raunakjodhawat/gorithims/src/standardAlgorithims/utility"
 	"time"
 )
 

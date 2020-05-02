@@ -98,9 +98,9 @@ func ExampleHelp() {
 	// Output:
 	/*
 			outputSlice, err := MultiSorted(inputSlice, inputKeys, inputOrder)
-		for i := range outputSlice {
-			outputSlice[i] = outputSlice[i].(desiredType)
-		}
+	for i := range outputSlice {
+		outputSlice[i] = outputSlice[i].(desiredType)
+	}
 	*/
 }
 

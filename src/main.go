@@ -1,18 +1,50 @@
 package main
 
 import (
-	"github.com/raunakjodhawat/gorithims/src/algos"
+	"fmt"
+	"github.com/raunakjodhawat/gorithims/src/customAlgorithims/multisorted"
 )
 
-func main() {
-	l := data_structures.ListNode{}
-	l.Push(2)
-	l.Push(31)
-	l.Push(21)
-	l.Push(41)
-	l.Push(51)
-	l.Push(61)
-	l.DebugPrintList()
-	l.PrintReverseList()
+func main(){
+	fmt.Println("Starting Custom Algorithm usage")
+	multiSortExecution()
+}
 
+
+func multiSortExecution(){
+	fmt.Printf("Multisort, Exports two functions \t MultiSorted() and \tHelp()\n")
+	type Person struct {
+		Name string
+		Age int
+	}
+	p1 := Person{
+		Name: "Joe",
+		Age:  26,
+	}
+	p2 := Person{
+		Name: "Azin",
+		Age:  14,
+	}
+	p3 := Person{
+		Name: "Bold",
+		Age:  11,
+	}
+	p4 := Person{
+		Name: "AAND",
+		Age:  14,
+	}
+	multisortExamplePersons := []Person{p1, p2, p3, p4}
+
+	// Sort first by Name in ascending order and age in descending order
+	sortKeys := []string{"Name", "Age"}
+	ascendingOrder := []bool{true, false}
+	sortedSlice, err := multisorted.MultiSorted(multisortExamplePersons, sortKeys, ascendingOrder)
+	if err != nil {
+		return
+	}
+	for i := range sortedSlice {
+		sortedSlice[i] = sortedSlice[i].(Person)
+	}
+	// Notice that AAND comes before AZIN when the age is constant
+	fmt.Println(sortedSlice) // will print: [{Joe 26} {AAND 14} {Azin 14} {Bold 11}]
 }
