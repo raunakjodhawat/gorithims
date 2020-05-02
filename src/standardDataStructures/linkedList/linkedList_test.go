@@ -16,7 +16,7 @@ func TestListNode_First(t *testing.T) {
 
 func TestListNode_Last(t *testing.T) {
 	list := ListNode{}
-	for i:=0; i<20; i++ {
+	for i := 0; i < 20; i++ {
 		list.Push(i)
 	}
 	lastElementToPush := "raunak jodhawat"
@@ -29,7 +29,7 @@ func TestListNode_Last(t *testing.T) {
 
 func TestListNode_Length(t *testing.T) {
 	list := ListNode{}
-	for i:=0; i<20; i++ {
+	for i := 0; i < 20; i++ {
 		list.Push(i)
 	}
 	listLen := list.Length()
@@ -40,10 +40,10 @@ func TestListNode_Length(t *testing.T) {
 
 func TestListNode_GetFirstMatchIndex(t *testing.T) {
 	list := ListNode{}
-	for i:=0; i<20; i++ {
+	for i := 0; i < 20; i++ {
 		list.Push(i)
 	}
-	for i:=0; i<20; i++ {
+	for i := 0; i < 20; i++ {
 		firstMatchIndex := list.GetFirstMatchIndex(i)
 		if firstMatchIndex != i {
 			t.Errorf("expected %v got %v", i, firstMatchIndex)
@@ -53,7 +53,7 @@ func TestListNode_GetFirstMatchIndex(t *testing.T) {
 
 func TestListNode_RemoveFirst(t *testing.T) {
 	list := ListNode{}
-	for i:=0; i<5; i++ {
+	for i := 0; i < 5; i++ {
 		list.Push(i)
 	}
 	initialActualResult, err := list.First()

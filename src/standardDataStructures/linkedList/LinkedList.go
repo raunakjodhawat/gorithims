@@ -1,4 +1,3 @@
-
 package linkedList
 
 import (
@@ -46,7 +45,7 @@ func (l *ListNode) PrintListNode() {
 	l.iterateList(true, nil, false)
 }
 
-func (l *ListNode) PrintReverseList(){
+func (l *ListNode) PrintReverseList() {
 	l.reverseIterateList(true)
 }
 
@@ -69,7 +68,7 @@ func (l *ListNode) RemoveFirst() (*ListNode, error) {
 	return l, errors.New("list is empty, or there's only one element")
 }
 
-func (l *ListNode)DebugPrintList(){
+func (l *ListNode) DebugPrintList() {
 	l.iterateList(true, nil, true)
 }
 
@@ -80,7 +79,7 @@ func (l *ListNode) iterateList(shouldPrint bool, searchKey interface{}, shouldDe
 		if shouldPrint {
 			fmt.Print((*curr).Val)
 			if shouldDebug {
-				fmt.Printf("\t Prev: %p \t current: %p \t Next: %p", curr.Prev, curr , curr.Next)
+				fmt.Printf("\t Prev: %p \t current: %p \t Next: %p", curr.Prev, curr, curr.Next)
 			}
 			fmt.Println()
 		}
