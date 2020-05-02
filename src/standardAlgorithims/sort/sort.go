@@ -1,4 +1,4 @@
-package sort
+package rsort
 
 import (
 	"github.com/raunakjodhawat/gorithims/src/standardAlgorithims/utility"
@@ -22,15 +22,12 @@ func InsertionSort(input []int, reverse ...bool) []int {
 	return utility.Reverse(input, reverse...)
 }
 
-func Small() {
-
-}
 func BubbleSort(input []int, reverse ...bool) []int {
 	defer utility.GetExecutionTime(time.Now(), "BubbleSort")
-	return utility.Reverse(RecursiveBubbleSort(input, reverse...), reverse...)
+	return utility.Reverse(recursiveBubbleSort(input, reverse...), reverse...)
 }
 
-func RecursiveBubbleSort(input []int, reverse ...bool) []int {
+func recursiveBubbleSort(input []int, reverse ...bool) []int {
 	if len(input) <= 1 {
 		return input
 	}
@@ -44,7 +41,7 @@ func RecursiveBubbleSort(input []int, reverse ...bool) []int {
 	if swapCount == 0 {
 		return input
 	} else {
-		return RecursiveBubbleSort(input, reverse...)
+		return recursiveBubbleSort(input, reverse...)
 	}
 }
 

@@ -1,4 +1,4 @@
-package sort
+package rsort
 
 import (
 	"reflect"
@@ -45,9 +45,9 @@ func TestInsertionSort(t *testing.T) {
 	}
 
 	functionsToTest := []interface{}{
-		algirthims.InsertionSort,
-		algirthims.BubbleSort,
-		algirthims.SelectionSort,
+		InsertionSort,
+		BubbleSort,
+		SelectionSort,
 	}
 
 	for i := 0; i < len(inputs); i++ {
