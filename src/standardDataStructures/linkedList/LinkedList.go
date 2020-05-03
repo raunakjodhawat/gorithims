@@ -3,6 +3,7 @@ package linkedlist
 import (
 	"errors"
 	"fmt"
+	"reflect"
 )
 
 type node struct {
@@ -14,6 +15,71 @@ type node struct {
 type ListNode struct {
 	Head *node
 	Tail *node
+}
+
+func (l *ListNode) Add(element interface{}) {
+	n := &node{Val: element}
+	if l.Head == nil {
+		l.Head = n
+	} else {
+		n.Prev = l.Tail
+		l.Tail.Next = n
+	}
+	l.Tail = n
+}
+
+func (l *ListNode) AddAll(elementsInterface interface{}, startIndexSlice ...int) error {
+	slice := reflect.ValueOf(elementsInterface)
+	if slice.Kind() != reflect.Slice {
+		return fmt.Errorf("A slice input is required for this function expected: Slice, got: %v", slice.Kind())
+	}
+
+	var startIndex int
+	listSize := l.Size()
+	if len(startIndexSlice) > 0 {
+		startIndex = startIndexSlice[0]
+		fmt.Println(startIndex, "Start index", listSize)
+	} else if len(startIndexSlice) > 1 {
+		return fmt.Errorf("start index can only have one element, got: %v", startIndexSlice)
+	} else {
+		startIndex = listSize - 1
+	}
+
+	if startIndex < listSize {
+		// convert the interface using reflect to slice of interface
+		elementsSlice := make([]interface{}, slice.Len())
+
+		for i := 0; i < slice.Len(); i++ {
+			elementsSlice[i] = slice.Index(i).Interface()
+		}
+
+		currentNodeAtIndex, err := l.Get(startIndex)
+		if err != nil {
+			return err
+		}
+		fmt.Println(currentNodeAtIndex.Val)
+		for _, element := range elementsSlice {
+			n := &node{Val: element}
+			if l.Head == nil {
+				l.Head = n
+			} else {
+				n.Prev = l.Tail
+				l.Tail.Next = n
+			}
+			l.Tail = n
+		}
+	} else {
+		return fmt.Errorf("starting index can not be greater than the list size, expected a starting index less than %v, received %v", listSize - 1, startIndexSlice)
+	}
+	return nil
+}
+
+func (l * ListNode) Get(index int) (*node, error) {
+	if index < l.Size() {
+		_, _, n := l.iterateList(false, nil, false, false, index)
+		return n, nil
+	}
+	return nil, errors.New("search Index is greater than the list Size")
 }
 
 func (l *ListNode) First() (interface{}, error) {
@@ -30,17 +96,6 @@ func (l *ListNode) Last() (interface{}, error) {
 	return -1, errors.New("tail is not yet initialized")
 }
 
-func (l *ListNode) Push(val interface{}) {
-	n := &node{Val: val}
-	if l.Head == nil {
-		l.Head = n
-	} else {
-		n.Prev = l.Tail
-		l.Tail.Next = n
-	}
-	l.Tail = n
-}
-
 func (l *ListNode) PrintListNode() {
 	l.iterateList(true, nil, false, false)
 }
@@ -50,12 +105,12 @@ func (l *ListNode) PrintReverseList() {
 }
 
 func (l *ListNode) Size() int {
-	size, _ := l.iterateList(false, nil, false, false)
+	size, _ , _:= l.iterateList(false, nil, false, false)
 	return size
 }
 
 func (l *ListNode) GetFirstMatchIndex(val interface{}) int {
-	matchIndex, _ := l.iterateList(false, val, false, false)
+	matchIndex, _, _ := l.iterateList(false, val, false, false)
 	return matchIndex + 1
 }
 
@@ -74,13 +129,31 @@ func (l *ListNode) DebugPrintList() {
 	l.iterateList(true, nil, true, false)
 }
 
-func (l * ListNode) ToSlice() []interface{} {
-	_, slice := l.iterateList(false, nil, false, true)
+func (l *ListNode) ToSlice() []interface{} {
+	_, slice, _ := l.iterateList(false, nil, false, true)
 	return slice
 }
 
-func (l *ListNode) iterateList(shouldPrint bool, searchKey interface{}, shouldDebug bool, returnSlice bool) (int, []interface{}) {
-	len := 0
+//func (l *ListNode) Set(index int, element interface{}) []interface{} {
+//	newNode := &node{Val: element}
+//	if l.Size() < index {
+//		if index == 0 {
+//
+//		} else if index == l.Size() - 1 {
+//
+//		} else {
+//
+//		}
+//	} else {
+//		//return nil
+//	}
+//}
+// RemoveLastOccurrence
+// RemoveLast
+// RemoveFirstOccurrence
+
+func (l *ListNode) iterateList(shouldPrint bool, searchKey interface{}, shouldDebug bool, returnSlice bool, searchIndex ...int) (int, []interface{}, *node) {
+	size := 0
 	curr := l.Head
 	var listToSlice []interface{}
 	for curr != nil {
@@ -95,12 +168,17 @@ func (l *ListNode) iterateList(shouldPrint bool, searchKey interface{}, shouldDe
 			listToSlice = append(listToSlice, (*curr).Val)
 		}
 		if searchKey != nil && searchKey == curr.Val {
-			return len - 1, nil
+			return size - 1, nil, nil
+		}
+		if len(searchIndex) != 0 {
+			if searchIndex[0] == size {
+				return searchIndex[0], nil, curr
+			}
 		}
 		curr = curr.Next
-		len++
+		size++
 	}
-	return len, listToSlice
+	return size, listToSlice, nil
 }
 
 func (l *ListNode) reverseIterateList(shouldPrint bool) {
