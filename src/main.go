@@ -20,6 +20,8 @@ func main() {
 	b := list.AddAll(a, 0) // Not working with 0 and 5
 	fmt.Println(b)
 	list.PrintListNode()
+	fmt.Println()
+	list.PrintReverseList()
 }
 
 //func multiSortExecution() {
