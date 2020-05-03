@@ -42,26 +42,28 @@ func (l *ListNode) Push(val interface{}) {
 }
 
 func (l *ListNode) PrintListNode() {
-	l.iterateList(true, nil, false)
+	l.iterateList(true, nil, false, false)
 }
 
 func (l *ListNode) PrintReverseList() {
 	l.reverseIterateList(true)
 }
 
-func (l *ListNode) Length() int {
-	return l.iterateList(false, nil, false)
+func (l *ListNode) Size() int {
+	size, _ := l.iterateList(false, nil, false, false)
+	return size
 }
 
 func (l *ListNode) GetFirstMatchIndex(val interface{}) int {
-	return l.iterateList(false, val, false) + 1
+	matchIndex, _ := l.iterateList(false, val, false, false)
+	return matchIndex + 1
 }
 
 func (l *ListNode) isEmpty() bool {
 	return l.Head == nil
 }
 func (l *ListNode) RemoveFirst() (*ListNode, error) {
-	if !l.isEmpty() || l.Length() >= 1 {
+	if !l.isEmpty() || l.Size() >= 1 {
 		l.Head = l.Head.Next
 		return l, nil
 	}
@@ -69,12 +71,18 @@ func (l *ListNode) RemoveFirst() (*ListNode, error) {
 }
 
 func (l *ListNode) DebugPrintList() {
-	l.iterateList(true, nil, true)
+	l.iterateList(true, nil, true, false)
 }
 
-func (l *ListNode) iterateList(shouldPrint bool, searchKey interface{}, shouldDebug bool) int {
+func (l * ListNode) ToSlice() []interface{} {
+	_, slice := l.iterateList(false, nil, false, true)
+	return slice
+}
+
+func (l *ListNode) iterateList(shouldPrint bool, searchKey interface{}, shouldDebug bool, returnSlice bool) (int, []interface{}) {
 	len := 0
 	curr := l.Head
+	var listToSlice []interface{}
 	for curr != nil {
 		if shouldPrint {
 			fmt.Print((*curr).Val)
@@ -83,13 +91,16 @@ func (l *ListNode) iterateList(shouldPrint bool, searchKey interface{}, shouldDe
 			}
 			fmt.Println()
 		}
+		if returnSlice {
+			listToSlice = append(listToSlice, (*curr).Val)
+		}
 		if searchKey != nil && searchKey == curr.Val {
-			return len - 1
+			return len - 1, nil
 		}
 		curr = curr.Next
 		len++
 	}
-	return len
+	return len, listToSlice
 }
 
 func (l *ListNode) reverseIterateList(shouldPrint bool) {
