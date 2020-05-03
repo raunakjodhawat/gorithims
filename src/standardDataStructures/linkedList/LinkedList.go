@@ -77,21 +77,15 @@ func (l *ListNode) AddAll(elementsInterface interface{}, startIndexSlice ...int)
 			currentNode.Next = copyNext
 		}
 	} else if startIndex == 0 {
-		//copyNext := currentNodeAtIndex.Next
-		//var currentNode *node
-		//currentNode = currentNodeAtIndex
 		headCopy := l.Head
 		for _, element := range elementsSlice {
 			n := &node{Val: element}
-			//if i==0 {
-			//	l.Head = n
-			//}
-			l.Head.Next = n
-			l.Head = l.Head.Next
-			l.Head.Prev = l.Head
+			headCopy.Prev = n
+			cpy := headCopy
+			headCopy = headCopy.Prev
+			headCopy.Next = cpy
 		}
-		l.Head.Next = headCopy
-		//currentNode.Next = headCopy
+		l.Head = headCopy
 	} else {
 		return fmt.Errorf("starting index can not be greater than the list size, expected a starting index less than %v, received %v", listSize, startIndexSlice)
 	}
