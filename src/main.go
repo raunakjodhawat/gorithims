@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	linkedlist "github.com/raunakjodhawat/gorithims/src/standardDataStructures/linkedList"
 )
 
@@ -13,10 +14,11 @@ func main() {
 	//dataStructureExecution()
 	list := linkedlist.ListNode{} // creates a instance of linked list node
 	for i := 0; i < 5; i++ {
-		list.Add(i) // Adds elements to the list
+		list.Add(i * 10) // Adds elements to the list
 	}
 	a := []int{41, 51}
-	list.AddAll(a, 3)
+	b := list.AddAll(a, 5)
+	fmt.Println(b)
 	list.PrintListNode()
 }
 

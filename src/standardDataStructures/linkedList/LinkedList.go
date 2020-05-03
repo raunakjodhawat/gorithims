@@ -38,44 +38,45 @@ func (l *ListNode) AddAll(elementsInterface interface{}, startIndexSlice ...int)
 	listSize := l.Size()
 	if len(startIndexSlice) > 0 {
 		startIndex = startIndexSlice[0]
-		fmt.Println(startIndex, "Start index", listSize)
+		if startIndex < 0 {
+			return fmt.Errorf("negative index not allowed, got: %v", startIndexSlice)
+		}
 	} else if len(startIndexSlice) > 1 {
 		return fmt.Errorf("start index can only have one element, got: %v", startIndexSlice)
 	} else {
 		startIndex = listSize - 1
 	}
 
-	if startIndex < listSize {
-		// convert the interface using reflect to slice of interface
-		elementsSlice := make([]interface{}, slice.Len())
+	// convert the interface using reflect to slice of interface
+	elementsSlice := make([]interface{}, slice.Len())
 
-		for i := 0; i < slice.Len(); i++ {
-			elementsSlice[i] = slice.Index(i).Interface()
-		}
+	for i := 0; i < slice.Len(); i++ {
+		elementsSlice[i] = slice.Index(i).Interface()
+	}
 
-		currentNodeAtIndex, err := l.Get(startIndex)
-		if err != nil {
-			return err
-		}
-		fmt.Println(currentNodeAtIndex.Val)
+	currentNodeAtIndex, err := l.Get(startIndex)
+	if err != nil {
+		return err
+	}
+
+	if startIndex <= listSize {
+		copyNext := currentNodeAtIndex
+		currentNode := currentNodeAtIndex.Prev
 		for _, element := range elementsSlice {
 			n := &node{Val: element}
-			if l.Head == nil {
-				l.Head = n
-			} else {
-				n.Prev = l.Tail
-				l.Tail.Next = n
-			}
-			l.Tail = n
+			currentNode.Next = n
+			currentNode.Prev = currentNode
+			currentNode = currentNode.Next
 		}
+		currentNode.Next = copyNext
 	} else {
-		return fmt.Errorf("starting index can not be greater than the list size, expected a starting index less than %v, received %v", listSize - 1, startIndexSlice)
+		return fmt.Errorf("starting index can not be greater than the list size, expected a starting index less than %v, received %v", listSize, startIndexSlice)
 	}
 	return nil
 }
 
 func (l * ListNode) Get(index int) (*node, error) {
-	if index < l.Size() {
+	if index <= l.Size() {
 		_, _, n := l.iterateList(false, nil, false, false, index)
 		return n, nil
 	}
@@ -177,6 +178,11 @@ func (l *ListNode) iterateList(shouldPrint bool, searchKey interface{}, shouldDe
 		}
 		curr = curr.Next
 		size++
+	}
+	if len(searchIndex) != 0 {
+		if searchIndex[0] == size {
+			return searchIndex[0], nil, l.Tail
+		}
 	}
 	return size, listToSlice, nil
 }
