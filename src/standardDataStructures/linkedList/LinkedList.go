@@ -1,3 +1,4 @@
+// linkedlist package contains all functions pertaining to working with linked list in Go. As per java SE 14 (https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/util/LinkedList.html)
 package linkedlist
 
 import (
@@ -12,20 +13,61 @@ type node struct {
 	Prev *node
 }
 
+/**
+ListNode type, stores the head and Tail. It represents a list of address with each list instantiated having a default nil Head and Tail
+ */
 type ListNode struct {
 	Head *node
 	Tail *node
 }
 
-func (l *ListNode) Add(element interface{}) {
-	n := &node{Val: element}
-	if l.Head == nil {
-		l.Head = n
+func (l *ListNode) startIndexChecker(startIndexSlice ...int) (int, error){
+	startIndex := -1
+	listSize := l.Size()
+	if len(startIndexSlice) > 0 {
+		startIndex = startIndexSlice[0]
+		if startIndex < 0 {
+			return -1 ,fmt.Errorf("negative index not allowed, got: %v", startIndexSlice)
+		}
+	} else if len(startIndexSlice) > 1 {
+		return -1, fmt.Errorf("start index can only have one element, got: %v", startIndexSlice)
 	} else {
-		n.Prev = l.Tail
-		l.Tail.Next = n
+		startIndex = listSize - 1
 	}
-	l.Tail = n
+	return startIndex, nil
+}
+
+func (l *ListNode) Add(element interface{}, startIndexSlice ...int) error{
+	slice := reflect.ValueOf(element)
+	if slice.Kind() == reflect.Slice {
+		err := l.AddAll(element, startIndexSlice...)
+		return err
+	}
+	startIndex, err := l.startIndexChecker(startIndexSlice...)
+	n := &node{Val: element}
+	if err != nil || startIndex != -1 {
+		if startIndex == 0 {
+			headCopy := l.Head
+			l.Head = n
+			l.Head.Next = headCopy
+		} else {
+			currentIndexElement, err := l.Get(startIndex)
+			if err != nil {
+				return fmt.Errorf("error to add element at index: %v", startIndex)
+			}
+			fmt.Println(currentIndexElement.Val, ")th, ", startIndex)
+
+		}
+	} else {
+		if l.Head == nil {
+			l.Head = n
+		} else {
+			n.Prev = l.Tail
+			l.Tail.Next = n
+		}
+		l.Tail = n
+	}
+	return nil
 }
 
 func (l *ListNode) AddAll(elementsInterface interface{}, startIndexSlice ...int) error {
@@ -34,18 +76,11 @@ func (l *ListNode) AddAll(elementsInterface interface{}, startIndexSlice ...int)
 		return fmt.Errorf("A slice input is required for this function expected: Slice, got: %v", slice.Kind())
 	}
 
-	var startIndex int
-	listSize := l.Size()
-	if len(startIndexSlice) > 0 {
-		startIndex = startIndexSlice[0]
-		if startIndex < 0 {
-			return fmt.Errorf("negative index not allowed, got: %v", startIndexSlice)
-		}
-	} else if len(startIndexSlice) > 1 {
-		return fmt.Errorf("start index can only have one element, got: %v", startIndexSlice)
-	} else {
-		startIndex = listSize - 1
+	startIndex, err := l.startIndexChecker(startIndexSlice...)
+	if err != nil || startIndex != -1 {
+		return err
 	}
+	listSize := l.Size()
 
 	// convert the interface using reflect to slice of interface
 	elementsSlice := make([]interface{}, slice.Len())
@@ -77,19 +112,30 @@ func (l *ListNode) AddAll(elementsInterface interface{}, startIndexSlice ...int)
 			currentNode.Next = copyNext
 		}
 	} else if startIndex == 0 {
-		headCopy := l.Head
-		for i := len(elementsSlice) - 1; i >=0 ; i-- {
-			n := &node{Val: elementsSlice[i]}
-			headCopy.Prev = n
-			cpy := headCopy
-			headCopy = headCopy.Prev
-			headCopy.Next = cpy
+		if l.Head == nil {
+			for _, element := range elementsSlice {
+				l.Add(element)
+			}
+		} else {
+			headCopy := l.Head
+			for i := len(elementsSlice) - 1; i >=0 ; i-- {
+				n := &node{Val: elementsSlice[i]}
+				headCopy.Prev = n
+				cpy := headCopy
+				headCopy = headCopy.Prev
+				headCopy.Next = cpy
+			}
+			l.Head = headCopy
 		}
-		l.Head = headCopy
+
 	} else {
 		return fmt.Errorf("starting index can not be greater than the list size, expected a starting index less than %v, received %v", listSize, startIndexSlice)
 	}
 	return nil
+}
+
+func (l *ListNode) Clear() {
+	l.Head = nil
 }
 
 func (l * ListNode) Get(index int) (*node, error) {
@@ -213,3 +259,6 @@ func (l *ListNode) reverseIterateList(shouldPrint bool) {
 		curr = curr.Prev
 	}
 }
+
+
+// equals
