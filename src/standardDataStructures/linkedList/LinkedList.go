@@ -78,8 +78,8 @@ func (l *ListNode) AddAll(elementsInterface interface{}, startIndexSlice ...int)
 		}
 	} else if startIndex == 0 {
 		headCopy := l.Head
-		for _, element := range elementsSlice {
-			n := &node{Val: element}
+		for i := len(elementsSlice) - 1; i >=0 ; i-- {
+			n := &node{Val: elementsSlice[i]}
 			headCopy.Prev = n
 			cpy := headCopy
 			headCopy = headCopy.Prev
