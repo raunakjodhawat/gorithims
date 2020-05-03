@@ -90,8 +90,10 @@ func dataStructureExecution() {
 		list.DebugPrintList() // Prints pointer address to next and previous nodes
 
 		_, _ = list.RemoveFirst() // removes first node
-		fmt.Println(list.Length() ) // Prints length of the list
+		fmt.Println(list.Size() ) // Prints length of the list
 
 		fmt.Println(list.GetFirstMatchIndex(3)) // returns the index of a key in the list
+
+		fmt.Println(list.ToSlice()) // Convert list to slice
 	}()
 }
