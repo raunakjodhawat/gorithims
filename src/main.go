@@ -15,8 +15,11 @@ func main() {
 	for i := 0; i < 5; i++ {
 		list.Add(i * 10) // Adds elements to the list
 	}
+	a := []int{1, 2, 3}
+	list.Add(a, 0)
+	list.PrintListNode()
 	// a := []int{99, 89, 79, 69}
-	list.Add(99, 0) // Not working with 0 and 5
+	//list.Add(99, 0) // Not working with 0 and 5
 	//list.PrintListNode()
 }
 
