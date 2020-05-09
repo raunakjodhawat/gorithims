@@ -152,6 +152,11 @@ func (l *ListNode) GetLast() (interface{}, error) {
 	return -1, errors.New("head is not yet initialized")
 }
 
+func (l *ListNode) IndexOf(searchKey interface{}) int {
+	index, _ := l.iterateList(false, searchKey, false, false)
+	return index
+}
+
 // Extra functions in addition to ones described in java documentation
 func (l *ListNode) Print(debug ...bool) {
 	var shouldDebug bool
