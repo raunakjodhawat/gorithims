@@ -114,10 +114,8 @@ func (l *ListNode) Clear() {
 	l.Head = nil
 }
 
-func (l *ListNode) Clone() *ListNode{
-	cloneList := l
-	fmt.Println(cloneList, l)
-	return cloneList
+func (l *ListNode) Clone() ListNode{
+	return *l
 }
 
 
