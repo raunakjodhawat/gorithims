@@ -28,7 +28,7 @@ func main() {
 	//l2.Add(103, 0)
 
 	//list.PrintListNode()
-	fmt.Println(list.Contains(20))
+	fmt.Println(list.IndexOf(20))
 	// a := []int{99, 89, 79, 69}
 	//list.Add(99, 0) // Not working with 0 and 5
 	//list.PrintListNode()
