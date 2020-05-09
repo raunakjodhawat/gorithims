@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	linkedlist "github.com/raunakjodhawat/gorithims/src/standardDataStructures/linkedList"
 )
 
@@ -18,6 +19,9 @@ func main() {
 	a := []int{1, 2, 3}
 	list.Add(a, 0)
 	list.PrintListNode()
+	l2 := list.Clone()
+	fmt.Println("hello")
+	l2.PrintListNode()
 	// a := []int{99, 89, 79, 69}
 	//list.Add(99, 0) // Not working with 0 and 5
 	//list.PrintListNode()
