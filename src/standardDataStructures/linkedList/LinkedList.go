@@ -93,6 +93,35 @@ func (l *ListNode) Add(element interface{}, startIndexSlice ...int) error {
 	return nil
 }
 
+func (l *ListNode) AddAll(elementsInterface interface{}, startIndexSlice ...int) error {
+	slice := reflect.ValueOf(elementsInterface)
+	if slice.Kind() != reflect.Slice {
+		return fmt.Errorf("A slice input is required for this function expected: Slice, got: %v", slice.Kind())
+	}
+
+	return l.Add(elementsInterface, startIndexSlice...)
+}
+
+func (l *ListNode) AddFirst(elementsInterface interface{}) error{
+	return l.Add(elementsInterface, 0)
+}
+
+func (l *ListNode) AddLast(elementsInterface interface{}) error{
+	return l.Add(elementsInterface, l.Length)
+}
+
+func (l *ListNode) Clear() {
+	l.Head = nil
+}
+
+func (l *ListNode) Clone() *ListNode{
+	cloneList := l
+	fmt.Println(cloneList, l)
+	return cloneList
+}
+
+
+// unexported and utility functions used by above functions
 func (l *ListNode) getStartingIndex(startIndexSlice ...int) (int, error) {
 	if len(startIndexSlice) > 0 {
 		if len(startIndexSlice) > 2 {
@@ -104,73 +133,7 @@ func (l *ListNode) getStartingIndex(startIndexSlice ...int) (int, error) {
 	return l.Length, nil
 }
 
-//func (l *ListNode) AddAll(elementsInterface interface{}, startIndexSlice ...int) error {
-//	slice := reflect.ValueOf(elementsInterface)
-//	if slice.Kind() != reflect.Slice {
-//		return fmt.Errorf("A slice input is required for this function expected: Slice, got: %v", slice.Kind())
-//	}
-//
-//	startIndex, err := l.startIndexChecker(startIndexSlice...)
-//	if err != nil || startIndex != -1 {
-//		return err
-//	}
-//	listSize := l.Size()
-//
-//	// convert the interface using reflect to slice of interface
-//	elementsSlice := make([]interface{}, slice.Len())
-//
-//	for i := 0; i < slice.Len(); i++ {
-//		elementsSlice[i] = slice.Index(i).Interface()
-//	}
-//
-//	currentNodeAtIndex, err := l.Get(startIndex)
-//	if err != nil {
-//		return err
-//	}
-//
-//	if startIndex <= listSize  && startIndex != 0 {
-//		copyNext := currentNodeAtIndex
-//		var currentNode *node
-//		if startIndex == listSize {
-//			currentNode = currentNodeAtIndex
-//		} else {
-//			currentNode = currentNodeAtIndex.Prev
-//		}
-//		for _, element := range elementsSlice {
-//			n := &node{Val: element}
-//			currentNode.Next = n
-//			currentNode.Prev = currentNode
-//			currentNode = currentNode.Next
-//		}
-//		if startIndex != listSize {
-//			currentNode.Next = copyNext
-//		}
-//	} else if startIndex == 0 {
-//		if l.Head == nil {
-//			for _, element := range elementsSlice {
-//				l.Add(element)
-//			}
-//		} else {
-//			headCopy := l.Head
-//			for i := len(elementsSlice) - 1; i >=0 ; i-- {
-//				n := &node{Val: elementsSlice[i]}
-//				headCopy.Prev = n
-//				cpy := headCopy
-//				headCopy = headCopy.Prev
-//				headCopy.Next = cpy
-//			}
-//			l.Head = headCopy
-//		}
-//
-//	} else {
-//		return fmt.Errorf("starting index can not be greater than the list size, expected a starting index less than %v, received %v", listSize, startIndexSlice)
-//	}
-//	return nil
-//}
 
-func (l *ListNode) Clear() {
-	l.Head = nil
-}
 
 func (l *ListNode) Get(index int) (*node, error) {
 	if index <= l.Size() {
