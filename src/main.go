@@ -16,18 +16,19 @@ func main() {
 	for i := 0; i < 5; i++ {
 		list.Add(i * 10) // Adds elements to the list
 	}
-	l2 := list.Clone()
-	l2.Clear()
-	fmt.Println("l2 is cleared")
-	list.PrintListNode()
-	fmt.Println("le")
-	l2.PrintListNode()
+	//l2 := list.Clone()
+	//l2.Clear()
+	//fmt.Println("l2 is cleared")
+	//list.PrintListNode()
+	//fmt.Println("le")
+	//l2.PrintListNode()
+	//
+	//l2.Add(100, 0)
+	//l2.Add(121, 0)
+	//l2.Add(103, 0)
 
-	l2.Add(100, 0)
-	l2.Add(121, 0)
-	l2.Add(103, 0)
-
-	fmt.Println(l2.Head.Val, l2.Tail.Val)
+	//list.PrintListNode()
+	fmt.Println(list.Contains(20))
 	// a := []int{99, 89, 79, 69}
 	//list.Add(99, 0) // Not working with 0 and 5
 	//list.PrintListNode()
