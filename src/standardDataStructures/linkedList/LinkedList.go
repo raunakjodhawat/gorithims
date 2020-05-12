@@ -25,6 +25,7 @@ type ListNode struct {
 func (l *ListNode) Add(element interface{}, startIndexSlice ...int) error {
 
 	startIndex, err := l.getStartingIndex(startIndexSlice...)
+	fmt.Println(startIndex, l.Length, err)
 	if err != nil {
 		return err
 	}
@@ -40,20 +41,26 @@ func (l *ListNode) Add(element interface{}, startIndexSlice ...int) error {
 				headCopy := l.Head
 				l.Head = n
 				n.Next = headCopy
+				headCopy.Prev = l.Head
 			} else if startIndex != l.Length {
 				curr := l.Head
 				for i := 0; i < l.Length; i++ {
 					if i == startIndex-1 {
+						copyCurrent := curr
 						copyNext := curr.Next
 						curr.Next = n
+						n.Prev = copyCurrent
 						n.Next = copyNext
+						n.Next.Prev = n
 						break
 					}
 					curr = curr.Next
 				}
 			} else {
+				prevCopy := l.Tail
 				l.Tail.Next = n
 				l.Tail = n
+				l.Tail.Prev = prevCopy
 			}
 		}
 		l.Length += 1
@@ -73,14 +80,14 @@ func (l *ListNode) Add(element interface{}, startIndexSlice ...int) error {
 		} else {
 			for i := 0; i < l.Length; i++ {
 				if i == startIndex-1 {
-					currCopy := curr.Next
+					nextCopy := curr.Next
 					for j := 0; j < slice.Len(); j++ {
 						innerNode := &node{Val: elementsSlice[j]}
 						curr.Next = innerNode
 						curr = curr.Next
 						l.Length += 1
 					}
-					curr.Next = currCopy
+					curr.Next = nextCopy
 					if i-1+startIndex == l.Length {
 						l.Tail = curr
 					}
@@ -162,7 +169,7 @@ func (l *ListNode) Print(debug ...bool) {
 	var shouldDebug bool
 	if len(debug) != 0 {
 		if debug[0] {
-			shouldDebug = false
+			shouldDebug = true
 		}
 	}
 	l.iterateList(true, nil, shouldDebug, false)
@@ -173,6 +180,8 @@ func (l *ListNode) getStartingIndex(startIndexSlice ...int) (int, error) {
 	if len(startIndexSlice) > 0 {
 		if len(startIndexSlice) > 2 {
 			return -1, fmt.Errorf("only one argument expected as start index, received %v", startIndexSlice)
+		} else if startIndexSlice[0] > l.Length{
+			return startIndexSlice[0], fmt.Errorf("starting index cant be greater than length of list, expected a number less than %v, got %v", l.Length + 1, startIndexSlice[0])
 		} else {
 			return startIndexSlice[0], nil
 		}
