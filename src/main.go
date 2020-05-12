@@ -17,9 +17,9 @@ func main() {
 	}
 
 	list.OfferFirst(100)
-	//list.Print()
-	list.PollLast()
-	list.Print(true)
+	list.Push(111)
+
+	list.Print()
 	// Test poll, pollFirst & pollLast
 	//fmt.Println(a.Val)
 	//l2 := list.Clone()
