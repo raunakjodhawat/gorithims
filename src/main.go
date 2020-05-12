@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	linkedlist "github.com/raunakjodhawat/gorithims/src/standardDataStructures/linkedList"
 )
 
@@ -13,10 +14,30 @@ func main() {
 	//dataStructureExecution()
 	list := linkedlist.ListNode{} // creates a instance of linked list node
 	for i := 0; i < 5; i++ {
-		list.Add(i * 10) // Adds elements to the list
+		list.Add(i*10) // Adds elements to the list
 	}
+	fmt.Println(list.Length)
 
-	list.Add([]int {100, 200}, 5)
+	list.Add(100, 0)
+	fmt.Println(list.Length)
+	list.Add(101, 3)
+	fmt.Println(list.Length)
+	list.Add(102, 7)
+
+
+	fmt.Println(list.Length)
+	list.Add([]int{201, 202}, 0)
+	fmt.Println(list.Length)
+	list.Add([]int{203, 204}, 4)
+	fmt.Println(list.Length)
+	list.Add([]int{205, 206}, 12)
+
+	fmt.Println(list.Length)
+
+
+	list.Print(true)
+	a:= list.LastIndexOf(102)
+	fmt.Println(a)
 	//l2 := list.Clone()
 	//l2.Clear()
 	//fmt.Println("l2 is cleared")
@@ -29,7 +50,7 @@ func main() {
 	//l2.Add(103, 0)
 
 	//list.PrintListNode()
-	list.Print(true)
+	//list.Print(true)
 	//fmt.Println()
 	// a := []int{99, 89, 79, 69}
 	//list.Add(99, 0) // Not working with 0 and 5
