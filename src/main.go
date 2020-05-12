@@ -16,28 +16,14 @@ func main() {
 	for i := 0; i < 5; i++ {
 		list.Add(i*10) // Adds elements to the list
 	}
-	fmt.Println(list.Length)
 
-	list.Add(100, 0)
-	fmt.Println(list.Length)
-	list.Add(101, 3)
-	fmt.Println(list.Length)
-	list.Add(102, 7)
+	a, err := list.ListIterator(4)
 
-
-	fmt.Println(list.Length)
-	list.Add([]int{201, 202}, 0)
-	fmt.Println(list.Length)
-	list.Add([]int{203, 204}, 4)
-	fmt.Println(list.Length)
-	list.Add([]int{205, 206}, 12)
-
-	fmt.Println(list.Length)
-
-
-	list.Print(true)
-	a:= list.LastIndexOf(102)
-	fmt.Println(a)
+	fmt.Println(err, a)
+	for a != nil {
+		fmt.Println(a.Val)
+		a = a.Next
+	}
 	//l2 := list.Clone()
 	//l2.Clear()
 	//fmt.Println("l2 is cleared")
