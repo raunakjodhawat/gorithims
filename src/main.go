@@ -16,7 +16,7 @@ func main() {
 		list.Add(i * 10) // Adds elements to the list
 	}
 
-	list.Add([]int {100, 200}, 1)
+	list.Add([]int {100, 200}, 5)
 	//l2 := list.Clone()
 	//l2.Clear()
 	//fmt.Println("l2 is cleared")
