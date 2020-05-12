@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	linkedlist "github.com/raunakjodhawat/gorithims/src/standardDataStructures/linkedList"
 )
 
@@ -17,13 +16,8 @@ func main() {
 		list.Add(i*10) // Adds elements to the list
 	}
 
-	a, err := list.ListIterator(4)
-
-	fmt.Println(err, a)
-	for a != nil {
-		fmt.Println(a.Val)
-		a = a.Next
-	}
+	list.OfferFirst(100)
+	list.Print()
 	//l2 := list.Clone()
 	//l2.Clear()
 	//fmt.Println("l2 is cleared")
