@@ -182,23 +182,27 @@ func (l *ListNode) ListIterator(index int) (*node, error) {
 }
 
 func (l *ListNode) Offer(element interface{}) (bool, error) {
-	err := l.Add(element)
-	if err != nil {
-		return false, err
-	}
-	return true, err
+	return l.offerHelper(element)
 }
 
 func (l *ListNode) OfferFirst(element interface{}) (bool, error) {
-	err := l.Add(element, 0)
-	if err != nil {
-		return false, err
-	}
-	return true, err
+	return l.offerHelper(element, 0)
 }
 
 func (l *ListNode) OfferLast(element interface{}) (bool, error) {
-	return l.Offer(element)
+	return l.offerHelper(element)
+}
+
+func (l *ListNode) Peek() (*node, error) {
+	return l.peekHelper(l.Head)
+}
+
+func (l *ListNode) PeekFirst() (*node, error) {
+	return l.peekHelper(l.Head)
+}
+
+func (l *ListNode) PeekLast() (*node, error) {
+	return l.peekHelper(l.Tail)
 }
 
 
@@ -275,4 +279,19 @@ func (l *ListNode) reverseIterateList(shouldPrint bool, searchKey interface{}, s
 	return -1, nil
 }
 
-// equals
+func (l *ListNode) offerHelper(element interface{}, startIndex ...int) (bool, error) {
+	err := l.Add(element, startIndex...)
+	if err != nil {
+		return false, err
+	}
+	return true, err
+}
+
+func (l *ListNode) peekHelper(searchNode *node) (*node, error) {
+	if searchNode != nil {
+		return searchNode, nil
+	} else {
+		return nil, errors.New("list is not yet initialized")
+	}
+}
+
