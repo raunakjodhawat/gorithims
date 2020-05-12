@@ -181,6 +181,27 @@ func (l *ListNode) ListIterator(index int) (*node, error) {
 	return itrPointer, nil
 }
 
+func (l *ListNode) Offer(element interface{}) (bool, error) {
+	err := l.Add(element)
+	if err != nil {
+		return false, err
+	}
+	return true, err
+}
+
+func (l *ListNode) OfferFirst(element interface{}) (bool, error) {
+	err := l.Add(element, 0)
+	if err != nil {
+		return false, err
+	}
+	return true, err
+}
+
+func (l *ListNode) OfferLast(element interface{}) (bool, error) {
+	return l.Offer(element)
+}
+
+
 // Extra functions in addition to ones described in java documentation
 func (l *ListNode) Print(debug ...bool) {
 	var shouldDebug bool
