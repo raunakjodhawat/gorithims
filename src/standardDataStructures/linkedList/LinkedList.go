@@ -205,6 +205,38 @@ func (l *ListNode) PeekLast() (*node, error) {
 	return l.peekHelper(l.Tail)
 }
 
+func (l *ListNode) Poll() (*node, error) {
+	if l.Head != nil {
+		if l.Head.Next == nil {
+			return nil, nil
+		} else {
+			l.Head = l.Head.Next
+			l.Head.Prev = nil
+			l.Head.Next = l.Head.Next.Next
+			return l.Head, nil
+		}
+	}
+	return nil, errors.New("list is not yet initialized")
+}
+
+func (l *ListNode) PollFirst() (*node, error) {
+	return l.Poll()
+}
+
+func (l *ListNode) PollLast() (*node, error) {
+	if l.Head != nil {
+		if l.Tail.Prev == nil {
+			return nil, nil
+		} else {
+			l.Tail = l.Tail.Prev
+			l.Tail.Next = nil
+			l.Tail.Prev = l.Head.Prev.Prev
+			return l.Head, nil
+		}
+	}
+	return nil, errors.New("list is not yet initialized")
+}
+
 
 // Extra functions in addition to ones described in java documentation
 func (l *ListNode) Print(debug ...bool) {

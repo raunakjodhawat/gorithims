@@ -20,6 +20,7 @@ func main() {
 	list.OfferFirst(100)
 	//list.Print()
 	a, _ := list.PeekLast()
+	// Test poll, pollFirst & pollLast
 	fmt.Println(a.Val)
 	//l2 := list.Clone()
 	//l2.Clear()
