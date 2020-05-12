@@ -239,6 +239,19 @@ func (l *ListNode) PollLast() (*node, error) {
 	return nil, errors.New("list is not yet initialized")
 }
 
+func(l *ListNode) Pop() (interface{}, error){
+	currentNode, err := l.Peek()
+	if err != nil {
+		return nil, err
+	}
+	l.Poll()
+	return currentNode.Val, nil
+}
+
+func(l *ListNode) Push(element interface{}) error {
+	return l.Add(element, 0)
+}
+
 
 // Extra functions in addition to ones described in java documentation
 func (l *ListNode) Print(debug ...bool) {
