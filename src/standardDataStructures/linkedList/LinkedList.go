@@ -84,10 +84,15 @@ func (l *ListNode) Add(element interface{}, startIndexSlice ...int) error {
 					for j := 0; j < slice.Len(); j++ {
 						innerNode := &node{Val: elementsSlice[j]}
 						curr.Next = innerNode
+						currCopy := curr
 						curr = curr.Next
+						curr.Prev = currCopy
 						l.Length += 1
 					}
 					curr.Next = nextCopy
+					if nextCopy != nil {
+						nextCopy.Prev = curr
+					}
 					if i-1+startIndex == l.Length {
 						l.Tail = curr
 					}
