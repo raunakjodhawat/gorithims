@@ -142,7 +142,7 @@ func (l *ListNode) Element() *node {
 }
 
 func (l *ListNode) Get(index int) (interface{}, error) {
-	if index > l.Length {
+	if index >= l.Length {
 		return nil, fmt.Errorf("received %v, which is greater than the list size: %v", index, l.Length)
 	}
 	_, nodeElement := l.iterateList(false, index, false, true)
@@ -171,6 +171,14 @@ func (l *ListNode) IndexOf(searchKey interface{}) int {
 func (l *ListNode) LastIndexOf(searchKey interface{}) int {
 	index, _ := l.reverseIterateList(false, searchKey, false, false)
 	return index
+}
+
+func (l *ListNode) ListIterator(index int) (*node, error) {
+	if index >= l.Length {
+		return nil, fmt.Errorf("received %v, which is greater than the list size: %v", index, l.Length)
+	}
+	_, itrPointer := l.iterateList(false, index, false, true)
+	return itrPointer, nil
 }
 
 // Extra functions in addition to ones described in java documentation
@@ -208,7 +216,7 @@ func (l *ListNode) iterateList(shouldPrint bool, searchKey interface{}, shouldDe
 			}
 			fmt.Println()
 		}
-		if searchKey != nil && searchKey == curr.Val {
+		if searchKey != nil && searchKey == curr.Val && !searchByIndex {
 			return i, nil
 		}
 		if searchByIndex {
