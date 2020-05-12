@@ -123,6 +123,8 @@ func (l *ListNode) AddLast(elementsInterface interface{}) error {
 
 func (l *ListNode) Clear() {
 	l.Head = nil
+	l.Tail = nil
+	l.Length = 0
 }
 
 func (l *ListNode) Clone() ListNode {
@@ -212,7 +214,7 @@ func (l *ListNode) Poll() (*node, error) {
 		} else {
 			l.Head = l.Head.Next
 			l.Head.Prev = nil
-			l.Head.Next = l.Head.Next.Next
+			l.Length -= 1
 			return l.Head, nil
 		}
 	}
@@ -230,7 +232,7 @@ func (l *ListNode) PollLast() (*node, error) {
 		} else {
 			l.Tail = l.Tail.Prev
 			l.Tail.Next = nil
-			l.Tail.Prev = l.Head.Prev.Prev
+			l.Length -= 1
 			return l.Head, nil
 		}
 	}
