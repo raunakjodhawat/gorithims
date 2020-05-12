@@ -25,7 +25,6 @@ type ListNode struct {
 func (l *ListNode) Add(element interface{}, startIndexSlice ...int) error {
 
 	startIndex, err := l.getStartingIndex(startIndexSlice...)
-	fmt.Println(startIndex, l.Length, err)
 	if err != nil {
 		return err
 	}
@@ -169,6 +168,11 @@ func (l *ListNode) IndexOf(searchKey interface{}) int {
 	return index
 }
 
+func (l *ListNode) LastIndexOf(searchKey interface{}) int {
+	index, _ := l.reverseIterateList(false, searchKey, false, false)
+	return index
+}
+
 // Extra functions in addition to ones described in java documentation
 func (l *ListNode) Print(debug ...bool) {
 	var shouldDebug bool
@@ -217,80 +221,29 @@ func (l *ListNode) iterateList(shouldPrint bool, searchKey interface{}, shouldDe
 	return -1, nil
 }
 
-// Functions need to looked at
-//func (l *ListNode) Get(index int) (*node, error) {
-//	if index <= l.Size() {
-//		_, _, n := l.iterateList(false, nil, false, false, index)
-//		return n, nil
-//	}
-//	return nil, errors.New("search Index is greater than the list Size")
-//}
-//
-//
-//func (l *ListNode) PrintListNode() {
-//	l.iterateList(true, nil, false, false)
-//}
-//
-//func (l *ListNode) PrintReverseList() {
-//	l.reverseIterateList(true)
-//}
-//
-//func (l *ListNode) Size() int {
-//	size, _, _ := l.iterateList(false, nil, false, false)
-//	return size
-//}
-//
-//func (l *ListNode) GetFirstMatchIndex(val interface{}) int {
-//	matchIndex, _, _ := l.iterateList(false, val, false, false)
-//	return matchIndex + 1
-//}
-//
-//func (l *ListNode) isEmpty() bool {
-//	return l.Head == nil
-//}
-//func (l *ListNode) RemoveFirst() (*ListNode, error) {
-//	if !l.isEmpty() || l.Size() >= 1 {
-//		l.Head = l.Head.Next
-//		return l, nil
-//	}
-//	return l, errors.New("list is empty, or there's only one element")
-//}
-//
-//func (l *ListNode) DebugPrintList() {
-//	l.iterateList(true, nil, true, false)
-//}
-//
-//func (l *ListNode) ToSlice() []interface{} {
-//	_, slice, _ := l.iterateList(false, nil, false, true)
-//	return slice
-//}
-
-//func (l *ListNode) Set(index int, element interface{}) []interface{} {
-//	newNode := &node{Val: element}
-//	if l.Size() < index {
-//		if index == 0 {
-//
-//		} else if index == l.Size() - 1 {
-//
-//		} else {
-//
-//		}
-//	} else {
-//		//return nil
-//	}
-//}
-// RemoveLastOccurrence
-// RemoveLast
-// RemoveFirstOccurrence
-
-func (l *ListNode) reverseIterateList(shouldPrint bool) {
+func (l *ListNode) reverseIterateList(shouldPrint bool, searchKey interface{}, shouldDebug bool, searchByIndex bool) (int, *node){
 	curr := l.Tail
+	counter := l.Length - 1
 	for curr != nil {
 		if shouldPrint {
-			fmt.Println((*curr).Val)
+			fmt.Print((*curr).Val)
+			if shouldDebug {
+				fmt.Printf("\t Prev: %p \t current: %p \t Next: %p", curr.Prev, curr, curr.Next)
+			}
+			fmt.Println()
+		}
+		if searchKey != nil && searchKey == curr.Val {
+			return counter, nil
+		}
+		if searchByIndex {
+			if counter == searchKey {
+				return -1, curr
+			}
 		}
 		curr = curr.Prev
+		counter -= 1
 	}
+	return -1, nil
 }
 
 // equals
