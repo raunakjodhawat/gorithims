@@ -181,14 +181,24 @@ func dataStructureExecution() {
 		}
 		removedElement, err = list.RemoveLastOccurrence(13) // remove the last occurrence of 13
 
+		elementAtIndex, _ := list.Get(10) // Get element at 10th index
+		fmt.Println(elementAtIndex)       // 17
+		list.Set(10, "Hello, world")      // set element at 10th index to be hello, world
+		elementAtIndex, _ = list.Get(10)
+		fmt.Println(elementAtIndex) // Hello, world
+
+		listSize := list.Size() // gets the size of the list
+		fmt.Println(listSize)   // 11
+
+		listToSlice := list.ToArray() // Converts list to slice
+		fmt.Println(listToSlice)      // [15 16 10 0 12 2 3 4 11 end of list Hello, world]
+		/**
+		Printing the list
+			list.PrintReverse(true) // print in reverse with extra debug option
+			list.PrintReverse() // print in reverse without extra debug option
+			list.Print(true) // print with extra debug option
+			list.Print() // print without extra debug option
+		*/
 		list.Print(true)
-		//a, err := list.GetLast()
-		//list.AddAll([]string{"RJ", "jodhawat"})        // Add string slice be default at last index. notice how list can handle different types
-		//list.AddFirst("First element")                 // Add element at the head
-
-		// fmt.Println(a, err)
-		//list.AddLast("Last element") // Add element at the tail
-		//list.Print(true) // Print all nodes
-
 	}()
 }
