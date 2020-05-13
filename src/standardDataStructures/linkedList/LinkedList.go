@@ -75,7 +75,10 @@ func (l *ListNode) Add(element interface{}, startIndexSlice ...int) error {
 		curr := l.head
 		if startIndex == 0 {
 			for i := 0; i < slice.Len(); i++ {
-				l.Add(elementsSlice[i], startIndex)
+				err := l.Add(elementsSlice[i], startIndex)
+				if err != nil {
+					return err
+				}
 				startIndex++
 			}
 		} else if startIndex != l.length {
@@ -150,10 +153,7 @@ func (l *ListNode) Clone() ListNode {
 // Contains Returns true if this list contains the specified element.
 func (l *ListNode) Contains(element interface{}) bool {
 	matchIndex, _ := l.iterateList(false, element, false, false)
-	if matchIndex != -1 {
-		return true
-	}
-	return false
+	return matchIndex != -1
 }
 
 // Element Retrieves, but does not remove, the head (first element) of this list.
