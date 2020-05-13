@@ -159,6 +159,22 @@ func dataStructureExecution() {
 		pollNode, _ = list.PollFirst() // get first element
 		fmt.Println(pollNode)          // &{first element <Next address> <nil>}
 
+		fmt.Println()
+		list.Push("hello")          // push hello to top of the list
+		topElement, _ := list.Pop() // gets the value at head, and remove the node from the list
+		fmt.Println(topElement)
+
+		fmt.Println()
+		removedElement, _ := list.Remove(0)    // remove from the list, with index
+		fmt.Println(removedElement)            // &{raunak <Next address> <nil>}
+		removedElement, _ = list.Remove(5)     // remove from the list, element at index 5
+		fmt.Println(removedElement)            // &{1 <Next address> <previous address>}
+		removedElement, _ = list.RemoveFirst() // remove first element (head)
+		fmt.Println(removedElement)            // &{jodhawat <Next address> <nil>}
+		removedElement, _ = list.RemoveLast()  // remove last element (tail)
+		fmt.Println(removedElement)            // &{100 <nil> <previous address>}
+
+		list.Print()
 		//a, err := list.GetLast()
 		//list.AddAll([]string{"RJ", "jodhawat"})        // Add string slice be default at last index. notice how list can handle different types
 		//list.AddFirst("First element")                 // Add element at the head
