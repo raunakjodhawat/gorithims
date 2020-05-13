@@ -22,6 +22,7 @@ type ListNode struct {
 	length int
 }
 
+// Add Inserts the specified element at the specified position in this list. By default add to the end of list
 func (l *ListNode) Add(element interface{}, startIndexSlice ...int) error {
 
 	startIndex, err := l.getStartingIndex(startIndexSlice...)
@@ -337,7 +338,7 @@ func (l *ListNode) ToArray() []interface{} {
 	for curr != nil {
 		listToArray[i] = curr.Val
 		curr = curr.Next
-		i += 1
+		i++
 	}
 	return listToArray
 }
@@ -348,11 +349,6 @@ func (l *ListNode) Print(debug ...bool) {
 
 func (l *ListNode) PrintReverse(debug ...bool) {
 	l.reverseIterateList(true, nil, l.printHelper(debug...), false)
-}
-
-// TODO
-func (l *ListNode) Sort() *node {
-	return l.head
 }
 
 // unexported and utility functions used by above functions
@@ -414,7 +410,7 @@ func (l *ListNode) reverseIterateList(shouldPrint bool, searchKey interface{}, s
 			}
 		}
 		curr = curr.Prev
-		counter -= 1
+		counter--
 	}
 	return -1, nil
 }
@@ -430,9 +426,8 @@ func (l *ListNode) offerHelper(element interface{}, startIndex ...int) (bool, er
 func (l *ListNode) peekHelper(searchNode *node) (*node, error) {
 	if searchNode != nil {
 		return searchNode, nil
-	} else {
-		return nil, errors.New("list is not yet initialized")
 	}
+	return nil, errors.New("list is not yet initialized")
 }
 
 func (l *ListNode) printHelper(debug ...bool) bool {
