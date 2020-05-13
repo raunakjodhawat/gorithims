@@ -80,21 +80,58 @@ func dataStructureExecution() {
 				break
 			}
 		}
-		list.Add(10, 0) // Add 10 at index 0
-		list.Add(11)    // Add 11 at end
-		list.Add(12, 3) // Add 12 at middle of the list
-		list.Add(13, 8) // Add 13 at end of the list
-		err := list.Add(14, 10)
+		err := list.Add(10, 0) // Add 10 at index 0
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		err = list.Add(11) // Add 11 at end
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		err = list.Add(12, 3) // Add 12 at middle of the list
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		err = list.Add(13, 8) // Add 13 at end of the list
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		err = list.Add(14, 10)
 		if err != nil {
 			fmt.Println(err) // Prints error indicating failure to add 14, because its greater than list length
 		}
 
-		list.AddAll([]string{"raunak", "jodhawat"}, 0) // Add string slice to end of list. notice how list can handle different types
-		list.AddAll([]int{15, 16}, 2)                  // Add string slice at index 2.
-		list.AddAll([]string{"end of list"})           // Add a string slice at end of the list
+		err = list.AddAll([]string{"raunak", "jodhawat"}, 0) // Add string slice to end of list. notice how list can handle different types
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		err = list.AddAll([]int{15, 16}, 2) // Add string slice at index 2.
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		err = list.AddAll([]string{"end of list"}) // Add a string slice at end of the list
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
 
-		list.AddFirst("first element") // Add first element
-		list.AddLast(17)               // Add last element
+		err = list.AddFirst("first element") // Add first element
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+
+		err = list.AddLast(17) // Add last element
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
 
 		list.Print() // Print all elements of the list
 
@@ -127,7 +164,11 @@ func dataStructureExecution() {
 		fmt.Println(index)        // 15
 		index = list.LastIndexOf("raunak")
 		fmt.Println(index) // 1
-		list.Add("raunak")
+		err = list.Add("raunak")
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
 		index = list.LastIndexOf("raunak")
 		fmt.Println(index) // 16
 
@@ -144,9 +185,21 @@ func dataStructureExecution() {
 		}
 		fmt.Println()
 
-		list.Offer(100)                         // offer/add element to end of the list
-		list.OfferFirst("starting of the list") // offer/add element to start of the list
-		list.OfferLast("ending of the list")    // offer/add element to end of the list
+		_, err = list.Offer(100) // offer/add element to end of the list
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		_, err = list.OfferFirst("starting of the list") // offer/add element to start of the list
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		_, err = list.OfferLast("ending of the list") // offer/add element to end of the list
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
 
 		peekNode, _ := list.Peek()     // Get front element of the list, but dont remove from the list
 		fmt.Println(peekNode)          // &{starting of the list <Next address> <nil>}

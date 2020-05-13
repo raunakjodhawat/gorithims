@@ -278,7 +278,10 @@ func (l *ListNode) Pop() (interface{}, error) {
 	if err != nil {
 		return nil, err
 	}
-	l.Poll()
+	_, err = l.Poll()
+	if err != nil {
+		return nil, err
+	}
 	return currentNode.Val, nil
 }
 
