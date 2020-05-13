@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	linkedlist "github.com/raunakjodhawat/gorithims/src/standardDataStructures/linkedList"
 )
 
@@ -19,6 +20,9 @@ func main() {
 	list.OfferFirst(100)
 	list.Push(111)
 
+	list.Print()
+	fmt.Println()
+	list.Remove(7)
 	list.Print()
 	// Test poll, pollFirst & pollLast
 	//fmt.Println(a.Val)
