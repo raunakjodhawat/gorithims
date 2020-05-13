@@ -1,4 +1,4 @@
-// linkedlist package contains all functions pertaining to working with linked list in Go. As per java SE 14 (https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/util/LinkedList.html)
+// Package linkedlist package contains all functions pertaining to working with linked list in Go. As per java SE 14 (https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/util/LinkedList.html)
 package linkedlist
 
 import (
@@ -7,18 +7,17 @@ import (
 	"reflect"
 )
 
-type node struct {
+// Node holds the data element and pointer to next and previous node in the linked list
+type Node struct {
 	Val  interface{}
-	Next *node
-	Prev *node
+	Next *Node
+	Prev *Node
 }
 
-/**
-ListNode type, stores the head and tail. It represents a list of address with each list instantiated having a default nil.head and tail
-*/
+// ListNode type, stores the head and tail. It represents a list of address with each list instantiated having a default nil.head and tail
 type ListNode struct {
-	head   *node
-	tail   *node
+	head   *Node
+	tail   *Node
 	length int
 }
 
@@ -32,7 +31,7 @@ func (l *ListNode) Add(element interface{}, startIndexSlice ...int) error {
 
 	slice := reflect.ValueOf(element)
 	if slice.Kind() != reflect.Slice {
-		n := &node{Val: element}
+		n := &Node{Val: element}
 		if l.head == nil {
 			l.head = n
 			l.tail = n
@@ -65,7 +64,7 @@ func (l *ListNode) Add(element interface{}, startIndexSlice ...int) error {
 				l.tail.Prev = n
 			}
 		}
-		l.length += 1
+		l.length++
 	} else {
 		elementsSlice := make([]interface{}, slice.Len())
 
@@ -77,19 +76,19 @@ func (l *ListNode) Add(element interface{}, startIndexSlice ...int) error {
 		if startIndex == 0 {
 			for i := 0; i < slice.Len(); i++ {
 				l.Add(elementsSlice[i], startIndex)
-				startIndex += 1
+				startIndex++
 			}
 		} else if startIndex != l.length {
 			for i := 0; i < l.length; i++ {
 				if i == startIndex-1 {
 					nextCopy := curr.Next
 					for j := 0; j < slice.Len(); j++ {
-						innerNode := &node{Val: elementsSlice[j]}
+						innerNode := &Node{Val: elementsSlice[j]}
 						curr.Next = innerNode
 						currCopy := curr
 						curr = curr.Next
 						curr.Prev = currCopy
-						l.length += 1
+						l.length++
 					}
 					curr.Next = nextCopy
 					if nextCopy != nil {
@@ -105,45 +104,50 @@ func (l *ListNode) Add(element interface{}, startIndexSlice ...int) error {
 		} else {
 			currTail := l.tail
 			for i := 0; i < slice.Len(); i++ {
-				n := &node{Val: elementsSlice[i]}
+				n := &Node{Val: elementsSlice[i]}
 				currTail.Next = n
 				currTail = currTail.Next
 				currTail.Prev = l.tail
 				l.tail = l.tail.Next
-				l.length += 1
+				l.length++
 			}
 		}
 	}
 	return nil
 }
 
+// AddAll Inserts all of the elements in the specified collection into this list, starting at the specified position. or by default at the end
 func (l *ListNode) AddAll(elementsInterface interface{}, startIndexSlice ...int) error {
 	slice := reflect.ValueOf(elementsInterface)
 	if slice.Kind() != reflect.Slice {
 		return fmt.Errorf("A slice input is required for this function expected: Slice, got: %v", slice.Kind())
 	}
-
 	return l.Add(elementsInterface, startIndexSlice...)
 }
 
+// AddFirst Inserts the specified element at the beginning of this list.
 func (l *ListNode) AddFirst(elementsInterface interface{}) error {
 	return l.Add(elementsInterface, 0)
 }
 
+// AddLast Appends the specified element to the end of this list.
 func (l *ListNode) AddLast(elementsInterface interface{}) error {
 	return l.Add(elementsInterface, l.length)
 }
 
+// Clear Removes all of the elements from this list.
 func (l *ListNode) Clear() {
 	l.head = nil
 	l.tail = nil
 	l.length = 0
 }
 
+// Clone Returns a shallow copy of this LinkedList.
 func (l *ListNode) Clone() ListNode {
 	return *l
 }
 
+// Contains Returns true if this list contains the specified element.
 func (l *ListNode) Contains(element interface{}) bool {
 	matchIndex, _ := l.iterateList(false, element, false, false)
 	if matchIndex != -1 {
@@ -152,18 +156,21 @@ func (l *ListNode) Contains(element interface{}) bool {
 	return false
 }
 
-func (l *ListNode) Element() *node {
+// Element Retrieves, but does not remove, the head (first element) of this list.
+func (l *ListNode) Element() *Node {
 	return l.head
 }
 
+// Get Returns the element at the specified position in this list.
 func (l *ListNode) Get(index int) (interface{}, error) {
 	if index >= l.length {
 		return nil, fmt.Errorf("received %v, which is greater than the list size: %v", index, l.length)
 	}
-	_, nodeElement := l.iterateList(false, index, false, true)
-	return nodeElement.Val, nil
+	_, NodeElement := l.iterateList(false, index, false, true)
+	return NodeElement.Val, nil
 }
 
+// GetFirst Returns the first element in this list.
 func (l *ListNode) GetFirst() (interface{}, error) {
 	if l.head != nil {
 		return l.head.Val, nil
@@ -171,6 +178,7 @@ func (l *ListNode) GetFirst() (interface{}, error) {
 	return -1, errors.New("head is not yet initialized")
 }
 
+// GetLast Returns the last element in this list.
 func (l *ListNode) GetLast() (interface{}, error) {
 	if l.head != nil {
 		return l.tail.Val, nil
@@ -178,17 +186,20 @@ func (l *ListNode) GetLast() (interface{}, error) {
 	return -1, errors.New("head is not yet initialized")
 }
 
+// IndexOf Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
 func (l *ListNode) IndexOf(searchKey interface{}) int {
 	index, _ := l.iterateList(false, searchKey, false, false)
 	return index
 }
 
+// LastIndexOf Returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element.
 func (l *ListNode) LastIndexOf(searchKey interface{}) int {
 	index, _ := l.reverseIterateList(false, searchKey, false, false)
 	return index
 }
 
-func (l *ListNode) ListIterator(index int) (*node, error) {
+// ListIterator Returns a list-iterator of the elements in this list (in proper sequence), starting at the specified position in the list.
+func (l *ListNode) ListIterator(index int) (*Node, error) {
 	if index >= l.length {
 		return nil, fmt.Errorf("received %v, which is greater than the list size: %v", index, l.length)
 	}
@@ -196,64 +207,72 @@ func (l *ListNode) ListIterator(index int) (*node, error) {
 	return itrPointer, nil
 }
 
+// Offer Adds the specified element as the tail (last element) of this list.
 func (l *ListNode) Offer(element interface{}) (bool, error) {
 	return l.offerHelper(element)
 }
 
+// OfferFirst Inserts the specified element at the front of this list.
 func (l *ListNode) OfferFirst(element interface{}) (bool, error) {
 	return l.offerHelper(element, 0)
 }
 
+// OfferLast Inserts the specified element at the end of this list.
 func (l *ListNode) OfferLast(element interface{}) (bool, error) {
 	return l.offerHelper(element)
 }
 
-func (l *ListNode) Peek() (*node, error) {
+// Peek Retrieves, but does not remove, the head (first element) of this list.
+func (l *ListNode) Peek() (*Node, error) {
 	return l.peekHelper(l.head)
 }
 
-func (l *ListNode) PeekFirst() (*node, error) {
+// PeekFirst Retrieves, but does not remove, the first element of this list, or returns null if this list is empty.
+func (l *ListNode) PeekFirst() (*Node, error) {
 	return l.peekHelper(l.head)
 }
 
-func (l *ListNode) PeekLast() (*node, error) {
+// PeekLast Retrieves, but does not remove, the last element of this list, or returns null if this list is empty.
+func (l *ListNode) PeekLast() (*Node, error) {
 	return l.peekHelper(l.tail)
 }
 
-func (l *ListNode) Poll() (*node, error) {
+// Poll Retrieves and removes the head (first element) of this list.
+func (l *ListNode) Poll() (*Node, error) {
 	if l.head != nil {
 		if l.head.Next == nil {
 			return nil, nil
-		} else {
-			headCopy := l.head
-			l.head = l.head.Next
-			l.head.Prev = nil
-			l.length -= 1
-			return headCopy, nil
 		}
+		headCopy := l.head
+		l.head = l.head.Next
+		l.head.Prev = nil
+		l.length--
+		return headCopy, nil
 	}
 	return nil, errors.New("list is not yet initialized")
 }
 
-func (l *ListNode) PollFirst() (*node, error) {
+// PollFirst Retrieves and removes the first element of this list, or returns null if this list is empty.
+func (l *ListNode) PollFirst() (*Node, error) {
 	return l.Poll()
 }
 
-func (l *ListNode) PollLast() (*node, error) {
+// PollLast Retrieves and removes the last element of this list, or returns null if this list is empty.
+func (l *ListNode) PollLast() (*Node, error) {
 	if l.head != nil {
 		if l.tail.Prev == nil {
 			return nil, nil
-		} else {
-			tailCopy := l.tail
-			l.tail = l.tail.Prev
-			l.tail.Next = nil
-			l.length -= 1
-			return tailCopy, nil
 		}
+		tailCopy := l.tail
+		l.tail = l.tail.Prev
+		l.tail.Next = nil
+		l.length--
+		return tailCopy, nil
 	}
 	return nil, errors.New("list is not yet initialized")
 }
 
+// Pop Pops an element from the stack represented by this list.
 func (l *ListNode) Pop() (interface{}, error) {
 	currentNode, err := l.Peek()
 	if err != nil {
@@ -263,11 +282,13 @@ func (l *ListNode) Pop() (interface{}, error) {
 	return currentNode.Val, nil
 }
 
+// Push Pushes an element onto the stack represented by this list.
 func (l *ListNode) Push(element interface{}) error {
 	return l.Add(element, 0)
 }
 
-func (l *ListNode) Remove(startIndexSlice ...int) (*node, error) {
+// Remove Retrieves and removes the head (first element) of this list.
+func (l *ListNode) Remove(startIndexSlice ...int) (*Node, error) {
 	if l.head == nil {
 		return nil, errors.New("list is not initialized")
 	}
@@ -275,34 +296,34 @@ func (l *ListNode) Remove(startIndexSlice ...int) (*node, error) {
 		if startIndexSlice[0] < l.length {
 			if startIndexSlice[0] == 0 {
 				return l.Poll()
-			} else {
-				if l.length-1 == startIndexSlice[0] {
-					return l.PollLast()
-				} else {
-					_, element := l.iterateList(false, startIndexSlice[0], false, true)
-					prevCopy := element.Prev
-					prevCopy.Next = element.Next
-					element.Next.Prev = prevCopy
-					l.length -= 1
-					return element, nil
-				}
 			}
-		} else {
-			return nil, fmt.Errorf("index %v can not be removed, because its greater than list length", startIndexSlice[0])
+			if l.length-1 == startIndexSlice[0] {
+				return l.PollLast()
+			}
+			_, element := l.iterateList(false, startIndexSlice[0], false, true)
+			prevCopy := element.Prev
+			prevCopy.Next = element.Next
+			element.Next.Prev = prevCopy
+			l.length--
+			return element, nil
 		}
+		return nil, fmt.Errorf("index %v can not be removed, because its greater than list length", startIndexSlice[0])
 	}
 	return l.Poll()
 }
 
-func (l *ListNode) RemoveFirst() (*node, error) {
+// RemoveFirst Removes and returns the first element from this list.
+func (l *ListNode) RemoveFirst() (*Node, error) {
 	return l.Remove()
 }
 
-func (l *ListNode) RemoveLast() (*node, error) {
+// RemoveLast Removes and returns the last element from this list.
+func (l *ListNode) RemoveLast() (*Node, error) {
 	return l.Remove(l.length - 1)
 }
 
-func (l *ListNode) RemoveFirstOccurrence(searchKey interface{}) (*node, error) {
+// RemoveFirstOccurrence Removes the first occurrence of the specified element in this list (when traversing the list from head to tail).
+func (l *ListNode) RemoveFirstOccurrence(searchKey interface{}) (*Node, error) {
 	index, _ := l.iterateList(false, searchKey, false, false)
 	if index != -1 {
 		return l.Remove(index)
@@ -310,7 +331,8 @@ func (l *ListNode) RemoveFirstOccurrence(searchKey interface{}) (*node, error) {
 	return nil, fmt.Errorf("%v, is not present in the list", searchKey)
 }
 
-func (l *ListNode) RemoveLastOccurrence(searchKey interface{}) (*node, error) {
+// RemoveLastOccurrence Removes the last occurrence of the specified element in this list (when traversing the list from head to tail).
+func (l *ListNode) RemoveLastOccurrence(searchKey interface{}) (*Node, error) {
 	index, _ := l.reverseIterateList(false, searchKey, false, false)
 	if index != -1 {
 		return l.Remove(index)
@@ -318,6 +340,7 @@ func (l *ListNode) RemoveLastOccurrence(searchKey interface{}) (*node, error) {
 	return nil, fmt.Errorf("%v, is not present in the list", searchKey)
 }
 
+// Set Replaces the element at the specified position in this list with the specified element.
 func (l *ListNode) Set(index int, element interface{}) error {
 	if index < l.length {
 		_, oldElement := l.iterateList(false, index, false, true)
@@ -327,10 +350,12 @@ func (l *ListNode) Set(index int, element interface{}) error {
 	return errors.New("index is greater than the list length")
 }
 
+// Size returns the length of the linked list
 func (l *ListNode) Size() int {
 	return l.length
 }
 
+// ToArray Returns an array containing all of the elements in this list in proper sequence (from first to last element)
 func (l *ListNode) ToArray() []interface{} {
 	listToArray := make([]interface{}, l.length)
 	var i int
@@ -343,10 +368,12 @@ func (l *ListNode) ToArray() []interface{} {
 	return listToArray
 }
 
+// Print prints the linked list element. optional debug argument as true or false can be provided
 func (l *ListNode) Print(debug ...bool) {
 	l.iterateList(true, nil, l.printHelper(debug...), false)
 }
 
+// PrintReverse prints the linked list in reverse order. optional debug argument as true or false can be provided
 func (l *ListNode) PrintReverse(debug ...bool) {
 	l.reverseIterateList(true, nil, l.printHelper(debug...), false)
 }
@@ -365,7 +392,7 @@ func (l *ListNode) getStartingIndex(startIndexSlice ...int) (int, error) {
 	return l.length, nil
 }
 
-func (l *ListNode) iterateList(shouldPrint bool, searchKey interface{}, shouldDebug bool, searchByIndex bool) (int, *node) {
+func (l *ListNode) iterateList(shouldPrint bool, searchKey interface{}, shouldDebug bool, searchByIndex bool) (int, *Node) {
 	curr := l.head
 	var i int
 	for curr != nil {
@@ -390,7 +417,7 @@ func (l *ListNode) iterateList(shouldPrint bool, searchKey interface{}, shouldDe
 	return -1, nil
 }
 
-func (l *ListNode) reverseIterateList(shouldPrint bool, searchKey interface{}, shouldDebug bool, searchByIndex bool) (int, *node) {
+func (l *ListNode) reverseIterateList(shouldPrint bool, searchKey interface{}, shouldDebug bool, searchByIndex bool) (int, *Node) {
 	curr := l.tail
 	counter := l.length - 1
 	for curr != nil {
@@ -423,7 +450,7 @@ func (l *ListNode) offerHelper(element interface{}, startIndex ...int) (bool, er
 	return true, err
 }
 
-func (l *ListNode) peekHelper(searchNode *node) (*node, error) {
+func (l *ListNode) peekHelper(searchNode *Node) (*Node, error) {
 	if searchNode != nil {
 		return searchNode, nil
 	}
