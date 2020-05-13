@@ -1,5 +1,6 @@
 package main
 
+// Add collections sort method
 import (
 	"fmt"
 	linkedlist "github.com/raunakjodhawat/gorithims/src/standardDataStructures/linkedList"
@@ -23,8 +24,11 @@ func main() {
 
 	list.Print()
 	fmt.Println()
-	list.RemoveLastOccurrence(20)
+	list.Set(2, 1029)
+	fmt.Println(list.Size())
 	list.Print()
+
+
 	// Test poll, pollFirst & pollLast
 	//fmt.Println(a.Val)
 	//l2 := list.Clone()

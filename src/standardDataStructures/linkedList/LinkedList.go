@@ -297,6 +297,19 @@ func (l *ListNode) RemoveLastOccurrence(searchKey interface{}) (*node, error) {
 	return nil, fmt.Errorf("%v, is not present in the list", searchKey)
 }
 
+func (l *ListNode) Set(index int, element interface{}) error{
+	if index < l.Length {
+		_, oldElement := l.iterateList(false, index, false, true)
+		oldElement.Val  = element
+		return nil
+	}
+	return errors.New("index is greater than the list length")
+}
+
+func (l *ListNode) Size() int {
+	return l.Length
+}
+
 // Extra functions in addition to ones described in java documentation
 func (l *ListNode) Print(debug ...bool) {
 	var shouldDebug bool
