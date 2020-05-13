@@ -22,7 +22,7 @@ func main() {
 
 	list.Print()
 	fmt.Println()
-	list.Remove(7)
+	list.RemoveLast()
 	list.Print()
 	// Test poll, pollFirst & pollLast
 	//fmt.Println(a.Val)
