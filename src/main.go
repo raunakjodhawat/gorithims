@@ -192,6 +192,7 @@ func dataStructureExecution() {
 
 		listToSlice := list.ToArray() // Converts list to slice
 		fmt.Println(listToSlice)      // [15 16 10 0 12 2 3 4 11 end of list Hello, world]
+
 		/**
 		Printing the list
 			list.PrintReverse(true) // print in reverse with extra debug option
