@@ -13,7 +13,7 @@ func main() {
 	//dataStructureExecution()
 	list := linkedlist.ListNode{} // creates a instance of linked list node
 	for i := 0; i < 5; i++ {
-		list.Add(i*10) // Adds elements to the list
+		list.Add(i * 10) // Adds elements to the list
 	}
 
 	list.OfferFirst(100)
