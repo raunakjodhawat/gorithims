@@ -273,6 +273,14 @@ func (l *ListNode) Remove(startIndexSlice ...int) (*node, error) {
 	return l.Poll()
 }
 
+func (l *ListNode) RemoveFirst() (*node, error) {
+	return l.Remove()
+}
+
+func (l *ListNode) RemoveLast() (*node, error) {
+	return l.Remove(l.Length - 1)
+}
+
 // Extra functions in addition to ones described in java documentation
 func (l *ListNode) Print(debug ...bool) {
 	var shouldDebug bool
