@@ -112,6 +112,53 @@ func dataStructureExecution() {
 		head := list.Element()                      // Gets the head element
 		fmt.Println(head.Next, head.Val, head.Prev) // print head value, next node and previous node
 
+		valueAtIndex, _ := list.Get(1)    // Get element at index 1
+		fmt.Println(valueAtIndex)         // "raunak"
+		valueAtIndex, _ = list.GetFirst() // Get element at head
+		fmt.Println(valueAtIndex)         // "first element"
+		valueAtIndex, _ = list.GetLast()  // Get element at tail
+		fmt.Println(valueAtIndex)         // "17"
+
+		index := list.IndexOf(17) // get index of 17 in the list
+		fmt.Println(index)        // 15
+		index = list.LastIndexOf("raunak")
+		fmt.Println(index) // 1
+		list.Add("raunak")
+		index = list.LastIndexOf("raunak")
+		fmt.Println(index) // 16
+
+		iterator, _ := list.ListIterator(0) // Get a iterator for the list, starting from head
+		for iterator != nil {               // traverse the list
+			fmt.Printf("%v\t", iterator.Val) // first element   raunak  jodhawat        15      16      10      0       1       12      2       3       4       11      13      end of list     17      raunak
+			iterator = iterator.Next
+		}
+		fmt.Println()
+		iterator, _ = list.ListIterator(10) // Get a iterator for the list, starting from 10th index
+		for iterator != nil {               // traverse the list
+			fmt.Printf("%v\t", iterator.Val) // 3       4       11      13      end of list     17      raunak
+			iterator = iterator.Next
+		}
+		fmt.Println()
+
+		list.Offer(100)                         // offer/add element to end of the list
+		list.OfferFirst("starting of the list") // offer/add element to start of the list
+		list.OfferLast("ending of the list")    // offer/add element to end of the list
+
+		peekNode, _ := list.Peek()     // Get front element of the list, but dont remove from the list
+		fmt.Println(peekNode)          // &{starting of the list <Next address> <nil>}
+		peekNode, _ = list.PeekLast()  // get last element
+		fmt.Println(peekNode)          // &{ending of the list <nil> <Prev address>}
+		peekNode, _ = list.PeekFirst() // get first element
+		fmt.Println(peekNode)          // &{starting of the list <Next address> <nil>}
+
+		fmt.Println()
+		pollNode, _ := list.Poll()     // Get front element of the list, and remove it from the list
+		fmt.Println(pollNode)          // &{starting of the list <Next address> <nil>}
+		pollNode, _ = list.PollLast()  // get last element
+		fmt.Println(pollNode)          // &{ending of the list <nil> <Prev address>}
+		pollNode, _ = list.PollFirst() // get first element
+		fmt.Println(pollNode)          // &{first element <Next address> <nil>}
+
 		//a, err := list.GetLast()
 		//list.AddAll([]string{"RJ", "jodhawat"})        // Add string slice be default at last index. notice how list can handle different types
 		//list.AddFirst("First element")                 // Add element at the head

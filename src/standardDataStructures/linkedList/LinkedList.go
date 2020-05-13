@@ -224,10 +224,11 @@ func (l *ListNode) Poll() (*node, error) {
 		if l.head.Next == nil {
 			return nil, nil
 		} else {
+			headCopy := l.head
 			l.head = l.head.Next
 			l.head.Prev = nil
 			l.length -= 1
-			return l.head, nil
+			return headCopy, nil
 		}
 	}
 	return nil, errors.New("list is not yet initialized")
@@ -242,10 +243,11 @@ func (l *ListNode) PollLast() (*node, error) {
 		if l.tail.Prev == nil {
 			return nil, nil
 		} else {
+			tailCopy := l.tail
 			l.tail = l.tail.Prev
 			l.tail.Next = nil
 			l.length -= 1
-			return l.head, nil
+			return tailCopy, nil
 		}
 	}
 	return nil, errors.New("list is not yet initialized")
