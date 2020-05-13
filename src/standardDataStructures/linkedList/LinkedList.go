@@ -78,7 +78,7 @@ func (l *ListNode) Add(element interface{}, startIndexSlice ...int) error {
 				l.Add(elementsSlice[i], startIndex)
 				startIndex += 1
 			}
-		} else {
+		} else if startIndex != l.length {
 			for i := 0; i < l.length; i++ {
 				if i == startIndex-1 {
 					nextCopy := curr.Next
@@ -100,6 +100,16 @@ func (l *ListNode) Add(element interface{}, startIndexSlice ...int) error {
 					break
 				}
 				curr = curr.Next
+			}
+		} else {
+			currTail := l.tail
+			for i := 0; i < slice.Len(); i++ {
+				n := &node{Val: elementsSlice[i]}
+				currTail.Next = n
+				currTail = currTail.Next
+				currTail.Prev = l.tail
+				l.tail = l.tail.Next
+				l.length += 1
 			}
 		}
 	}
