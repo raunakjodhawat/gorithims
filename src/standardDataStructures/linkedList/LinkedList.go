@@ -257,7 +257,7 @@ func (l *ListNode) Remove(startIndexSlice ...int) (*node, error) {
 		return nil, errors.New("list is not initialized")
 	}
 	if len(startIndexSlice) > 0 {
-		if startIndexSlice[0] < l.Length  {
+		if startIndexSlice[0] < l.Length {
 			if startIndexSlice[0] == 0 {
 				return l.Poll()
 			} else {
@@ -279,6 +279,22 @@ func (l *ListNode) RemoveFirst() (*node, error) {
 
 func (l *ListNode) RemoveLast() (*node, error) {
 	return l.Remove(l.Length - 1)
+}
+
+func (l *ListNode) RemoveLFirstOccurrence(searchKey interface{}) (*node, error) {
+	index, _ := l.iterateList(false, searchKey, false, false)
+	if index != -1 {
+		return l.Remove(index)
+	}
+	return nil, fmt.Errorf("%v, is not present in the list", searchKey)
+}
+
+func (l *ListNode) RemoveLastOccurrence(searchKey interface{}) (*node, error) {
+	index, _ := l.reverseIterateList(false, searchKey, false, false)
+	if index != -1 {
+		return l.Remove(index)
+	}
+	return nil, fmt.Errorf("%v, is not present in the list", searchKey)
 }
 
 // Extra functions in addition to ones described in java documentation
