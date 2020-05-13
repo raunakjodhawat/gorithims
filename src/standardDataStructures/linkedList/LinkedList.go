@@ -275,10 +275,14 @@ func (l *ListNode) Remove(startIndexSlice ...int) (*node, error) {
 			if startIndexSlice[0] == 0 {
 				return l.Poll()
 			} else {
-				_, element := l.iterateList(false, startIndexSlice[0], false, true)
-				element.Prev.Next = element.Next
-				l.length -= 1
-				return element, nil
+				if l.length-1 == startIndexSlice[0] {
+					return l.PollLast()
+				} else {
+					_, element := l.iterateList(false, startIndexSlice[0], false, true)
+					element.Prev.Next = element.Next
+					l.length -= 1
+					return element, nil
+				}
 			}
 		} else {
 			return nil, fmt.Errorf("index %v can not be removed, because its greater than list length", startIndexSlice[0])
@@ -295,7 +299,7 @@ func (l *ListNode) RemoveLast() (*node, error) {
 	return l.Remove(l.length - 1)
 }
 
-func (l *ListNode) RemoveLFirstOccurrence(searchKey interface{}) (*node, error) {
+func (l *ListNode) RemoveFirstOccurrence(searchKey interface{}) (*node, error) {
 	index, _ := l.iterateList(false, searchKey, false, false)
 	if index != -1 {
 		return l.Remove(index)
@@ -368,7 +372,7 @@ func (l *ListNode) iterateList(shouldPrint bool, searchKey interface{}, shouldDe
 		if shouldPrint {
 			fmt.Print((*curr).Val)
 			if shouldDebug {
-				fmt.Printf("\t Prev: %p \t current: %p \t Next: %p", curr.Prev, curr, curr.Next)
+				fmt.Printf("\t Index: %v \t Next: %p \t current: %p \t Prev: %p", i, curr.Next, curr, curr.Prev)
 			}
 			fmt.Println()
 		}
@@ -398,11 +402,11 @@ func (l *ListNode) reverseIterateList(shouldPrint bool, searchKey interface{}, s
 		if shouldPrint {
 			fmt.Print((*curr).Val)
 			if shouldDebug {
-				fmt.Printf("\t Prev: %p \t current: %p \t Next: %p", curr.Prev, curr, curr.Next)
+				fmt.Printf("\t Index: %v \t Next: %p \t current: %p \t Prev: %p", counter-l.length+1, curr.Next, curr, curr.Prev)
 			}
 			fmt.Println()
 		}
-		if searchKey != nil && searchKey == curr.Val {
+		if searchKey != nil && searchKey == curr.Val && !searchByIndex {
 			return counter, nil
 		}
 		if searchByIndex {

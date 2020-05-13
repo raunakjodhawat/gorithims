@@ -174,7 +174,14 @@ func dataStructureExecution() {
 		removedElement, _ = list.RemoveLast()  // remove last element (tail)
 		fmt.Println(removedElement)            // &{100 <nil> <previous address>}
 
-		list.Print()
+		removedElement, _ = list.RemoveFirstOccurrence("raunak")  // search the list for "raunak" and delete it
+		removedElement, err = list.RemoveFirstOccurrence("hello") // search the list for "hello" and delete it
+		if err != nil {
+			fmt.Println(err) // Since the list does not have "hello", an error is returned indicating the same
+		}
+		removedElement, err = list.RemoveLastOccurrence(13) // remove the last occurrence of 13
+
+		list.Print(true)
 		//a, err := list.GetLast()
 		//list.AddAll([]string{"RJ", "jodhawat"})        // Add string slice be default at last index. notice how list can handle different types
 		//list.AddFirst("First element")                 // Add element at the head
