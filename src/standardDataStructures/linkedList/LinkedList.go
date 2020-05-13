@@ -279,7 +279,9 @@ func (l *ListNode) Remove(startIndexSlice ...int) (*node, error) {
 					return l.PollLast()
 				} else {
 					_, element := l.iterateList(false, startIndexSlice[0], false, true)
-					element.Prev.Next = element.Next
+					prevCopy := element.Prev
+					prevCopy.Next = element.Next
+					element.Next.Prev = prevCopy
 					l.length -= 1
 					return element, nil
 				}
@@ -340,15 +342,17 @@ func (l *ListNode) ToArray() []interface{} {
 	return listToArray
 }
 
-// Extra functions in addition to ones described in java documentation
 func (l *ListNode) Print(debug ...bool) {
-	var shouldDebug bool
-	if len(debug) != 0 {
-		if debug[0] {
-			shouldDebug = true
-		}
-	}
-	l.iterateList(true, nil, shouldDebug, false)
+	l.iterateList(true, nil, l.printHelper(debug...), false)
+}
+
+func (l *ListNode) PrintReverse(debug ...bool) {
+	l.reverseIterateList(true, nil, l.printHelper(debug...), false)
+}
+
+// TODO
+func (l *ListNode) Sort() *node {
+	return l.head
 }
 
 // unexported and utility functions used by above functions
@@ -390,11 +394,6 @@ func (l *ListNode) iterateList(shouldPrint bool, searchKey interface{}, shouldDe
 	return -1, nil
 }
 
-// TODO
-func (l *ListNode) Sort() *node {
-	return l.head
-}
-
 func (l *ListNode) reverseIterateList(shouldPrint bool, searchKey interface{}, shouldDebug bool, searchByIndex bool) (int, *node) {
 	curr := l.tail
 	counter := l.length - 1
@@ -402,7 +401,7 @@ func (l *ListNode) reverseIterateList(shouldPrint bool, searchKey interface{}, s
 		if shouldPrint {
 			fmt.Print((*curr).Val)
 			if shouldDebug {
-				fmt.Printf("\t Index: %v \t Next: %p \t current: %p \t Prev: %p", counter-l.length+1, curr.Next, curr, curr.Prev)
+				fmt.Printf("\t Index: %v \t Next: %p \t current: %p \t Prev: %p", counter, curr.Next, curr, curr.Prev)
 			}
 			fmt.Println()
 		}
@@ -434,4 +433,14 @@ func (l *ListNode) peekHelper(searchNode *node) (*node, error) {
 	} else {
 		return nil, errors.New("list is not yet initialized")
 	}
+}
+
+func (l *ListNode) printHelper(debug ...bool) bool {
+	var shouldDebug bool
+	if len(debug) != 0 {
+		if debug[0] {
+			shouldDebug = true
+		}
+	}
+	return shouldDebug
 }
