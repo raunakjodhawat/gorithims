@@ -239,7 +239,7 @@ func (l *ListNode) PollLast() (*node, error) {
 	return nil, errors.New("list is not yet initialized")
 }
 
-func(l *ListNode) Pop() (interface{}, error){
+func (l *ListNode) Pop() (interface{}, error) {
 	currentNode, err := l.Peek()
 	if err != nil {
 		return nil, err
@@ -248,10 +248,9 @@ func(l *ListNode) Pop() (interface{}, error){
 	return currentNode.Val, nil
 }
 
-func(l *ListNode) Push(element interface{}) error {
+func (l *ListNode) Push(element interface{}) error {
 	return l.Add(element, 0)
 }
-
 
 // Extra functions in addition to ones described in java documentation
 func (l *ListNode) Print(debug ...bool) {
@@ -269,8 +268,8 @@ func (l *ListNode) getStartingIndex(startIndexSlice ...int) (int, error) {
 	if len(startIndexSlice) > 0 {
 		if len(startIndexSlice) > 2 {
 			return -1, fmt.Errorf("only one argument expected as start index, received %v", startIndexSlice)
-		} else if startIndexSlice[0] > l.Length{
-			return startIndexSlice[0], fmt.Errorf("starting index cant be greater than length of list, expected a number less than %v, got %v", l.Length + 1, startIndexSlice[0])
+		} else if startIndexSlice[0] > l.Length {
+			return startIndexSlice[0], fmt.Errorf("starting index cant be greater than length of list, expected a number less than %v, got %v", l.Length+1, startIndexSlice[0])
 		} else {
 			return startIndexSlice[0], nil
 		}
@@ -301,7 +300,7 @@ func (l *ListNode) iterateList(shouldPrint bool, searchKey interface{}, shouldDe
 	return -1, nil
 }
 
-func (l *ListNode) reverseIterateList(shouldPrint bool, searchKey interface{}, shouldDebug bool, searchByIndex bool) (int, *node){
+func (l *ListNode) reverseIterateList(shouldPrint bool, searchKey interface{}, shouldDebug bool, searchByIndex bool) (int, *node) {
 	curr := l.Tail
 	counter := l.Length - 1
 	for curr != nil {
@@ -341,4 +340,3 @@ func (l *ListNode) peekHelper(searchNode *node) (*node, error) {
 		return nil, errors.New("list is not yet initialized")
 	}
 }
-
