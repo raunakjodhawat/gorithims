@@ -27,7 +27,7 @@ func main() {
 	list.Set(2, 1029)
 	fmt.Println(list.Size())
 	list.Print()
-
+	fmt.Println(list.ToArray())
 
 	// Test poll, pollFirst & pollLast
 	//fmt.Println(a.Val)
