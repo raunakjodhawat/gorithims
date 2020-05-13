@@ -17,12 +17,13 @@ func main() {
 		list.Add(i * 10) // Adds elements to the list
 	}
 
+	list.OfferFirst(20)
 	list.OfferFirst(100)
 	list.Push(111)
 
 	list.Print()
 	fmt.Println()
-	list.RemoveLast()
+	list.RemoveLastOccurrence(20)
 	list.Print()
 	// Test poll, pollFirst & pollLast
 	//fmt.Println(a.Val)
