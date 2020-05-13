@@ -74,7 +74,11 @@ func dataStructureExecution() {
 
 		list := linkedlist.ListNode{} // creates a instance of linked list node
 		for i := 0; i < 5; i++ {
-			list.Add(i) // Adds elements to the list
+			err := list.Add(i) // Adds elements to the list
+			if err != nil {
+				fmt.Println(err)
+				break
+			}
 		}
 		list.Add(10, 0) // Add 10 at index 0
 		list.Add(11)    // Add 11 at end
@@ -160,7 +164,11 @@ func dataStructureExecution() {
 		fmt.Println(pollNode)          // &{first element <Next address> <nil>}
 
 		fmt.Println()
-		list.Push("hello")          // push hello to top of the list
+		err = list.Push("hello") // push hello to top of the list
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
 		topElement, _ := list.Pop() // gets the value at head, and remove the node from the list
 		fmt.Println(topElement)
 
@@ -174,16 +182,28 @@ func dataStructureExecution() {
 		removedElement, _ = list.RemoveLast()  // remove last element (tail)
 		fmt.Println(removedElement)            // &{100 <nil> <previous address>}
 
-		removedElement, _ = list.RemoveFirstOccurrence("raunak")  // search the list for "raunak" and delete it
-		removedElement, err = list.RemoveFirstOccurrence("hello") // search the list for "hello" and delete it
+		_, err = list.RemoveFirstOccurrence("raunak") // search the list for "raunak" and delete it
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		_, err = list.RemoveFirstOccurrence("hello") // search the list for "hello" and delete it
 		if err != nil {
 			fmt.Println(err) // Since the list does not have "hello", an error is returned indicating the same
+			return
 		}
-		removedElement, err = list.RemoveLastOccurrence(13) // remove the last occurrence of 13
-
-		elementAtIndex, _ := list.Get(10) // Get element at 10th index
-		fmt.Println(elementAtIndex)       // 17
-		list.Set(10, "Hello, world")      // set element at 10th index to be hello, world
+		_, err = list.RemoveLastOccurrence(13) // remove the last occurrence of 13
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		elementAtIndex, _ := list.Get(10)  // Get element at 10th index
+		fmt.Println(elementAtIndex)        // 17
+		err = list.Set(10, "Hello, world") // set element at 10th index to be hello, world
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
 		elementAtIndex, _ = list.Get(10)
 		fmt.Println(elementAtIndex) // Hello, world
 
