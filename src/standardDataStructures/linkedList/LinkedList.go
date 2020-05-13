@@ -252,6 +252,27 @@ func (l *ListNode) Push(element interface{}) error {
 	return l.Add(element, 0)
 }
 
+func (l *ListNode) Remove(startIndexSlice ...int) (*node, error) {
+	if l.Head == nil {
+		return nil, errors.New("list is not initialized")
+	}
+	if len(startIndexSlice) > 0 {
+		if startIndexSlice[0] < l.Length  {
+			if startIndexSlice[0] == 0 {
+				return l.Poll()
+			} else {
+				_, element := l.iterateList(false, startIndexSlice[0], false, true)
+				element.Prev.Next = element.Next
+				l.Length -= 1
+				return element, nil
+			}
+		} else {
+			return nil, fmt.Errorf("index %v can not be removed, because its greater than list length", startIndexSlice[0])
+		}
+	}
+	return l.Poll()
+}
+
 // Extra functions in addition to ones described in java documentation
 func (l *ListNode) Print(debug ...bool) {
 	var shouldDebug bool
