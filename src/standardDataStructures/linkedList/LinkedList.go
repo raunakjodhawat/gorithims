@@ -241,7 +241,7 @@ func (l *ListNode) PeekLast() (*Node, error) {
 func (l *ListNode) Poll() (*Node, error) {
 	if l.head != nil {
 		if l.head.Next == nil {
-			return nil, nil
+			return l.head, nil
 		}
 		headCopy := l.head
 		l.head = l.head.Next
@@ -261,7 +261,7 @@ func (l *ListNode) PollFirst() (*Node, error) {
 func (l *ListNode) PollLast() (*Node, error) {
 	if l.head != nil {
 		if l.tail.Prev == nil {
-			return nil, nil
+			return l.tail, nil
 		}
 		tailCopy := l.tail
 		l.tail = l.tail.Prev
