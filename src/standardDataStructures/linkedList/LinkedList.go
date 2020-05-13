@@ -14,12 +14,12 @@ type node struct {
 }
 
 /**
-ListNode type, stores the head and Tail. It represents a list of address with each list instantiated having a default nil Head and Tail
+ListNode type, stores the head and tail. It represents a list of address with each list instantiated having a default nil.head and tail
 */
 type ListNode struct {
-	Head   *node
-	Tail   *node
-	Length int
+	head   *node
+	tail   *node
+	length int
 }
 
 func (l *ListNode) Add(element interface{}, startIndexSlice ...int) error {
@@ -32,18 +32,18 @@ func (l *ListNode) Add(element interface{}, startIndexSlice ...int) error {
 	slice := reflect.ValueOf(element)
 	if slice.Kind() != reflect.Slice {
 		n := &node{Val: element}
-		if l.Head == nil {
-			l.Head = n
-			l.Tail = n
+		if l.head == nil {
+			l.head = n
+			l.tail = n
 		} else {
 			if startIndex == 0 {
-				headCopy := l.Head
-				l.Head = n
+				headCopy := l.head
+				l.head = n
 				n.Next = headCopy
-				headCopy.Prev = l.Head
-			} else if startIndex != l.Length {
-				curr := l.Head
-				for i := 0; i < l.Length; i++ {
+				headCopy.Prev = l.head
+			} else if startIndex != l.length {
+				curr := l.head
+				for i := 0; i < l.length; i++ {
 					if i == startIndex-1 {
 						copyCurrent := curr
 						copyNext := curr.Next
@@ -55,14 +55,16 @@ func (l *ListNode) Add(element interface{}, startIndexSlice ...int) error {
 					}
 					curr = curr.Next
 				}
+			} else if startIndex == l.length {
+				prevCopy := l.tail
+				prevCopy.Next = n
+				n.Prev = prevCopy
+				l.tail = n
 			} else {
-				prevCopy := l.Tail
-				l.Tail.Next = n
-				l.Tail = n
-				l.Tail.Prev = prevCopy
+				l.tail.Prev = n
 			}
 		}
-		l.Length += 1
+		l.length += 1
 	} else {
 		elementsSlice := make([]interface{}, slice.Len())
 
@@ -70,14 +72,14 @@ func (l *ListNode) Add(element interface{}, startIndexSlice ...int) error {
 			elementsSlice[i] = slice.Index(i).Interface()
 		}
 
-		curr := l.Head
+		curr := l.head
 		if startIndex == 0 {
 			for i := 0; i < slice.Len(); i++ {
 				l.Add(elementsSlice[i], startIndex)
 				startIndex += 1
 			}
 		} else {
-			for i := 0; i < l.Length; i++ {
+			for i := 0; i < l.length; i++ {
 				if i == startIndex-1 {
 					nextCopy := curr.Next
 					for j := 0; j < slice.Len(); j++ {
@@ -86,14 +88,14 @@ func (l *ListNode) Add(element interface{}, startIndexSlice ...int) error {
 						currCopy := curr
 						curr = curr.Next
 						curr.Prev = currCopy
-						l.Length += 1
+						l.length += 1
 					}
 					curr.Next = nextCopy
 					if nextCopy != nil {
 						nextCopy.Prev = curr
 					}
-					if i-1+startIndex == l.Length {
-						l.Tail = curr
+					if i-1+startIndex == l.length {
+						l.tail = curr
 					}
 					break
 				}
@@ -118,13 +120,13 @@ func (l *ListNode) AddFirst(elementsInterface interface{}) error {
 }
 
 func (l *ListNode) AddLast(elementsInterface interface{}) error {
-	return l.Add(elementsInterface, l.Length)
+	return l.Add(elementsInterface, l.length)
 }
 
 func (l *ListNode) Clear() {
-	l.Head = nil
-	l.Tail = nil
-	l.Length = 0
+	l.head = nil
+	l.tail = nil
+	l.length = 0
 }
 
 func (l *ListNode) Clone() ListNode {
@@ -140,27 +142,27 @@ func (l *ListNode) Contains(element interface{}) bool {
 }
 
 func (l *ListNode) Element() *node {
-	return l.Head
+	return l.head
 }
 
 func (l *ListNode) Get(index int) (interface{}, error) {
-	if index >= l.Length {
-		return nil, fmt.Errorf("received %v, which is greater than the list size: %v", index, l.Length)
+	if index >= l.length {
+		return nil, fmt.Errorf("received %v, which is greater than the list size: %v", index, l.length)
 	}
 	_, nodeElement := l.iterateList(false, index, false, true)
 	return nodeElement.Val, nil
 }
 
 func (l *ListNode) GetFirst() (interface{}, error) {
-	if l.Head != nil {
-		return l.Head.Val, nil
+	if l.head != nil {
+		return l.head.Val, nil
 	}
 	return -1, errors.New("head is not yet initialized")
 }
 
 func (l *ListNode) GetLast() (interface{}, error) {
-	if l.Head != nil {
-		return l.Tail.Val, nil
+	if l.head != nil {
+		return l.tail.Val, nil
 	}
 	return -1, errors.New("head is not yet initialized")
 }
@@ -176,8 +178,8 @@ func (l *ListNode) LastIndexOf(searchKey interface{}) int {
 }
 
 func (l *ListNode) ListIterator(index int) (*node, error) {
-	if index >= l.Length {
-		return nil, fmt.Errorf("received %v, which is greater than the list size: %v", index, l.Length)
+	if index >= l.length {
+		return nil, fmt.Errorf("received %v, which is greater than the list size: %v", index, l.length)
 	}
 	_, itrPointer := l.iterateList(false, index, false, true)
 	return itrPointer, nil
@@ -196,26 +198,26 @@ func (l *ListNode) OfferLast(element interface{}) (bool, error) {
 }
 
 func (l *ListNode) Peek() (*node, error) {
-	return l.peekHelper(l.Head)
+	return l.peekHelper(l.head)
 }
 
 func (l *ListNode) PeekFirst() (*node, error) {
-	return l.peekHelper(l.Head)
+	return l.peekHelper(l.head)
 }
 
 func (l *ListNode) PeekLast() (*node, error) {
-	return l.peekHelper(l.Tail)
+	return l.peekHelper(l.tail)
 }
 
 func (l *ListNode) Poll() (*node, error) {
-	if l.Head != nil {
-		if l.Head.Next == nil {
+	if l.head != nil {
+		if l.head.Next == nil {
 			return nil, nil
 		} else {
-			l.Head = l.Head.Next
-			l.Head.Prev = nil
-			l.Length -= 1
-			return l.Head, nil
+			l.head = l.head.Next
+			l.head.Prev = nil
+			l.length -= 1
+			return l.head, nil
 		}
 	}
 	return nil, errors.New("list is not yet initialized")
@@ -226,14 +228,14 @@ func (l *ListNode) PollFirst() (*node, error) {
 }
 
 func (l *ListNode) PollLast() (*node, error) {
-	if l.Head != nil {
-		if l.Tail.Prev == nil {
+	if l.head != nil {
+		if l.tail.Prev == nil {
 			return nil, nil
 		} else {
-			l.Tail = l.Tail.Prev
-			l.Tail.Next = nil
-			l.Length -= 1
-			return l.Head, nil
+			l.tail = l.tail.Prev
+			l.tail.Next = nil
+			l.length -= 1
+			return l.head, nil
 		}
 	}
 	return nil, errors.New("list is not yet initialized")
@@ -253,17 +255,17 @@ func (l *ListNode) Push(element interface{}) error {
 }
 
 func (l *ListNode) Remove(startIndexSlice ...int) (*node, error) {
-	if l.Head == nil {
+	if l.head == nil {
 		return nil, errors.New("list is not initialized")
 	}
 	if len(startIndexSlice) > 0 {
-		if startIndexSlice[0] < l.Length {
+		if startIndexSlice[0] < l.length {
 			if startIndexSlice[0] == 0 {
 				return l.Poll()
 			} else {
 				_, element := l.iterateList(false, startIndexSlice[0], false, true)
 				element.Prev.Next = element.Next
-				l.Length -= 1
+				l.length -= 1
 				return element, nil
 			}
 		} else {
@@ -278,7 +280,7 @@ func (l *ListNode) RemoveFirst() (*node, error) {
 }
 
 func (l *ListNode) RemoveLast() (*node, error) {
-	return l.Remove(l.Length - 1)
+	return l.Remove(l.length - 1)
 }
 
 func (l *ListNode) RemoveLFirstOccurrence(searchKey interface{}) (*node, error) {
@@ -298,7 +300,7 @@ func (l *ListNode) RemoveLastOccurrence(searchKey interface{}) (*node, error) {
 }
 
 func (l *ListNode) Set(index int, element interface{}) error {
-	if index < l.Length {
+	if index < l.length {
 		_, oldElement := l.iterateList(false, index, false, true)
 		oldElement.Val = element
 		return nil
@@ -307,13 +309,13 @@ func (l *ListNode) Set(index int, element interface{}) error {
 }
 
 func (l *ListNode) Size() int {
-	return l.Length
+	return l.length
 }
 
 func (l *ListNode) ToArray() []interface{} {
-	listToArray := make([]interface{}, l.Length)
+	listToArray := make([]interface{}, l.length)
 	var i int
-	curr := l.Head
+	curr := l.head
 	for curr != nil {
 		listToArray[i] = curr.Val
 		curr = curr.Next
@@ -338,18 +340,19 @@ func (l *ListNode) getStartingIndex(startIndexSlice ...int) (int, error) {
 	if len(startIndexSlice) > 0 {
 		if len(startIndexSlice) > 2 {
 			return -1, fmt.Errorf("only one argument expected as start index, received %v", startIndexSlice)
-		} else if startIndexSlice[0] > l.Length {
-			return startIndexSlice[0], fmt.Errorf("starting index cant be greater than length of list, expected a number less than %v, got %v", l.Length+1, startIndexSlice[0])
+		} else if startIndexSlice[0] > l.length {
+			return startIndexSlice[0], fmt.Errorf("starting index cant be greater than length of list, expected a number less than %v, got %v", l.length+1, startIndexSlice[0])
 		} else {
 			return startIndexSlice[0], nil
 		}
 	}
-	return l.Length, nil
+	return l.length, nil
 }
 
 func (l *ListNode) iterateList(shouldPrint bool, searchKey interface{}, shouldDebug bool, searchByIndex bool) (int, *node) {
-	curr := l.Head
-	for i := 0; i < l.Length; i++ {
+	curr := l.head
+	var i int
+	for curr != nil {
 		if shouldPrint {
 			fmt.Print((*curr).Val)
 			if shouldDebug {
@@ -366,13 +369,19 @@ func (l *ListNode) iterateList(shouldPrint bool, searchKey interface{}, shouldDe
 			}
 		}
 		curr = curr.Next
+		i++
 	}
 	return -1, nil
 }
 
+// TODO
+func (l *ListNode) Sort() *node {
+	return l.head
+}
+
 func (l *ListNode) reverseIterateList(shouldPrint bool, searchKey interface{}, shouldDebug bool, searchByIndex bool) (int, *node) {
-	curr := l.Tail
-	counter := l.Length - 1
+	curr := l.tail
+	counter := l.length - 1
 	for curr != nil {
 		if shouldPrint {
 			fmt.Print((*curr).Val)
