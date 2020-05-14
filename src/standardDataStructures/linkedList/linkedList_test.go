@@ -668,3 +668,60 @@ func TestListNode_RemoveLastOccurrence(t *testing.T) {
 		t.Errorf("Expected last index of true to be 2, got %v", newIndex)
 	}
 }
+
+func TestListNode_Set(t *testing.T) {
+	list := ListNode{} // creates a instance of linked list node
+	for i := 0; i < 5; i++ {
+		err := list.Add(i%2 == 0) // Adds elements to the list
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+	}
+
+	for i := 0; i < list.Size(); i++ {
+		err := list.Set(i, i*10)
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+	}
+
+	for i := 0; i < list.Size(); i++ {
+		element, err := list.Get(i)
+		if err != nil || element != i*10 {
+			t.Errorf("Expected element at %v, to be %v, got %v", i, i*10, element)
+		}
+	}
+}
+
+func TestListNode_Size(t *testing.T) {
+	list := ListNode{} // creates a instance of linked list node
+	if list.Size() != 0 {
+		t.Errorf("Expected list size to be 0, got %v", list.Size())
+	}
+	for i := 0; i < 5; i++ {
+		err := list.Add(i%2 == 0) // Adds elements to the list
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+	}
+
+	if list.Size() != 5 {
+		t.Errorf("Expected list size to be 5, got %v", list.Size())
+	}
+}
+
+func TestListNode_ToArray(t *testing.T) {
+	list := ListNode{} // creates a instance of linked list node
+	for i := 0; i < 5; i++ {
+		err := list.Add(i) // Adds elements to the list
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+	}
+	slice := list.ToArray()
+	for i := 0; i < len(slice); i++ {
+		if slice[i] != i {
+			t.Errorf("expected %v, got %v", i, slice[i])
+		}
+	}
+}
