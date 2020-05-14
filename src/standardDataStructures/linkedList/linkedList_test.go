@@ -403,3 +403,108 @@ func TestListNode_OfferLast(t *testing.T) {
 		t.Errorf("Expected last element to be 100, got %v", lastElement)
 	}
 }
+
+func TestListNode_Peek(t *testing.T) {
+	list := ListNode{} // creates a instance of linked list node
+	for i := 0; i < 5; i++ {
+		err := list.Add(i) // Adds elements to the list
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+	}
+
+	headElement, err := list.Peek()
+	if err != nil || headElement.Val != 0 || headElement.Prev != nil {
+		t.Errorf("Head element value is not 0")
+	}
+}
+
+func TestListNode_PeekFirst(t *testing.T) {
+	list := ListNode{} // creates a instance of linked list node
+	for i := 0; i < 5; i++ {
+		err := list.Add(i) // Adds elements to the list
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+	}
+
+	headElement, err := list.PeekFirst()
+	if err != nil || headElement.Val != 0 || headElement.Prev != nil {
+		t.Errorf("Head element value is not 0")
+	}
+}
+
+func TestListNode_PeekLast(t *testing.T) {
+	list := ListNode{} // creates a instance of linked list node
+	for i := 0; i < 5; i++ {
+		err := list.Add(i) // Adds elements to the list
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+	}
+
+	tailElement, err := list.PeekLast()
+	if err != nil || tailElement.Val != 4 || tailElement.Next != nil {
+		t.Errorf("Head element value is not 0")
+	}
+}
+
+func TestListNode_Poll(t *testing.T) {
+	list := ListNode{} // creates a instance of linked list node
+	for i := 0; i < 5; i++ {
+		err := list.Add(i) // Adds elements to the list
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+	}
+
+	headElement, err := list.Poll()
+	if err != nil || headElement.Val != 0 || headElement.Prev != nil {
+		t.Errorf("Head element value is not 0, got %v", headElement.Val)
+	}
+
+	headElement, err = list.Poll()
+	if err != nil || headElement.Val != 1 || headElement.Prev != nil {
+		t.Errorf("Head element value is not 1, got %v", headElement.Val)
+	}
+}
+
+func TestListNode_PollFirst(t *testing.T) {
+	list := ListNode{} // creates a instance of linked list node
+	for i := 0; i < 5; i++ {
+		err := list.Add(i) // Adds elements to the list
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+	}
+
+	headElement, err := list.PollFirst()
+	if err != nil || headElement.Val != 0 || headElement.Prev != nil {
+		t.Errorf("Head element value is not 0, got %v", headElement.Val)
+	}
+
+	headElement, err = list.PollFirst()
+	if err != nil || headElement.Val != 1 || headElement.Prev != nil {
+		t.Errorf("Next head element is not 1, got %v", headElement.Val)
+	}
+}
+
+func TestListNode_PollLast(t *testing.T) {
+	list := ListNode{} // creates a instance of linked list node
+	for i := 0; i < 5; i++ {
+		err := list.Add(i) // Adds elements to the list
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+	}
+
+	tailElement, err := list.PollLast()
+	if err != nil || tailElement.Val != 4 || tailElement.Next != nil {
+		t.Errorf("Next tail element is not 4, got %v", tailElement.Val)
+	}
+
+	tailElement, err = list.PollLast()
+	if err != nil || tailElement.Val != 3 || tailElement.Next != nil {
+		t.Errorf("Next tail element is not 3, got %v", tailElement.Val)
+	}
+}
