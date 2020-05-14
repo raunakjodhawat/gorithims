@@ -1,3 +1,6 @@
+![Go](https://travis-ci.org/raunakjodhawat/gorithims.svg?branch=master)
+[![GoDoc](https://godoc.org/github.com/raunakjodhawat/multisort?status.svg)](https://pkg.go.dev/mod/github.com/raunakjodhawat/gorithims?tab=overview)
+
 # Purpose
 This repo aims to provide all the functionality related to algorithms and data structures in go.   
 One of the thing that I miss in Go Language is the ability to use wide range of data structure available in Java.  
