@@ -14,7 +14,7 @@ go get -d github.com/raunakjodhawat/gorithims/src
 
 ## Contents
 Following project contains implementation for Data Structures in Go. (with java and Javascript alike functions)
-As of April 28, 2020. This project have implementation for:
+This project have implementation for:
 - Standard Algorithms
     - Sorting (Currently works just with Integer type. Goal is to make it generic)
         - Insertion
@@ -66,7 +66,8 @@ func Help() string
 ```
 ## Implementations
 Implementation for all the functions is given in `main.go` file
-
-TL; DR; fun fact: gorithims stands for Go + Algorithms  
+ 
 More data structures and algorithms coming soon.  
 Look at the project section, to figure out what's the next release cycle
+
+TL; DR; fun fact: gorithims stands for Go + Algorithms 
