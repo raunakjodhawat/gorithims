@@ -578,7 +578,7 @@ func TestListNode_Remove(t *testing.T) {
 		t.Errorf("Expected head element to be 1, got %v", newHead)
 	}
 
-	removedElement, err = list.Remove(list.Size())
+	_, err = list.Remove(list.Size())
 	if err == nil {
 		t.Errorf("Expected error, because list.size is not a valid index, which can be removed")
 	}
