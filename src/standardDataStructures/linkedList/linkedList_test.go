@@ -288,7 +288,7 @@ func TestListNode_IndexOf(t *testing.T) {
 	}
 
 	index := list.IndexOf(0)
-	if index == -1 || index != 0{
+	if index == -1 || index != 0 {
 		t.Errorf("expected element to be at 0 index, but the element was not present in the list. got: %v", index)
 	}
 
@@ -308,12 +308,98 @@ func TestListNode_LastIndexOf(t *testing.T) {
 	}
 
 	index := list.LastIndexOf(0)
-	if index == -1 || index != list.Size() - 1{
+	if index == -1 || index != list.Size()-1 {
 		t.Errorf("expected element to be at last index, but the element was not present in the list. got: %v", index)
 	}
 
 	index = list.LastIndexOf(100)
 	if index != -1 {
 		t.Errorf("expected element to be not be in the list and thus return -1")
+	}
+}
+
+func TestListNode_ListIterator(t *testing.T) {
+	list := ListNode{} // creates a instance of linked list node
+	for i := 0; i < 5; i++ {
+		err := list.Add(i) // Adds elements to the list
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+	}
+
+	iterator, err := list.ListIterator(0) // Get a iterator for the list, starting from head
+	var j int
+	for iterator != nil { // traverse the list
+		if iterator.Val != j || err != nil {
+			t.Errorf("expected %v, got %v", j, iterator.Val)
+		}
+		j++
+		iterator = iterator.Next
+	}
+
+	j--
+	iterator, err = list.ListIterator(list.Size() - 1) // Get a iterator for the list, starting from head
+	for iterator != nil {
+		if iterator.Val != j || err != nil {
+			t.Errorf("expected %v, got %v", j, iterator.Val)
+		}
+		iterator = iterator.Next
+	}
+}
+
+func TestListNode_Offer(t *testing.T) {
+	list := ListNode{} // creates a instance of linked list node
+	for i := 0; i < 5; i++ {
+		err := list.Add(i) // Adds elements to the list
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+	}
+
+	isAdded, err := list.Offer(100) // offer/add element to end of the list
+	if err != nil || !isAdded {
+		t.Errorf("Failed to add 100 to end of the list")
+	}
+	lastElement, err := list.Get(list.Size() - 1)
+	if lastElement != 100 || err != nil {
+		t.Errorf("Expected last element to be 100, got %v", lastElement)
+	}
+}
+
+func TestListNode_OfferFirst(t *testing.T) {
+	list := ListNode{} // creates a instance of linked list node
+	for i := 0; i < 5; i++ {
+		err := list.Add(i) // Adds elements to the list
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+	}
+
+	isAdded, err := list.OfferFirst(100) // offer/add element to end of the list
+	if err != nil || !isAdded {
+		t.Errorf("Failed to add 100 to end of the list")
+	}
+	lastElement, err := list.Get(0)
+	if lastElement != 100 || err != nil {
+		t.Errorf("Expected last element to be 100, got %v", lastElement)
+	}
+}
+
+func TestListNode_OfferLast(t *testing.T) {
+	list := ListNode{} // creates a instance of linked list node
+	for i := 0; i < 5; i++ {
+		err := list.Add(i) // Adds elements to the list
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+	}
+
+	isAdded, err := list.OfferLast(100) // offer/add element to end of the list
+	if err != nil || !isAdded {
+		t.Errorf("Failed to add 100 to end of the list")
+	}
+	lastElement, err := list.Get(list.Size() - 1)
+	if lastElement != 100 || err != nil {
+		t.Errorf("Expected last element to be 100, got %v", lastElement)
 	}
 }
