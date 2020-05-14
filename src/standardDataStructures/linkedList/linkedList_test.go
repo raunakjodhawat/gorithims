@@ -628,3 +628,43 @@ func TestListNode_RemoveLast(t *testing.T) {
 		t.Errorf("Expected tail element to be 3, got %v", newHead)
 	}
 }
+
+func TestListNode_RemoveFirstOccurrence(t *testing.T) {
+	list := ListNode{} // creates a instance of linked list node
+	for i := 0; i < 5; i++ {
+		err := list.Add(i%2 == 0) // Adds elements to the list
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+	}
+
+	removedElement, err := list.RemoveFirstOccurrence(true)
+	if err != nil || removedElement.Val != true {
+		t.Errorf("Expected removed element to be true, got %v", removedElement.Val)
+	}
+
+	newIndex := list.IndexOf(true)
+	if newIndex != 1 {
+		t.Errorf("Expected next index of true to be to be 1, got %v", newIndex)
+	}
+}
+
+func TestListNode_RemoveLastOccurrence(t *testing.T) {
+	list := ListNode{} // creates a instance of linked list node
+	for i := 0; i < 5; i++ {
+		err := list.Add(i%2 == 0) // Adds elements to the list
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+	}
+
+	removedElement, err := list.RemoveLastOccurrence(true)
+	if err != nil || removedElement.Val != true {
+		t.Errorf("Expected removed element to be true, got %v", removedElement.Val)
+	}
+
+	newIndex := list.LastIndexOf(true)
+	if newIndex != 2 {
+		t.Errorf("Expected last index of true to be 2, got %v", newIndex)
+	}
+}
