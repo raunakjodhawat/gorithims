@@ -194,4 +194,126 @@ func TestListNode_Clone(t *testing.T) {
 	}
 }
 
+func TestListNode_Contains(t *testing.T) {
+	list := ListNode{} // creates a instance of linked list node
+	for i := 0; i < 5; i++ {
+		err := list.Add(i) // Adds elements to the list
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+	}
 
+	for i := 0; i < list.Size(); i++ {
+		isPresent := list.Contains(i) // Adds elements to the list
+		if !isPresent {
+			t.Errorf("expected %v to be in the list, but could not find it", i)
+		}
+	}
+
+	isPresent := list.Contains(100) // Adds elements to the list
+	if isPresent {
+		t.Errorf("expected 100 to not be in the list, but it was present")
+	}
+}
+
+func TestListNode_Element(t *testing.T) {
+	list := ListNode{} // creates a instance of linked list node
+	for i := 0; i < 5; i++ {
+		err := list.Add(i) // Adds elements to the list
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+	}
+
+	headElement := list.Element() // Adds elements to the list
+	if headElement.Val != 0 || headElement.Prev != nil {
+		t.Errorf("expected 0 as thead element, and previous element to be nil. got %v, %v", headElement.Val, headElement.Prev)
+	}
+}
+
+func TestListNode_Get(t *testing.T) {
+	list := ListNode{} // creates a instance of linked list node
+	for i := 0; i < 5; i++ {
+		err := list.Add(i) // Adds elements to the list
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+	}
+
+	for i := 0; i < 5; i++ {
+		val, err := list.Get(i)
+		if val != i || err != nil {
+			t.Errorf("expected %v, got %v", i, val)
+		}
+	}
+}
+
+func TestListNode_GetFirst(t *testing.T) {
+	list := ListNode{} // creates a instance of linked list node
+	for i := 0; i < 5; i++ {
+		err := list.Add(i) // Adds elements to the list
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+	}
+
+	val, err := list.GetFirst()
+	if val != 0 || err != nil {
+		t.Errorf("expected 0, got %v", val)
+	}
+}
+
+func TestListNode_GetLast(t *testing.T) {
+	list := ListNode{} // creates a instance of linked list node
+	for i := 0; i < 5; i++ {
+		err := list.Add(i) // Adds elements to the list
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+	}
+
+	val, err := list.GetLast()
+	if val != 4 || err != nil {
+		t.Errorf("expected 4, got %v", val)
+	}
+}
+
+func TestListNode_IndexOf(t *testing.T) {
+	list := ListNode{} // creates a instance of linked list node
+	for i := 0; i < 5; i++ {
+		err := list.Add(i) // Adds elements to the list
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+	}
+
+	index := list.IndexOf(0)
+	if index == -1 || index != 0{
+		t.Errorf("expected element to be at 0 index, but the element was not present in the list. got: %v", index)
+	}
+
+	index = list.IndexOf(100)
+	if index != -1 {
+		t.Errorf("expected element to be not be in the list and thus return -1")
+	}
+}
+
+func TestListNode_LastIndexOf(t *testing.T) {
+	list := ListNode{} // creates a instance of linked list node
+	for i := 0; i < 5; i++ {
+		err := list.Add(0) // Adds elements to the list
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+	}
+
+	index := list.LastIndexOf(0)
+	if index == -1 || index != list.Size() - 1{
+		t.Errorf("expected element to be at last index, but the element was not present in the list. got: %v", index)
+	}
+
+	index = list.LastIndexOf(100)
+	if index != -1 {
+		t.Errorf("expected element to be not be in the list and thus return -1")
+	}
+}
