@@ -151,6 +151,21 @@ func TestListNode_AddLast(t *testing.T) {
 	}
 }
 
+func TestListNode_Clear(t *testing.T) {
+	list := ListNode{} // creates a instance of linked list node
+	for i := 0; i < 5; i++ {
+		err := list.Add(i) // Adds elements to the list
+		if err != nil {
+			t.Errorf(err.Error())
+		}
+	}
+
+	list.Clear()
+	if list.Size() != 0 {
+		t.Errorf("Expected new list size to be %v, got 0", list.Size())
+	}
+}
+
 func TestListNode_Clone(t *testing.T) {
 	list := ListNode{} // creates a instance of linked list node
 	for i := 0; i < 5; i++ {
@@ -179,17 +194,4 @@ func TestListNode_Clone(t *testing.T) {
 	}
 }
 
-func TestListNode_Clear(t *testing.T) {
-	list := ListNode{} // creates a instance of linked list node
-	for i := 0; i < 5; i++ {
-		err := list.Add(i) // Adds elements to the list
-		if err != nil {
-			t.Errorf(err.Error())
-		}
-	}
 
-	list.Clear()
-	if list.Size() != 0 {
-		t.Errorf("Expected new list size to be %v, got 0", list.Size())
-	}
-}
