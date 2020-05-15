@@ -283,7 +283,7 @@ func dataStructureExecution() {
 
 		q := queue.Queue{}
 
-		for i:=0; i<5; i++ {
+		for i := 0; i < 5; i++ {
 
 		}
 		q.Add(100)
