@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"github.com/raunakjodhawat/gorithims/src/customAlgorithims/multisorted"
 	rsort "github.com/raunakjodhawat/gorithims/src/standardAlgorithims/sort"
-	linkedlist "github.com/raunakjodhawat/gorithims/src/standardDataStructures/linkedList"
+	linkedlist "github.com/raunakjodhawat/gorithims/src/standardDataStructures/Collection/linkedList"
+	queue "github.com/raunakjodhawat/gorithims/src/standardDataStructures/Collection/queue"
 )
 
 func main() {
@@ -274,5 +275,28 @@ func dataStructureExecution() {
 			list.Print() // print without extra debug option
 		*/
 		list.Print(true)
+	}()
+
+	func() {
+		fmt.Println("Queue execution")
+		fmt.Println("Any data type can be used to create Queue")
+
+		q := queue.Queue{}
+
+		for i:=0; i<5; i++ {
+
+		}
+		q.Add(100)
+		q.Add(101)
+		q.Print()
+		a, err := q.Remove()
+		fmt.Println(a, err)
+		a, err = q.Remove()
+		fmt.Println(a, err)
+
+		a, err = q.Remove()
+		fmt.Println(a, err, "last")
+
+		q.Print()
 	}()
 }
