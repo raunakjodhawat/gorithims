@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"github.com/raunakjodhawat/gorithims/src/customAlgorithims/multisorted"
+	linkedlist "github.com/raunakjodhawat/gorithims/src/dataStructure/collection/linkedList"
+	queue "github.com/raunakjodhawat/gorithims/src/dataStructure/collection/queue"
 	rsort "github.com/raunakjodhawat/gorithims/src/standardAlgorithims/sort"
-	linkedlist "github.com/raunakjodhawat/gorithims/src/standardDataStructures/Collection/linkedList"
-	queue "github.com/raunakjodhawat/gorithims/src/standardDataStructures/Collection/queue"
 )
 
 func main() {
@@ -73,7 +73,7 @@ func dataStructureExecution() {
 		fmt.Println("Linked List execution")
 		fmt.Println("Any type can be used to create linked list")
 
-		list := linkedlist.ListNode{} // creates a instance of linked list node
+		list := linkedlist.List{} // creates a instance of linked list node
 		for i := 0; i < 5; i++ {
 			err := list.Add(i) // Adds elements to the list
 			if err != nil {
