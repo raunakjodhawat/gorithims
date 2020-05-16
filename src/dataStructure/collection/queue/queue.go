@@ -1,32 +1,74 @@
 /**
 Package queue is a collection designed for holding elements prior to processing. Besides queues provide insertion, extraction, and inspection operations.
 Each of these methods exists in two forms: one returns an error if the operation fails, the other returns a special value (either null or false, depending on the operation).
+https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/util/Queue.html
 */
 package queue
 
 import (
-	"fmt"
-	linkedlist "github.com/raunakjodhawat/gorithims/src/dataStructure/collection/linkedList"
+	col "github.com/raunakjodhawat/gorithims/src/dataStructure/collection"
 )
 
+// Queue holds all the element of the queue. Using queueNode as a wrapper for collection module
 type Queue struct {
-	list   *linkedlist.List
-	length int
+	queueNode *col.Collection
 }
 
-func (q *Queue) Add(element interface{}) error {
-	if q.list == nil {
-		q.list = &linkedlist.List{}
+// Add Inserts the specified element into this queue, returning true upon success
+func (q *Queue) Add(element interface{}) bool {
+	err := q.queueNode.Add(element, 0)
+	if err != nil {
+		return false
 	}
-	return q.list.Add(element, 0)
+	return true
 }
 
-func (q *Queue) Remove() (*linkedlist.Node, error) {
-	_, err := q.list.RemoveLast()
-	return nil, err
+// Element Retrieves, but does not remove, the head of this queue
+func (q *Queue) Element() *col.Node {
+	return q.queueNode.Tail
 }
 
-func (q *Queue) Print() {
-	slice := q.list.ToArray()
-	fmt.Println(slice)
+// Offer Inserts the specified element into this queue, returning true upon success
+func (q *Queue) Offer(element interface{}) bool {
+	return q.Add(element)
+}
+
+// Peek Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
+func (q *Queue) Peek() *col.Node {
+	return q.queueNode.Tail
+}
+
+// Poll Retrieves and removes the head of this queue, or returns null if this queue is empty.
+func (q *Queue) Poll() (*col.Node, error) {
+	return q.queueNode.Remove(q.queueNode.Size() - 1)
+}
+
+// Remove Retrieves and removes the head of this queue
+func (q *Queue) Remove() (*col.Node, error) {
+	return q.queueNode.Remove(q.queueNode.Size() - 1)
+}
+
+// IsEmpty returns true of the queue is empty
+func (q *Queue) IsEmpty() bool {
+	return q.queueNode.IsEmpty()
+}
+
+// Size returns the size of the list
+func (q *Queue) Size() int {
+	return q.queueNode.Size()
+}
+
+// PrintPretty prints the queue as a slice
+func (q *Queue) PrintPretty() {
+	q.queueNode.PrintPretty()
+}
+
+// Prints prints the queue. with each element on a new line, optional debug parameter can be passed in to print extra information. usage: q.Print(true), q.Print(), q.Print(false)
+func (q *Queue) Print(shouldDebug ...bool) {
+	q.queueNode.Print(shouldDebug...)
+}
+
+// PrintReverse prints the queue in reverse order, with each element on a new line, optional debug parameter can be passed in to print extra information. usage: q.Print(true), q.Print(), q.Print(false)
+func (q *Queue) PrintReverse(shouldDebug ...bool) {
+	q.queueNode.PrintReverse(shouldDebug...)
 }
