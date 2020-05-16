@@ -2,7 +2,7 @@ package linkedlist
 
 import "fmt"
 
-func ExampleListNode_Add() {
+func ExampleList_Add() {
 	list := List{} // creates a instance of linked list node
 	for i := 0; i < 5; i++ {
 		err := list.Add(i) // Adds elements to the list
@@ -28,7 +28,7 @@ func ExampleListNode_Add() {
 	}
 }
 
-func ExampleListNode_AddAll() {
+func ExampleList_AddAll() {
 	list := List{} // creates a instance of linked list node
 	err := list.AddAll([]int{100, 200, 300})
 	if err != nil {
@@ -47,7 +47,7 @@ func ExampleListNode_AddAll() {
 	}
 }
 
-func ExampleListNode_AddFirst() {
+func ExampleList_AddFirst() {
 	list := List{}
 	err := list.AddLast(100)
 	if err != nil {
@@ -56,7 +56,7 @@ func ExampleListNode_AddFirst() {
 	}
 }
 
-func ExampleListNode_AddLast() {
+func ExampleList_AddLast() {
 	list := List{}
 	err := list.AddLast(100)
 	if err != nil {
@@ -65,18 +65,18 @@ func ExampleListNode_AddLast() {
 	}
 }
 
-func ExampleListNode_Clear() {
+func ExampleList_Clear() {
 	list := List{}
 	list.Clear()
 }
 
-func ExampleListNode_Clone() {
+func ExampleList_Clone() {
 	list := List{}
 	newList := list.Clone()
 	newList.Print()
 }
 
-func ExampleListNode_Contains() {
+func ExampleList_Contains() {
 	list := List{}
 	for i := 0; i < 5; i++ {
 		err := list.Add(i) // Adds elements to the list
@@ -89,7 +89,7 @@ func ExampleListNode_Contains() {
 	fmt.Println(isPresent) // Output: true
 }
 
-func ExampleListNode_Element() {
+func ExampleList_Element() {
 	list := List{}
 	err := list.Add(10)
 	if err != nil {
@@ -100,7 +100,7 @@ func ExampleListNode_Element() {
 	fmt.Println(listHead.Val) // Output: 10
 }
 
-func ExampleListNode_Get() {
+func ExampleList_Get() {
 	list := List{}
 	err := list.Add(10)
 	if err != nil {
@@ -115,7 +115,7 @@ func ExampleListNode_Get() {
 	fmt.Println(zeroElement) // Output: 10
 }
 
-func ExampleListNode_GetFirst() {
+func ExampleList_GetFirst() {
 	list := List{}
 	err := list.Add(10)
 	if err != nil {
@@ -130,7 +130,7 @@ func ExampleListNode_GetFirst() {
 	fmt.Println(zeroElement) // Output: 10
 }
 
-func ExampleListNode_GetLast() {
+func ExampleList_GetLast() {
 	list := List{}
 	err := list.Add(10)
 	if err != nil {
@@ -145,7 +145,7 @@ func ExampleListNode_GetLast() {
 	fmt.Println(zeroElement) // Output: 10
 }
 
-func ExampleListNode_IndexOf() {
+func ExampleList_IndexOf() {
 	list := List{}
 	err := list.Add(10)
 	if err != nil {
@@ -156,7 +156,7 @@ func ExampleListNode_IndexOf() {
 	fmt.Println(index) // Output: 0
 }
 
-func ExampleListNode_LastIndexOf() {
+func ExampleList_LastIndexOf() {
 	list := List{}
 	err := list.Add(10)
 	if err != nil {
@@ -172,7 +172,7 @@ func ExampleListNode_LastIndexOf() {
 	fmt.Println(index) // Output: 1
 }
 
-func ExampleListNode_ListIterator() {
+func ExampleList_ListIterator() {
 	list := List{}
 	err := list.Add(10)
 	if err != nil {
@@ -190,7 +190,7 @@ func ExampleListNode_ListIterator() {
 	}
 }
 
-func ExampleListNode_Offer() {
+func ExampleList_Offer() {
 	list := List{}
 	elementAdded, err := list.Offer(100)
 	if err != nil {
@@ -200,7 +200,7 @@ func ExampleListNode_Offer() {
 	fmt.Println(elementAdded) // Output: true
 }
 
-func ExampleListNode_OfferFirst() {
+func ExampleList_OfferFirst() {
 	list := List{}
 	elementAdded, err := list.OfferFirst(100)
 	if err != nil {
@@ -210,7 +210,7 @@ func ExampleListNode_OfferFirst() {
 	fmt.Println(elementAdded) // Output: true
 }
 
-func ExampleListNode_OfferLast() {
+func ExampleList_OfferLast() {
 	list := List{}
 	elementAdded, err := list.OfferLast(100)
 	if err != nil {
@@ -220,7 +220,7 @@ func ExampleListNode_OfferLast() {
 	fmt.Println(elementAdded) // Output: true
 }
 
-func ExampleListNode_Peek() {
+func ExampleList_Peek() {
 	list := List{}
 	err := list.Add(10)
 	if err != nil {
@@ -235,7 +235,7 @@ func ExampleListNode_Peek() {
 	fmt.Println(topElement.Val) // Output: 10
 }
 
-func ExampleListNode_PeekFirst() {
+func ExampleList_PeekFirst() {
 	list := List{}
 	err := list.Add(10)
 	if err != nil {
@@ -250,7 +250,7 @@ func ExampleListNode_PeekFirst() {
 	fmt.Println(topElement.Val) // Output: 10
 }
 
-func ExampleListNode_PeekLast() {
+func ExampleList_PeekLast() {
 	list := List{}
 	err := list.Add(10)
 	if err != nil {
@@ -265,7 +265,7 @@ func ExampleListNode_PeekLast() {
 	fmt.Println(topElement.Val) // Output: 10
 }
 
-func ExampleListNode_Poll() {
+func ExampleList_Poll() {
 	list := List{}
 	err := list.Add(10)
 	if err != nil {
@@ -280,7 +280,7 @@ func ExampleListNode_Poll() {
 	fmt.Println(polledElement.Val) // Output: 10
 }
 
-func ExampleListNode_PollFirst() {
+func ExampleList_PollFirst() {
 	list := List{}
 	err := list.Add(10)
 	if err != nil {
@@ -295,7 +295,7 @@ func ExampleListNode_PollFirst() {
 	fmt.Println(polledElement.Val) // Output: 10
 }
 
-func ExampleListNode_PollLast() {
+func ExampleList_PollLast() {
 	list := List{}
 	err := list.Add(10)
 	if err != nil {
@@ -310,7 +310,7 @@ func ExampleListNode_PollLast() {
 	fmt.Println(polledElement.Val) // Output: 10
 }
 
-func ExampleListNode_Pop() {
+func ExampleList_Pop() {
 	list := List{}
 	err := list.Add(10)
 	if err != nil {
@@ -325,7 +325,7 @@ func ExampleListNode_Pop() {
 	fmt.Println(removedElementVal) // Output: 10
 }
 
-func ExampleListNode_Print() {
+func ExampleList_Print() {
 	list := List{}
 	err := list.Add(10)
 	if err != nil {
@@ -337,7 +337,7 @@ func ExampleListNode_Print() {
 	list.Print(false) // Print with debug option set as false. equivalent to list.Print()
 }
 
-func ExampleListNode_PrintReverse() {
+func ExampleList_PrintReverse() {
 	list := List{}
 	err := list.Add(10)
 	if err != nil {
@@ -349,7 +349,7 @@ func ExampleListNode_PrintReverse() {
 	list.PrintReverse(false) // Print in reverse with debug option set as false. equivalent to list.Print()
 }
 
-func ExampleListNode_Push() {
+func ExampleList_Push() {
 	list := List{}
 	err := list.Add(10)
 	if err != nil {
@@ -363,7 +363,7 @@ func ExampleListNode_Push() {
 	}
 }
 
-func ExampleListNode_Remove() {
+func ExampleList_Remove() {
 	list := List{}
 	for i := 0; i < 5; i++ {
 		err := list.Add(i) // Adds elements to the list
@@ -387,7 +387,7 @@ func ExampleListNode_Remove() {
 	fmt.Print(removedElement.Val) // Output: 0, 3
 }
 
-func ExampleListNode_RemoveFirst() {
+func ExampleList_RemoveFirst() {
 	list := List{}
 	for i := 0; i < 5; i++ {
 		err := list.Add(i) // Adds elements to the list
@@ -404,7 +404,7 @@ func ExampleListNode_RemoveFirst() {
 	fmt.Print(removedElement.Val) // Output: 0
 }
 
-func ExampleListNode_RemoveLast() {
+func ExampleList_RemoveLast() {
 	list := List{}
 	for i := 0; i < 5; i++ {
 		err := list.Add(i * 10) // Adds elements to the list
@@ -421,7 +421,7 @@ func ExampleListNode_RemoveLast() {
 	fmt.Print(removedElement.Val) // Output: 40
 }
 
-func ExampleListNode_RemoveFirstOccurrence() {
+func ExampleList_RemoveFirstOccurrence() {
 	list := List{}
 	for i := 0; i < 5; i++ {
 		err := list.Add(i%2 == 0) // Adds elements to the list
@@ -438,7 +438,7 @@ func ExampleListNode_RemoveFirstOccurrence() {
 	fmt.Print(removedElement.Val) // Output: true
 }
 
-func ExampleListNode_RemoveLastOccurrence() {
+func ExampleList_RemoveLastOccurrence() {
 	list := List{}
 	for i := 0; i < 5; i++ {
 		err := list.Add(i%2 == 0) // Adds elements to the list
@@ -455,7 +455,7 @@ func ExampleListNode_RemoveLastOccurrence() {
 	fmt.Print(removedElement.Val) // Output: true
 }
 
-func ExampleListNode_Set() {
+func ExampleList_Set() {
 	list := List{}
 	err := list.Add(10)
 	if err != nil {
@@ -469,7 +469,7 @@ func ExampleListNode_Set() {
 	}
 }
 
-func ExampleListNode_Size() {
+func ExampleList_Size() {
 	list := List{}
 	err := list.Add(10)
 	if err != nil {
@@ -479,7 +479,7 @@ func ExampleListNode_Size() {
 	fmt.Println(list.Size()) // Output: 1
 }
 
-func ExampleListNode_ToArray() {
+func ExampleList_ToArray() {
 	list := List{}
 	for i := 0; i < 5; i++ {
 		err := list.Add(i%2 == 0) // Adds elements to the list

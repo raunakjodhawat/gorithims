@@ -4,7 +4,7 @@ package linkedlist
 import (
 	"errors"
 	"fmt"
-	col "github.com/raunakjodhawat/gorithims/src/DataStructure/Collection"
+	col "github.com/raunakjodhawat/gorithims/src/dataStructure/collection"
 	"reflect"
 )
 
