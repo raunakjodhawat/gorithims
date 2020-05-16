@@ -1,3 +1,4 @@
+//nolint
 package linkedlist
 
 import "testing"

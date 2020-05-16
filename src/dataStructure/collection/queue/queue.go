@@ -1,3 +1,4 @@
+//nolint
 /**
 Package queue is a collection designed for holding elements prior to processing. Besides queues provide insertion, extraction, and inspection operations.
 Each of these methods exists in two forms: one returns an error if the operation fails, the other returns a special value (either null or false, depending on the operation).

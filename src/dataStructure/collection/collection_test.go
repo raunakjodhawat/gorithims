@@ -169,9 +169,9 @@ func TestCollection_Equals(t *testing.T) {
 		t.Errorf("Collections should be equal")
 	}
 
-	copyC.Add(100)
+	err := copyC.Add(100)
 
-	if copyC.Equals(c) {
+	if copyC.Equals(c) && err != nil {
 		t.Errorf("Collections should not be equal")
 	}
 }
@@ -251,7 +251,7 @@ func TestCollection_Remove(t *testing.T) {
 	}
 
 	for i := 0; i < 3; i++ {
-		removedElement, err = c.Remove()
+		_, err = c.Remove()
 		if err != nil {
 			t.Errorf("Expected error, because list.size is not a valid index, which can be removed")
 		}
