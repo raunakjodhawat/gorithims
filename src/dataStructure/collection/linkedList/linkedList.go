@@ -8,6 +8,7 @@ import (
 	"reflect"
 )
 
+// Node holds the value/data and a pointer to next and previous value
 type Node struct {
 	Val  interface{}
 	Next *Node
@@ -15,7 +16,6 @@ type Node struct {
 }
 
 // List type, stores the head and tail. It represents a list of address with each list instantiated having a default nil.head and tail
-
 type List struct {
 	listElements col.Collection
 }
@@ -253,18 +253,6 @@ func (l *List) PrintPretty() {
 }
 
 // unexported and utility functions used by above functions
-func (l *List) getStartingIndex(startIndexSlice ...int) (int, error) {
-	if len(startIndexSlice) > 0 {
-		if len(startIndexSlice) > 2 {
-			return -1, fmt.Errorf("only one argument expected as start index, received %v", startIndexSlice)
-		} else if startIndexSlice[0] > l.Size() {
-			return startIndexSlice[0], fmt.Errorf("starting index cant be greater than length of list, expected a number less than %v, got %v", l.Size()+1, startIndexSlice[0])
-		} else {
-			return startIndexSlice[0], nil
-		}
-	}
-	return l.Size(), nil
-}
 
 func (l *List) offerHelper(element interface{}, startIndex ...int) (bool, error) {
 	err := l.listElements.Add(element, startIndex...)

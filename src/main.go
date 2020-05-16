@@ -283,19 +283,19 @@ func dataStructureExecution() {
 
 		q := queue.Queue{}
 
-		for i := 0; i < 5; i++ {
-
-		}
-		q.Add(100)
-		q.Add(101)
-		q.Print()
-		a, err := q.Remove()
-		fmt.Println(a, err)
-		a, err = q.Remove()
-		fmt.Println(a, err)
-
-		a, err = q.Remove()
-		fmt.Println(a, err, "last")
+		//for i := 0; i < 5; i++ {
+		//
+		//}
+		//q.Add(100)
+		//q.Add(101)
+		//q.Print()
+		//a, err := q.Remove()
+		//fmt.Println(a, err)
+		//a, err = q.Remove()
+		//fmt.Println(a, err)
+		//
+		//a, err = q.Remove()
+		//fmt.Println(a, err, "last")
 
 		q.Print()
 	}()
