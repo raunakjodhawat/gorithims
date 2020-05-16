@@ -12,6 +12,42 @@ Currently, this is a WIP. Contributors are most welcome.
 go get -d github.com/raunakjodhawat/gorithims/src
 ```
 
+## File Structure
+```
+  |-- raunakjodhawat,
+      |-- src
+          |-- main.go
+          |-- customAlgorithims
+          |   |-- multisorted
+          |       |-- multisorted.go
+          |       |-- multisorted_test.go
+          |-- dataStructure
+          |   |-- collection
+          |       |-- collection.go
+          |       |-- collection_benchmark_test.go
+          |       |-- collection_test.go
+          |       |-- linkedList
+          |       |   |-- linkedList.go
+          |       |   |-- linkedList_benchmark_test.go
+          |       |   |-- linkedList_examples_test.go
+          |       |   |-- linkedList_test.go
+          |       |-- queue
+          |           |-- queue.go
+          |           |-- queue_benchmark_test.go
+          |           |-- queue_example_test.go
+          |           |-- queue_test.go
+          |-- standardAlgorithims
+              |-- constants_test.go
+              |-- sort
+              |   |-- sort.go
+              |   |-- sort_test.go
+              |-- utility
+                  |-- InfoFunc.go
+                  |-- internalFunc.go
+                  |-- sortUtility.go
+                  |-- staticFunc.go
+```
+
 ## Contents
 Following project contains implementation for Data Structures in Go. (with java and Javascript alike functions)
 This project have implementation for:
