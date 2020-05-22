@@ -273,6 +273,7 @@ func dataStructureExecution() {
 			list.PrintReverse() // print in reverse without extra debug option
 			list.Print(true) // print with extra debug option
 			list.Print() // print without extra debug option
+			list.PrintPretty() // Print as a slice
 		*/
 		list.Print(true)
 	}()
@@ -307,5 +308,13 @@ func dataStructureExecution() {
 		fmt.Println(q.IsEmpty()) // check if queue is empty
 
 		fmt.Println(q.Size()) // Get Q's size
+		/**
+		Printing the Queue
+			q.PrintReverse(true) // print in reverse with extra debug option
+			q.PrintReverse() // print in reverse without extra debug option
+			q.Print(true) // print with extra debug option
+			q.Print() // print without extra debug option
+			q.PrintPretty() // Print as a slice
+		*/
 	}()
 }
