@@ -281,22 +281,31 @@ func dataStructureExecution() {
 		fmt.Println("Queue execution")
 		fmt.Println("Any data type can be used to create Queue")
 
-		q := queue.Queue{}
+		q := queue.Queue{} // Initializing a queue
+		for i := 0; i < 10; i++ {
+			isAdded := q.Add(i) // Adding element, you can also use q.offer(element)
+			if !isAdded {
+				fmt.Println("unable to add element to the queue")
+			}
+		}
 
-		//for i := 0; i < 5; i++ {
-		//
-		//}
-		//q.Add(100)
-		//q.Add(101)
-		//q.Print()
-		//a, err := q.Remove()
-		//fmt.Println(a, err)
-		//a, err = q.Remove()
-		//fmt.Println(a, err)
-		//
-		//a, err = q.Remove()
-		//fmt.Println(a, err, "last")
+		lastElementAdded := q.Element() // Get last element added to the queue or you can also use q.peek()
+		fmt.Println(lastElementAdded)
 
-		q.Print()
+		lastElementAdded, err := q.Poll() // remove the last added element
+		if err != nil {
+			fmt.Println("Error in removing last element")
+		}
+		fmt.Println(lastElementAdded)
+
+		dequeueElement, err := q.Remove() // remove a element from queue following (FIFO pattern)
+		if err != nil {
+			fmt.Println("Error in removing last element")
+		}
+		fmt.Println(dequeueElement)
+
+		fmt.Println(q.IsEmpty()) // check if queue is empty
+
+		fmt.Println(q.Size()) // Get Q's size
 	}()
 }
