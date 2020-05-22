@@ -16,11 +16,7 @@ type Queue struct {
 
 // Add Inserts the specified element into this queue, returning true upon success
 func (q *Queue) Add(element interface{}) bool {
-	err := q.queueNode.Add(element, 0)
-	if err != nil {
-		return false
-	}
-	return true
+	return q.queueNode.Add(element, 0) == nil
 }
 
 // Element Retrieves, last element at the tail (last element added)
