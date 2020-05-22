@@ -159,6 +159,7 @@ func ExampleQueue_Print() {
 	q.Print() // print queue, without debugging
 }
 
+//nolint
 func ExampleQueue_Print2() {
 	q := Queue{}
 	for i := 0; i < 10; i++ {
@@ -170,6 +171,7 @@ func ExampleQueue_Print2() {
 	q.Print(true) // print queue with debugging
 }
 
+//nolint
 func ExampleQueue_Print3() {
 	q := Queue{}
 	for i := 0; i < 10; i++ {
@@ -192,6 +194,7 @@ func ExampleQueue_PrintReverse() {
 	q.PrintReverse() // reverse print queue without debugging
 }
 
+//nolint
 func ExampleQueue_PrintReverse2() {
 	q := Queue{}
 	for i := 0; i < 10; i++ {
@@ -203,6 +206,7 @@ func ExampleQueue_PrintReverse2() {
 	q.PrintReverse(false) // reverse print queue without debugging
 }
 
+//nolint
 func ExampleQueue_PrintReverse3() {
 	q := Queue{}
 	for i := 0; i < 10; i++ {
