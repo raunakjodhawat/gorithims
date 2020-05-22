@@ -6,6 +6,10 @@ This repo aims to provide all the functionality related to algorithms and data s
 One of the thing that I miss in Go Language is the ability to use wide range of data structure available in Java.  
 As people transition from languages like java and javascript they will find using the data structures listed in the following project, helpful.  
 
+# Running Late?
+```clickhouse
+docker run raunakjodhawat/gorithims
+```
 # Installation
 ```
 go get -d github.com/raunakjodhawat/gorithims/src
@@ -13,38 +17,56 @@ go get -d github.com/raunakjodhawat/gorithims/src
 
 ## File Structure
 ```
-  |-- raunakjodhawat,
-      |-- src
-          |-- main.go
-          |-- customAlgorithims
-          |   |-- multisorted
-          |       |-- multisorted.go
-          |       |-- multisorted_test.go
-          |-- dataStructure
-          |   |-- collection
-          |       |-- collection.go
-          |       |-- collection_benchmark_test.go
-          |       |-- collection_test.go
-          |       |-- linkedList
-          |       |   |-- linkedList.go
-          |       |   |-- linkedList_benchmark_test.go
-          |       |   |-- linkedList_examples_test.go
-          |       |   |-- linkedList_test.go
-          |       |-- queue
-          |           |-- queue.go
-          |           |-- queue_benchmark_test.go
-          |           |-- queue_example_test.go
-          |           |-- queue_test.go
-          |-- standardAlgorithims
-              |-- constants_test.go
-              |-- sort
-              |   |-- sort.go
-              |   |-- sort_test.go
-              |-- utility
-                  |-- InfoFunc.go
-                  |-- internalFunc.go
-                  |-- sortUtility.go
-                  |-- staticFunc.go
+|-- raunakjodhawat
+    |-- .gitignore
+    |-- .travis.yml
+    |-- CODE_OF_CONDUCT.md
+    |-- Dockerfile
+    |-- LICENSE.md
+    |-- changelog.md
+    |-- directoryList.md
+    |-- readme.md
+    |-- .github
+    |   |-- workflows
+    |       |-- go.yml
+    |       |-- greetings.yml
+    |-- .idea
+    |   |-- gorithims.iml
+    |   |-- misc.xml
+    |   |-- modules.xml
+    |   |-- vcs.xml
+    |   |-- workspace.xml
+    |-- src
+        |-- main.go
+        |-- customAlgorithims
+        |   |-- multisorted
+        |       |-- multisorted.go
+        |       |-- multisorted_test.go
+        |-- dataStructure
+        |   |-- collection
+        |       |-- collection.go
+        |       |-- collection_benchmark_test.go
+        |       |-- collection_test.go
+        |       |-- linkedList
+        |       |   |-- linkedList.go
+        |       |   |-- linkedList_benchmark_test.go
+        |       |   |-- linkedList_examples_test.go
+        |       |   |-- linkedList_test.go
+        |       |-- queue
+        |           |-- queue.go
+        |           |-- queue_benchmark_test.go
+        |           |-- queue_example_test.go
+        |           |-- queue_test.go
+        |-- standardAlgorithims
+            |-- constants_test.go
+            |-- sort
+            |   |-- sort.go
+            |   |-- sort_test.go
+            |-- utility
+                |-- InfoFunc.go
+                |-- internalFunc.go
+                |-- sortUtility.go
+                |-- staticFunc.go
 ```
 
 ## Contents
@@ -121,4 +143,4 @@ Implementation for all the functions is given in `main.go` file
 More data structures and algorithms coming soon.  
 Look at the project section, to figure out what's the next release cycle
 
-TL; DR; fun fact: gorithims stands for Go + Algorithms 
+TL; DR; fun fact: gorithims stands for Go + Algorithms  (mddir)
