@@ -11,7 +11,7 @@ import (
 
 // Queue holds all the element of the queue. Using queueNode as a wrapper for collection module
 type Queue struct {
-	queueNode *col.Collection
+	queueNode col.Collection
 }
 
 // Add Inserts the specified element into this queue, returning true upon success
@@ -23,9 +23,9 @@ func (q *Queue) Add(element interface{}) bool {
 	return true
 }
 
-// Element Retrieves, but does not remove, the head of this queue
+// Element Retrieves, last element at the tail (last element added)
 func (q *Queue) Element() *col.Node {
-	return q.queueNode.Tail
+	return q.queueNode.Head
 }
 
 // Offer Inserts the specified element into this queue, returning true upon success
@@ -35,12 +35,12 @@ func (q *Queue) Offer(element interface{}) bool {
 
 // Peek Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
 func (q *Queue) Peek() *col.Node {
-	return q.queueNode.Tail
+	return q.queueNode.Head
 }
 
-// Poll Retrieves and removes the head of this queue, or returns null if this queue is empty.
+// Poll Retrieves and removes the tail of this queue, or returns null if this queue is empty. it removes the last input element
 func (q *Queue) Poll() (*col.Node, error) {
-	return q.queueNode.Remove(q.queueNode.Size() - 1)
+	return q.queueNode.Remove(0)
 }
 
 // Remove Retrieves and removes the head of this queue
@@ -63,7 +63,7 @@ func (q *Queue) PrintPretty() {
 	q.queueNode.PrintPretty()
 }
 
-// Prints prints the queue. with each element on a new line, optional debug parameter can be passed in to print extra information. usage: q.Print(true), q.Print(), q.Print(false)
+// Print the queue. with each element on a new line, optional debug parameter can be passed in to print extra information. usage: q.Print(true), q.Print(), q.Print(false)
 func (q *Queue) Print(shouldDebug ...bool) {
 	q.queueNode.Print(shouldDebug...)
 }
