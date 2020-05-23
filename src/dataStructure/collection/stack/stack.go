@@ -1,11 +1,11 @@
-// package stack contains the implementation of all the functions as described according to Java 14 documentation (https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/util/Stack.html)
+// Package stack contains the implementation of all the functions as described according to Java 14 documentation (https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/util/Stack.html)
 package stack
 
 import (
 	col "github.com/raunakjodhawat/gorithims/src/dataStructure/collection"
 )
 
-// type Stack used as a wrapped to use collection class functions
+// Stack used as a wrapper to use collection class functions
 type Stack struct {
 	stackNode col.Collection
 }
