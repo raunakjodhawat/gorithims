@@ -1,4 +1,4 @@
-![Go](https://travis-ci.org/raunakjodhawat/gorithims.svg?branch=master)
+[![Build Status](https://travis-ci.org/raunakjodhawat/gorithims.svg?branch=master)](https://travis-ci.org/raunakjodhawat/gorithims)
 [![GoDoc](https://godoc.org/github.com/raunakjodhawat/multisort?status.svg)](https://pkg.go.dev/mod/github.com/raunakjodhawat/gorithims?tab=overview)
 
 # Purpose
@@ -9,7 +9,7 @@ Current latest Version: 2.0.0
 [sneak peak: 2.1.0](https://github.com/raunakjodhawat/gorithims/pull/5) => Stack Implementation (To be resleased by May 31st, 2020)
 
 # Running Late?
-```clickhouse
+```
 docker run raunakjodhawat/gorithims
 ```
 # Installation
@@ -37,10 +37,15 @@ go get -d github.com/raunakjodhawat/gorithims/src
         |       |   |-- linkedList_examples_test.go
         |       |   |-- linkedList_test.go
         |       |-- queue
-        |           |-- queue.go
-        |           |-- queue_benchmark_test.go
-        |           |-- queue_example_test.go
-        |           |-- queue_test.go
+        |       |   |-- queue.go
+        |       |   |-- queue_benchmark_test.go
+        |       |   |-- queue_example_test.go
+        |       |   |-- queue_test.go
+        |       |-- stack
+        |           |-- stack.go
+        |           |-- stack_benchmark_test.go
+        |           |-- stack_example_test.go
+        |           |-- stack_test.go
         |-- standardAlgorithims
             |-- constants_test.go
             |-- sort
@@ -63,7 +68,7 @@ This project have implementation for:
         - Selection
 ### Standard Data Structures
 #### Linked List (Work with any type of data type)
-```clickhouse
+```
     func (l *ListNode) Add(element interface{}, startIndexSlice ...int) error
     func (l *ListNode) AddAll(elementsInterface interface{}, startIndexSlice ...int) error
     func (l *ListNode) AddFirst(elementsInterface interface{}) error
@@ -101,7 +106,7 @@ This project have implementation for:
     func (l *ListNode) ToArray() []interface{}
 ```
 #### Queue (Work with any type of data type)
-```clickhouse
+```
     func (q *Queue) Add(element interface{}) bool
     func (q *Queue) Element() *col.Node
     func (q *Queue) IsEmpty() bool
@@ -114,12 +119,22 @@ This project have implementation for:
     func (q *Queue) Remove() (*col.Node, error)
     func (q *Queue) Size() int
 ```
-
+#### Stack (Work with any data type)
+```
+    func (s *Stack) Empty() bool
+    func (s *Stack) Peek() *col.Node
+    func (s *Stack) Pop() (*col.Node, error)
+    func (s *Stack) Print(shouldDebug ...bool)
+    func (s *Stack) PrintPretty()
+    func (s *Stack) PrintReverse(shouldDebug ...bool)
+    func (s *Stack) Push(element interface{}) error
+    func (s *Stack) Search(element interface{}) int
+```
 ### Custom Algorithms
 #### multisort  
-```cassandraql
-func MultiSorted(unsortedSlice interface{}, inputSortKeys []string, ascendingSortOrder []bool) ([]multiSortInterface, error)
-func Help() string
+```
+    func MultiSorted(unsortedSlice interface{}, inputSortKeys []string, ascendingSortOrder []bool) ([]multiSortInterface, error)
+    func Help() string
 ```
 ## Implementations
 Implementation for all the functions is given in `main.go` file
