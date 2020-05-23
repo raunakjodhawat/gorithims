@@ -9,8 +9,8 @@ func TestStack_Empty(t *testing.T) {
 	if !s.Empty() {
 		t.Errorf("Expected a empty stack, but stack was not empty")
 	}
-	s.Push(100)
-	if s.Empty() {
+	err := s.Push(100)
+	if s.Empty() && err != nil {
 		t.Errorf("Expected a non-empty stack, but stack was empty")
 	}
 }
@@ -21,9 +21,9 @@ func TestStack_Peek(t *testing.T) {
 	if topElement != nil {
 		t.Errorf("Expected top element to be nil, got %v", topElement)
 	}
-	s.Push(100)
+	err := s.Push(100)
 	topElement = s.Peek()
-	if topElement.Val != 100 {
+	if topElement.Val != 100 && err != nil {
 		t.Errorf("Expected top element to be 100, got %v", topElement.Val)
 	}
 
@@ -32,35 +32,35 @@ func TestStack_Peek(t *testing.T) {
 		t.Errorf("Expected top element to be 100, got %v", topElement.Val)
 	}
 
-	s.Push(101)
+	err = s.Push(101)
 	topElement = s.Peek()
 
-	if topElement.Val != 101 {
+	if topElement.Val != 101 && err != nil {
 		t.Errorf("Expected top element to be 101, got %v", topElement.Val)
 	}
 }
 
 func TestStack_Pop(t *testing.T) {
 	s := Stack{}
-	poppedElement, error := s.Pop()
+	_, error := s.Pop()
 	if error == nil {
 		t.Errorf("Expected error, because stack is empty")
 	}
-	s.Push(100)
-	poppedElement, error = s.Pop()
+	_ = s.Push(100)
+	poppedElement, error := s.Pop()
 	if error != nil || poppedElement.Val != 100 {
 		t.Errorf("Expected element to be removed at 100, removedElement: %v", poppedElement)
 	}
-	poppedElement, error = s.Pop()
+	_, error = s.Pop()
 	if error == nil {
 		t.Errorf("Expected error, because stack is empty")
 	}
-	poppedElement, error = s.Pop()
+	_, error = s.Pop()
 	if error == nil {
 		t.Errorf("Expected error, because stack is empty")
 	}
-	s.Push(100)
-	s.Push(100)
+	_ = s.Push(100)
+	_ = s.Push(100)
 	poppedElement, error = s.Pop()
 	if error != nil || poppedElement.Val != 100 {
 		t.Errorf("Expected element to be removed at 100, removedElement: %v", poppedElement)
@@ -91,7 +91,7 @@ func TestStack_Search(t *testing.T) {
 	if searchElementIndex != -1 {
 		t.Errorf("Expected element to not be in the stack, but found it at %v: index (1-based)", searchElementIndex)
 	}
-	s.Push(0)
+	_ = s.Push(0)
 	searchElementIndex = s.Search(0)
 	if searchElementIndex != 1 {
 		t.Errorf("Expected element to be at 1st index (1-based), but found it at %v: index (1-based)", searchElementIndex)
