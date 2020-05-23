@@ -20,24 +20,6 @@ go get -d github.com/raunakjodhawat/gorithims/src
 ## File Structure
 ```
 |-- raunakjodhawat
-    |-- .gitignore
-    |-- .travis.yml
-    |-- CODE_OF_CONDUCT.md
-    |-- Dockerfile
-    |-- LICENSE.md
-    |-- changelog.md
-    |-- directoryList.md
-    |-- readme.md
-    |-- .github
-    |   |-- workflows
-    |       |-- go.yml
-    |       |-- greetings.yml
-    |-- .idea
-    |   |-- gorithims.iml
-    |   |-- misc.xml
-    |   |-- modules.xml
-    |   |-- vcs.xml
-    |   |-- workspace.xml
     |-- src
         |-- main.go
         |-- customAlgorithims
