@@ -27,7 +27,7 @@ func (s *Stack) Pop() (*col.Node, error) {
 
 // Push adds the element to the stack and returns the error.
 func (s *Stack) Push(element interface{}) error {
-	return s.stackNode.Add(element)
+	return s.stackNode.Add(element, 0)
 }
 
 // Search Returns the 1-based position where an object is on this stack. if element is not present in the list, it returns -1
