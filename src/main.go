@@ -9,8 +9,10 @@ import (
 )
 
 func main() {
-	fmt.Println("Starting Custom Algorithm usage")
+	fmt.Printf("\nWelcome to gorithims! this file executes some the examples of how you can leverage the codebase present on https://github.com/raunakjodhawat/gorithims\n\n")
+	fmt.Println("Starting first with the usage of, Custom Algorithms")
 	multiSortExecution()
+	fmt.Println()
 	fmt.Println("Standard Algorithm usage")
 	algorithmExecution()
 	fmt.Println("Standard Data structures usage")
@@ -18,7 +20,9 @@ func main() {
 }
 
 func multiSortExecution() {
-	fmt.Printf("Multisort, Exports two functions \t MultiSorted() and \tHelp()\n")
+	fmt.Println("\tYou can use multisort package to sort any JSON objects having a slice as any of its value. You can give in multiple input search parameters or keys and sort provide a sort direction")
+	fmt.Printf("\tMultisort, Exports two functions, [MultiSorted() & Help()]\n")
+	fmt.Println("\tImagine a Person type defined like this\n\ttype Person struct {\n\t\tName string\n\t\tAge  int\n\t}")
 	type Person struct {
 		Name string
 		Age  int
