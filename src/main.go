@@ -22,7 +22,9 @@ func main() {
 func multiSortExecution() {
 	fmt.Println("\tYou can use multisort package to sort any JSON objects having a slice as any of its value. You can give in multiple input search parameters or keys and sort provide a sort direction")
 	fmt.Printf("\tMultisort, Exports two functions, [MultiSorted() & Help()]\n")
-	fmt.Println("\tImagine a Person type defined like this\n\ttype Person struct {\n\t\tName string\n\t\tAge  int\n\t}")
+	fmt.Println("\tImagine a type Person defined like this\n\ttype Person struct {\n\t\tName string\n\t\tAge  int\n\t}")
+	fmt.Println("And we create a slice containing variables of type Person, and we want to sort this particular slice based on different key pairs and in different direction")
+
 	type Person struct {
 		Name string
 		Age  int
