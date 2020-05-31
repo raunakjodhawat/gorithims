@@ -23,7 +23,7 @@ func multiSortExecution() {
 	fmt.Println("\tYou can use multisort package to sort any JSON objects having a slice as any of its value. You can give in multiple input search parameters or keys and sort provide a sort direction")
 	fmt.Printf("\tMultisort, Exports two functions, [MultiSorted() & Help()]\n")
 	fmt.Println("\tImagine a type Person defined like this\n\ttype Person struct {\n\t\tName string\n\t\tAge  int\n\t}")
-	fmt.Println("And we create a slice containing variables of type Person, and we want to sort this particular slice based on different key pairs and in different direction")
+	fmt.Println("And we create a slice containing variables of type Person, like: \n\t[ p1 := Person{\n\t\tName: 'Joe',\n\t\tAge:  26\n\t}, p2 := ... ]\nand we want to sort this particular slice based on different key pairs and in different direction")
 
 	type Person struct {
 		Name string
@@ -47,7 +47,7 @@ func multiSortExecution() {
 	}
 	multisortExamplePersons := []Person{p1, p2, p3, p4}
 
-	// Sort first by Name in ascending order and age in descending order
+	fmt.Println("\nImplementation:\nSorting, first by Name in ascending order and then by Age in Descending order")
 	sortKeys := []string{"Name", "Age"}
 	ascendingOrder := []bool{true, false}
 	sortedSlice, err := multisorted.MultiSorted(multisortExamplePersons, sortKeys, ascendingOrder)
@@ -57,8 +57,9 @@ func multiSortExecution() {
 	for i := range sortedSlice {
 		sortedSlice[i] = sortedSlice[i].(Person)
 	}
-	// Notice that AAND comes before AZIN when the age is constant
-	fmt.Println(sortedSlice) // will print: [{Joe 26} {AAND 14} {Azin 14} {Bold 11}]
+
+	fmt.Println("Notice that AAND comes before AZIN when the age is constant")
+	fmt.Println(sortedSlice) // [{Joe 26} {AAND 14} {Azin 14} {Bold 11}]
 }
 
 func algorithmExecution() {
