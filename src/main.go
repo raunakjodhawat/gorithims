@@ -15,7 +15,7 @@ func main() {
 	fmt.Println()
 	fmt.Println("\nNow the next implementation\n##########    Standard Algorithms    ##########")
 	algorithmExecution()
-	fmt.Println("Standard Data structures usage")
+	fmt.Println("\n##########    Standard Data structures usage    ##########")
 	dataStructureExecution()
 }
 
@@ -85,9 +85,8 @@ func algorithmExecution() {
 
 func dataStructureExecution() {
 	func() {
-		fmt.Println("Linked List execution")
-		fmt.Println("Any type can be used to create linked list")
-
+		fmt.Println("##### 1. Linked List execution")
+		fmt.Println("\nAny type can be used to create linked list\n\tlist := linkedlist.List{} creates the linkedList")
 		list := linkedlist.List{} // creates a instance of linked list node
 		for i := 0; i < 5; i++ {
 			err := list.Add(i) // Adds elements to the list
@@ -96,6 +95,7 @@ func dataStructureExecution() {
 				break
 			}
 		}
+		fmt.Println("\tAdd element using list.Add() or list.AddAll()")
 		err := list.Add(10, 0) // Add 10 at index 0
 		if err != nil {
 			fmt.Println(err)
@@ -149,33 +149,38 @@ func dataStructureExecution() {
 			return
 		}
 
-		list.Print() // Print all elements of the list
+		fmt.Println("\tlist.Print() prints the list, one element in a line.\nAlternatively if you want information to previous and next pointer use:\n\tlist.Print(true), true to enable debug")
+		// list.Print() // Print all elements of the list
 
+		fmt.Println("\tlist.PrintPretty() can be used to print all the elements of list as a slice, all in one line")
+		fmt.Printf("\t")
+		list.PrintPretty()
+
+		fmt.Println("Additional function to clone, clear the list are also made available")
+		fmt.Println("\tlist.Clone()\tlist.Clear()")
 		newList := list.Clone() // Clone the list, make a new copy
 		list.Clear()            // Clears the list
-		fmt.Println("Does not print anything on the next line, as the list is cleared")
-		list.Print() // prints nothing, as the list is cleared above
-		fmt.Println("Print the cloned list, indicating cloning does work")
-		newList.Print() // Print the new list
+		// List.print() will be empty, as the list is cleared
+		// newList.Print() will print the cloned list, indicating cloning does work
 		list = newList  // copy newlist to list
-		fmt.Println("Print the list, indicating its no more empty")
-		list.Print()
 
-		isPresent := list.Contains(17)            // check if a element is present in the list
-		fmt.Println(isPresent)                    // true, as 17 is present in the list
-		fmt.Println(list.Contains("17"))          // false
-		fmt.Println(list.Contains("end of list")) // true
 
+		fmt.Println("Check if a element is present in the list\n\tlist.Contains(17) //returns true\n\tlist.Contains('17') //returns false")
+		_ = list.Contains(17)            // check if a element is present in the list
+
+		fmt.Println("Getting element by index, has never been easier.\n\tlist.Element() //gets head element\n\tlist.Get(3) //get element at index 3(0-based)\n\tlist.GetFirst() //get head element\n\tlist.GetLast() //get tail element")
 		head := list.Element()                      // Gets the head element
-		fmt.Println(head.Next, head.Val, head.Prev) // print head value, next node and previous node
+		fmt.Println("Head element:\t\t", head.Next, head.Val, head.Prev) // print head value, next node and previous node
 
 		valueAtIndex, _ := list.Get(1)    // Get element at index 1
-		fmt.Println(valueAtIndex)         // "raunak"
+		fmt.Println("Element at index 1:\t", valueAtIndex)         // "raunak"
 		valueAtIndex, _ = list.GetFirst() // Get element at head
-		fmt.Println(valueAtIndex)         // "first element"
+		fmt.Println("First element:\t\t", valueAtIndex)         // "first element"
 		valueAtIndex, _ = list.GetLast()  // Get element at tail
-		fmt.Println(valueAtIndex)         // "17"
+		fmt.Println("Last element:\t\t",valueAtIndex)         // "17"
 
+		// TODO: continue from here
+		fmt.Println("Get the index of a element")
 		index := list.IndexOf(17) // get index of 17 in the list
 		fmt.Println(index)        // 15
 		index = list.LastIndexOf("raunak")
