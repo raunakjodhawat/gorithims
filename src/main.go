@@ -3,17 +3,17 @@ package main
 import (
 	"fmt"
 	"github.com/raunakjodhawat/gorithims/src/customAlgorithims/multisorted"
-	linkedlist "github.com/raunakjodhawat/gorithims/src/dataStructure/collection/linkedList"
-	queue "github.com/raunakjodhawat/gorithims/src/dataStructure/collection/queue"
-	rsort "github.com/raunakjodhawat/gorithims/src/standardAlgorithims/sort"
+	"github.com/raunakjodhawat/gorithims/src/dataStructure/collection/linkedList"
+	"github.com/raunakjodhawat/gorithims/src/dataStructure/collection/queue"
+	"github.com/raunakjodhawat/gorithims/src/standardAlgorithims/rsort"
 )
 
 func main() {
 	fmt.Printf("\nWelcome to gorithims! this file executes some the examples of how you can leverage the codebase present on https://github.com/raunakjodhawat/gorithims\n\n")
-	fmt.Println("Starting first with the usage of, Custom Algorithms")
+	fmt.Println("Starting first with the usage of\n##########    Custom Algorithms    ##########")
 	multiSortExecution()
 	fmt.Println()
-	fmt.Println("Standard Algorithm usage")
+	fmt.Println("\nNow the next implementation\n##########    Standard Algorithms    ##########")
 	algorithmExecution()
 	fmt.Println("Standard Data structures usage")
 	dataStructureExecution()
@@ -23,7 +23,7 @@ func multiSortExecution() {
 	fmt.Println("\tYou can use multisort package to sort any JSON objects having a slice as any of its value. You can give in multiple input search parameters or keys and sort provide a sort direction")
 	fmt.Printf("\tMultisort, Exports two functions, [MultiSorted() & Help()]\n")
 	fmt.Println("\tImagine a type Person defined like this\n\ttype Person struct {\n\t\tName string\n\t\tAge  int\n\t}")
-	fmt.Println("And we create a slice containing variables of type Person, like: \n\t[ p1 := Person{\n\t\tName: 'Joe',\n\t\tAge:  26\n\t}, p2 := ... ]\nand we want to sort this particular slice based on different key pairs and in different direction")
+	fmt.Println("Create a slice containing variables of type Person, like: \n\t[ p1 := Person{\n\t\tName: 'Joe',\n\t\tAge:  26\n\t}, p2 := ... ]\nNow, we want to sort this particular slice based on different key pairs and in different direction")
 
 	type Person struct {
 		Name string
@@ -65,13 +65,21 @@ func multiSortExecution() {
 func algorithmExecution() {
 	func() {
 		// Sort Algorithm execution examples
-		fmt.Println("rsort only support int slices")
-		unsortedSlice := []int{25, 17, 31, 13, 2}
-		sortedSlice := rsort.InsertionSort(unsortedSlice, true) // Can use Bubble as well as Selection sort instead
-		fmt.Println("Sorted in Descending order", sortedSlice)
+		fmt.Println("\nCurrently, rsort only have one algorithm to perform sorting using multiple different technique. Additionally rsort just works on int slice")
 
-		sortedSlice = rsort.InsertionSort(unsortedSlice) // for ascending pass in false flag or dont pass the second argument
-		fmt.Println("Sorted in Ascending order", sortedSlice)
+		unsortedSlice := []int{25, 17, 31, 13, 2}
+
+		fmt.Println("to Sort []int{25, 17, 31, 13, 2} using Insertion Sort, use rsort.InsertionSort(unsortedSlice)")
+		fmt.Println("Alternatively, you can also use Selection as well as Bubble sort to perform the same sort")
+		fmt.Println("If you provide a true argument, while calling the appropriate sort function, sorting will take place in Descending order. default is Ascending")
+		fmt.Println("Implementation (Sorting int slice in Descending order):\n\trsort.InsertionSort(unsortedSlice, true)\trsort.BubbleSort(unsortedSlice, true)\trsort.SelectionSort(unsortedSlice, true)")
+
+		sortedSlice := rsort.InsertionSort(unsortedSlice, true) // Can use Bubble as well as Selection sort instead
+		fmt.Println("Sorted using Insertion Sort in Descending order", sortedSlice)
+
+		fmt.Println("Implementation (Sorting int slice in Ascending order):\n\trsort.InsertionSort(unsortedSlice)\trsort.BubbleSort(unsortedSlice)\trsort.SelectionSort(unsortedSlice)")
+		sortedSlice = rsort.BubbleSort(unsortedSlice) // for ascending pass in false flag or dont pass the second argument
+		fmt.Println("Sorted using Bubble Sort in Ascending order", sortedSlice)
 	}()
 }
 
