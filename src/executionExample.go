@@ -8,23 +8,17 @@ import (
 	"github.com/raunakjodhawat/gorithims/src/standardAlgorithims/rsort"
 )
 
-func main() {
-	fmt.Printf("\nWelcome to gorithims! this file executes some the examples of how you can leverage the codebase present on https://github.com/raunakjodhawat/gorithims\n\n")
-	fmt.Println("Starting first with the usage of\n##########    Custom Algorithms    ##########")
+func _() {
+	fmt.Println("Starting Custom Algorithm usage")
 	multiSortExecution()
-	fmt.Println()
-	fmt.Println("\nNow the next implementation\n##########    Standard Algorithms    ##########")
+	fmt.Println("Standard Algorithm usage")
 	algorithmExecution()
-	fmt.Println("\n##########    Standard Data structures usage    ##########")
+	fmt.Println("Standard Data structures usage")
 	dataStructureExecution()
 }
 
 func multiSortExecution() {
-	fmt.Println("\tYou can use multisort package to sort any JSON objects having a slice as any of its value. You can give in multiple input search parameters or keys and sort provide a sort direction")
-	fmt.Printf("\tMultisort, Exports two functions, [MultiSorted() & Help()]\n")
-	fmt.Println("\tImagine a type Person defined like this\n\ttype Person struct {\n\t\tName string\n\t\tAge  int\n\t}")
-	fmt.Println("Create a slice containing variables of type Person, like: \n\t[ p1 := Person{\n\t\tName: 'Joe',\n\t\tAge:  26\n\t}, p2 := ... ]\nNow, we want to sort this particular slice based on different key pairs and in different direction")
-
+	fmt.Printf("Multisort, Exports two functions \t MultiSorted() and \tHelp()\n")
 	type Person struct {
 		Name string
 		Age  int
@@ -47,7 +41,7 @@ func multiSortExecution() {
 	}
 	multisortExamplePersons := []Person{p1, p2, p3, p4}
 
-	fmt.Println("\nImplementation:\nSorting, first by Name in ascending order and then by Age in Descending order")
+	// Sort first by Name in ascending order and age in descending order
 	sortKeys := []string{"Name", "Age"}
 	ascendingOrder := []bool{true, false}
 	sortedSlice, err := multisorted.MultiSorted(multisortExamplePersons, sortKeys, ascendingOrder)
@@ -57,36 +51,28 @@ func multiSortExecution() {
 	for i := range sortedSlice {
 		sortedSlice[i] = sortedSlice[i].(Person)
 	}
-
-	fmt.Println("Notice that AAND comes before AZIN when the age is constant")
-	fmt.Println(sortedSlice) // [{Joe 26} {AAND 14} {Azin 14} {Bold 11}]
+	// Notice that AAND comes before AZIN when the age is constant
+	fmt.Println(sortedSlice) // will print: [{Joe 26} {AAND 14} {Azin 14} {Bold 11}]
 }
 
 func algorithmExecution() {
 	func() {
 		// Sort Algorithm execution examples
-		fmt.Println("\nCurrently, rsort only have one algorithm to perform sorting using multiple different technique. Additionally rsort just works on int slice")
-
+		fmt.Println("rsort only support int slices")
 		unsortedSlice := []int{25, 17, 31, 13, 2}
-
-		fmt.Println("to Sort []int{25, 17, 31, 13, 2} using Insertion Sort, use rsort.InsertionSort(unsortedSlice)")
-		fmt.Println("Alternatively, you can also use Selection as well as Bubble sort to perform the same sort")
-		fmt.Println("If you provide a true argument, while calling the appropriate sort function, sorting will take place in Descending order. default is Ascending")
-		fmt.Println("Implementation (Sorting int slice in Descending order):\n\trsort.InsertionSort(unsortedSlice, true)\trsort.BubbleSort(unsortedSlice, true)\trsort.SelectionSort(unsortedSlice, true)")
-
 		sortedSlice := rsort.InsertionSort(unsortedSlice, true) // Can use Bubble as well as Selection sort instead
-		fmt.Println("Sorted using Insertion Sort in Descending order", sortedSlice)
+		fmt.Println("Sorted in Descending order", sortedSlice)
 
-		fmt.Println("Implementation (Sorting int slice in Ascending order):\n\trsort.InsertionSort(unsortedSlice)\trsort.BubbleSort(unsortedSlice)\trsort.SelectionSort(unsortedSlice)")
-		sortedSlice = rsort.BubbleSort(unsortedSlice) // for ascending pass in false flag or dont pass the second argument
-		fmt.Println("Sorted using Bubble Sort in Ascending order", sortedSlice)
+		sortedSlice = rsort.InsertionSort(unsortedSlice) // for ascending pass in false flag or dont pass the second argument
+		fmt.Println("Sorted in Ascending order", sortedSlice)
 	}()
 }
 
 func dataStructureExecution() {
 	func() {
-		fmt.Println("##### 1. Linked List execution")
-		fmt.Println("\nAny type can be used to create linked list\n\tlist := linkedlist.List{} creates the linkedList")
+		fmt.Println("Linked List execution")
+		fmt.Println("Any type can be used to create linked list")
+
 		list := linkedlist.List{} // creates a instance of linked list node
 		for i := 0; i < 5; i++ {
 			err := list.Add(i) // Adds elements to the list
@@ -95,7 +81,6 @@ func dataStructureExecution() {
 				break
 			}
 		}
-		fmt.Println("\tAdd element using list.Add() or list.AddAll()")
 		err := list.Add(10, 0) // Add 10 at index 0
 		if err != nil {
 			fmt.Println(err)
@@ -149,38 +134,33 @@ func dataStructureExecution() {
 			return
 		}
 
-		fmt.Println("\tlist.Print() prints the list, one element in a line.\nAlternatively if you want information to previous and next pointer use:\n\tlist.Print(true), true to enable debug")
-		// list.Print() // Print all elements of the list
+		list.Print() // Print all elements of the list
 
-		fmt.Println("\tlist.PrintPretty() can be used to print all the elements of list as a slice, all in one line")
-		fmt.Printf("\t")
-		list.PrintPretty()
-
-		fmt.Println("Additional function to clone, clear the list are also made available")
-		fmt.Println("\tlist.Clone()\tlist.Clear()")
 		newList := list.Clone() // Clone the list, make a new copy
 		list.Clear()            // Clears the list
-		// List.print() will be empty, as the list is cleared
-		// newList.Print() will print the cloned list, indicating cloning does work
+		fmt.Println("Does not print anything on the next line, as the list is cleared")
+		list.Print() // prints nothing, as the list is cleared above
+		fmt.Println("Print the cloned list, indicating cloning does work")
+		newList.Print() // Print the new list
 		list = newList  // copy newlist to list
+		fmt.Println("Print the list, indicating its no more empty")
+		list.Print()
 
+		isPresent := list.Contains(17)            // check if a element is present in the list
+		fmt.Println(isPresent)                    // true, as 17 is present in the list
+		fmt.Println(list.Contains("17"))          // false
+		fmt.Println(list.Contains("end of list")) // true
 
-		fmt.Println("Check if a element is present in the list\n\tlist.Contains(17) //returns true\n\tlist.Contains('17') //returns false")
-		_ = list.Contains(17)            // check if a element is present in the list
-
-		fmt.Println("Getting element by index, has never been easier.\n\tlist.Element() //gets head element\n\tlist.Get(3) //get element at index 3(0-based)\n\tlist.GetFirst() //get head element\n\tlist.GetLast() //get tail element")
 		head := list.Element()                      // Gets the head element
-		fmt.Println("Head element:\t\t", head.Next, head.Val, head.Prev) // print head value, next node and previous node
+		fmt.Println(head.Next, head.Val, head.Prev) // print head value, next node and previous node
 
 		valueAtIndex, _ := list.Get(1)    // Get element at index 1
-		fmt.Println("Element at index 1:\t", valueAtIndex)         // "raunak"
+		fmt.Println(valueAtIndex)         // "raunak"
 		valueAtIndex, _ = list.GetFirst() // Get element at head
-		fmt.Println("First element:\t\t", valueAtIndex)         // "first element"
+		fmt.Println(valueAtIndex)         // "first element"
 		valueAtIndex, _ = list.GetLast()  // Get element at tail
-		fmt.Println("Last element:\t\t",valueAtIndex)         // "17"
+		fmt.Println(valueAtIndex)         // "17"
 
-		// TODO: continue from here
-		fmt.Println("Get the index of a element")
 		index := list.IndexOf(17) // get index of 17 in the list
 		fmt.Println(index)        // 15
 		index = list.LastIndexOf("raunak")

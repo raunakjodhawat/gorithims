@@ -15,4 +15,4 @@ RUN golint ./...
 RUN go test -v -race ./... --cover -bench=.
 
 # Run the executable
-CMD ["go", "run", "src/main.go"]
+CMD ["go", "run", "src/dockerExecution.go"]
