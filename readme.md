@@ -5,8 +5,10 @@
 This repo aims to provide all the functionality related to algorithms and data structures in go.   
 One of the thing that I miss in Go Language is the ability to use wide range of data structure available in Java.  
 As people transition from languages like java and javascript they will find using the data structures listed in the following project, helpful.  
-Current latest Version: 2.0.0  
-[sneak peak: 2.1.0](https://github.com/raunakjodhawat/gorithims/pull/7) => Stack Implementation (To be resleased by May 31st, 2020)
+Current latest Version: 2.1.0  
+Planned releases:
+[sneak peak: 2.1.1](https://github.com/raunakjodhawat/gorithims/issues/8)
+[sneak peak: 2.2.0](https://github.com/raunakjodhawat/gorithims/issues/9)
 
 # Running Late?
 ```
