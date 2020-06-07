@@ -5,6 +5,7 @@ import (
 	"github.com/raunakjodhawat/gorithims/src/customAlgorithims/multisorted"
 	"github.com/raunakjodhawat/gorithims/src/dataStructure/collection/linkedList"
 	"github.com/raunakjodhawat/gorithims/src/dataStructure/collection/queue"
+	"github.com/raunakjodhawat/gorithims/src/dataStructure/collection/stack"
 	"github.com/raunakjodhawat/gorithims/src/standardAlgorithims/rsort"
 )
 
@@ -17,6 +18,7 @@ func main() {
 	algorithmExecution_docker()
 	fmt.Println("\n##########    Standard Data structures usage    ##########")
 	dataStructureExecution_docker()
+	fmt.Println("########## go to executionExample.go file to look at more concrete implementation of all the functions")
 }
 
 func multiSortExecution_docker() {
@@ -162,22 +164,21 @@ func dataStructureExecution_docker() {
 		list.Clear()            // Clears the list
 		// List.print() will be empty, as the list is cleared
 		// newList.Print() will print the cloned list, indicating cloning does work
-		list = newList  // copy newlist to list
-
+		list = newList // copy newlist to list
 
 		fmt.Println("Check if a element is present in the list\n\tlist.Contains(17) //returns true\n\tlist.Contains('17') //returns false")
-		_ = list.Contains(17)            // check if a element is present in the list
+		_ = list.Contains(17) // check if a element is present in the list
 
 		fmt.Println("Getting element by index, has never been easier.\n\tlist.Element() //gets head element\n\tlist.Get(3) //get element at index 3(0-based)\n\tlist.GetFirst() //get head element\n\tlist.GetLast() //get tail element")
-		head := list.Element()                      // Gets the head element
+		head := list.Element()                                           // Gets the head element
 		fmt.Println("Head element:\t\t", head.Next, head.Val, head.Prev) // print head value, next node and previous node
 
-		valueAtIndex, _ := list.Get(1)    // Get element at index 1
-		fmt.Println("Element at index 1:\t", valueAtIndex)         // "raunak"
-		valueAtIndex, _ = list.GetFirst() // Get element at head
-		fmt.Println("First element:\t\t", valueAtIndex)         // "first element"
-		valueAtIndex, _ = list.GetLast()  // Get element at tail
-		fmt.Println("Last element:\t\t",valueAtIndex)         // "17"
+		valueAtIndex, _ := list.Get(1)                     // Get element at index 1
+		fmt.Println("Element at index 1:\t", valueAtIndex) // "raunak"
+		valueAtIndex, _ = list.GetFirst()                  // Get element at head
+		fmt.Println("First element:\t\t", valueAtIndex)    // "first element"
+		valueAtIndex, _ = list.GetLast()                   // Get element at tail
+		fmt.Println("Last element:\t\t", valueAtIndex)     // "17"
 
 		fmt.Println("You can get a index of a element in the list (0-based), if present. Otherwise it returns -1\n\tlist.IndexOf(17) // prints 15\n\tlist.LastIndexOf('raunak') // prints 15")
 
@@ -237,6 +238,35 @@ func dataStructureExecution_docker() {
 			q.Print(true) // print with extra debug option
 			q.Print() // print without extra debug option
 			q.PrintPretty() // Print as a slice
+		*/
+	}()
+
+	func() {
+		fmt.Println("##### 3. Stack execution")
+		fmt.Println("\nAny type can be used to create stack\n\ts := stack.Stack{} creates the Stack")
+
+		fmt.Println("\ts.Push(100) // pushes 100 to stack\n\ts.Peek() // retrieves 100, but does not remove it\n\ts.Pop() //retrieves 100 and removes from the stack\n\ts.Empty() // prints true as the stack is now empty\n\ts.Search(100) // prints -1, Search, returns 1-based index if element is present in the queue, else returns -1")
+
+		s := stack.Stack{} // Initialize the stack
+
+		fmt.Println("Printing the stack\n\ts.PrintReverse(true) // print in reverse with extra debug option\n\tq.Print() // print without extra debug option\n\ts.PrintPretty() // Print stack as a slice eg: ")
+		// Add 0 to 9 element on stack
+		for i := 0; i < 10; i++ {
+			err := s.Push(i) // Adding element, to the stack
+			if err != nil {
+				fmt.Println("unable to add element to the stack")
+			}
+		}
+		fmt.Printf("\t")
+		s.PrintPretty() // Print stack
+		fmt.Println()
+		/**
+		Printing the Stack
+			s.PrintReverse(true) // print in reverse with extra debug option
+			s.PrintReverse() // print in reverse without extra debug option
+			s.Print(true) // print with extra debug option
+			s.Print() // print without extra debug option
+			s.PrintPretty() // Print as a slice
 		*/
 	}()
 }

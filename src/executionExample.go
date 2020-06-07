@@ -1,3 +1,4 @@
+//nolint
 package main
 
 import (
@@ -5,6 +6,7 @@ import (
 	"github.com/raunakjodhawat/gorithims/src/customAlgorithims/multisorted"
 	"github.com/raunakjodhawat/gorithims/src/dataStructure/collection/linkedList"
 	"github.com/raunakjodhawat/gorithims/src/dataStructure/collection/queue"
+	"github.com/raunakjodhawat/gorithims/src/dataStructure/collection/stack"
 	"github.com/raunakjodhawat/gorithims/src/standardAlgorithims/rsort"
 )
 
@@ -315,6 +317,52 @@ func dataStructureExecution() {
 			q.Print(true) // print with extra debug option
 			q.Print() // print without extra debug option
 			q.PrintPretty() // Print as a slice
+		*/
+	}()
+
+	func() {
+		fmt.Println("Stack execution")
+		fmt.Println("Any data type can be used to create Stack")
+
+		s := stack.Stack{} // Initialize the stack
+
+		fmt.Println(s.Empty()) // prints true
+		// Add 0 to 9 element on stack
+		for i := 0; i < 10; i++ {
+			err := s.Push(i) // Adding element, to the stack
+			if err != nil {
+				fmt.Println("unable to add element to the stack")
+			}
+		}
+		s.PrintPretty() // Print stack
+
+		topElement := s.Peek()      // returns the top element of the stack
+		fmt.Println(topElement.Val) // top element is 9, as it was the last element added
+
+		topElement, err := s.Pop() // returns the top element and removes it from the stack
+		if err != nil {
+			fmt.Println("Stack was already empty, can't pop any more elements")
+		}
+		fmt.Println(topElement.Val) // 9
+		topElement = s.Peek()
+		fmt.Println(topElement.Val) // top element is 8, as 9 was removed
+
+		fmt.Println(s.Empty()) // prints false
+
+		// search a element on stack and get 1-based index of the element, if found. else get -1
+		index := s.Search(0)
+		fmt.Println(index) //prints 9 (1-based index/position on the stack)
+
+		index = s.Search(100)
+		fmt.Println(index) // prints -1
+
+		/**
+		Printing the Stack
+			s.PrintReverse(true) // print in reverse with extra debug option
+			s.PrintReverse() // print in reverse without extra debug option
+			s.Print(true) // print with extra debug option
+			s.Print() // print without extra debug option
+			s.PrintPretty() // Print as a slice
 		*/
 	}()
 }
