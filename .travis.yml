@@ -22,8 +22,8 @@ script:
   - go test -v -race ./... --cover # Run all the tests with the race detector enabled and run all the benchmarks
 
 after_success:
-  - echo "$TRAVIS_BRANCH"
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push raunakjodhawat/gorithims:2.1.1
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker push raunakjodhawat/gorithims:2.1.1
+      docker push raunakjodhawat/gorithims:2.1.1
     fi
