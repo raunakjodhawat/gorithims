@@ -12,7 +12,7 @@ RUN go fmt ./...
 RUN golint ./...
 
 # Run tests
-RUN go test -v -race ./... --cover -bench=.
+RUN go test -v -race ./... --cover
 
 # Run the executable
 CMD ["go", "run", "src/dockerExecution.go"]
