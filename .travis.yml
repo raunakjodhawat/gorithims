@@ -19,10 +19,11 @@ before_script:
 
 script:
   - golangci-lint run       # run a bunch of code checkers/linters in parallel
-  - go test -v -race ./... --cover -bench=. # Run all the tests with the race detector enabled and run all the benchmarks
+  - go test -v -race ./... --cover # Run all the tests with the race detector enabled and run all the benchmarks
 
 after_success:
+  - echo $TRAVIS_BRANCH
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
     docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker push raunakjodhawat/gorithims:2.1.0
+    docker push raunakjodhawat/gorithims:2.1.1
     fi
