@@ -15,7 +15,7 @@ notifications:
 
 before_script:
   - curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $GOPATH/bin v1.25.1
-  - docker build -t raunakjodhawat/gorithims .
+  - docker build -t raunakjodhawat/gorithims:2.1.1 .
 
 script:
   - golangci-lint run       # run a bunch of code checkers/linters in parallel
